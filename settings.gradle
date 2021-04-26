@@ -1,2 +1,6 @@
+include ':testing'
+include ':domain'
+include ':utils'
+include ':data'
 include ':app'
 rootProject.name = "AnimeClassroom"
