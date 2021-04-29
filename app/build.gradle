@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -30,16 +33,47 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "androidx.core:core-ktx:$core_ktx"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "com.google.android.material:material:$material"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
+
+    // library modules
+    implementation project(path: ':data')
+    implementation project(path: ':testing')
+    implementation project(path: ':domain')
+
+    // test dependencies
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
+
+    //fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+
+    // Coroutine Lifecycle Scopes
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_viewModels"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_viewModels"
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_viewModels"
+
+    // dagger hilt
+    api "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // dagger for viewmodel
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$dagger_viewModels"
+    kapt "androidx.hilt:hilt-compiler:$dagger_compiler"
 }
