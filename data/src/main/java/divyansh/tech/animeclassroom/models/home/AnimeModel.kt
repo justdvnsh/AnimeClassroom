@@ -6,5 +6,6 @@ package divyansh.tech.animeclassroom.models.home
 data class AnimeModel(
     var name: String,
     var imageUrl: String,
-    var releaseDate: String
+    var releaseDate: String,
+    var category: String? = null
 )

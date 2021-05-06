@@ -1,6 +1,7 @@
 package divyansh.tech.animeclassroom.api
 
 import okhttp3.Response
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 
 /*
@@ -12,5 +13,5 @@ interface HomeScreenApi {
     * Function to fetch popular animes and recent releases
     * */
     @GET("/popular.html")
-    suspend fun fetchPopularAnimes(): Response
+    suspend fun fetchPopularAnimes(): ResponseBody
 }
