@@ -44,4 +44,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
 
     implementation "org.jsoup:jsoup:$jsoup"
+
+    // module dependencies
+    implementation project(path: ":data")
 }
