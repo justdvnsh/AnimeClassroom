@@ -25,6 +25,7 @@ buildscript {
         jsoup="1.11.3"
         glide="4.10.0"
         exoplayer="2.10.8"
+        epoxyVersion="4.5.0"
     }
     repositories {
         google()

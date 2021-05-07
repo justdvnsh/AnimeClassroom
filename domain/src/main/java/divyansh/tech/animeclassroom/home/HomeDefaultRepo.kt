@@ -38,4 +38,28 @@ class HomeDefaultRepo @Inject constructor(
             emit(response)
         }
     }
+
+    /*
+    * Call the function to fetch popular movies
+    * @returns: Flow<ResultWrapper<*>>
+    * */
+    suspend fun parsePopularMovies(): Flow<ResultWrapper<*>> {
+        //TODO: Add local data first. (caching purpose)
+        return flow {
+            val response = remoteRepo.getPopularMovies()
+            emit(response)
+        }
+    }
+
+    /*
+    * Call the function to fetch new seasons
+    * @returns: Flow<ResultWrapper<*>>
+    * */
+    suspend fun parseNewSeasons(): Flow<ResultWrapper<*>> {
+        //TODO: Add local data first. (caching purpose)
+        return flow {
+            val response = remoteRepo.getNewSeasons()
+            emit(response)
+        }
+    }
 }

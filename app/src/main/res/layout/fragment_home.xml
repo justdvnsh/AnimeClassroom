@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data/>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/motion_scene"
+        >
+
+        <TextView
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:textSize="36sp"
+            android:textColor="@color/home_header"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/browse"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:id="@+id/search"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_search"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@id/shadowLayout"
+            android:focusable="true" />
+
+        <LinearLayout
+            android:id="@+id/shadowLayout"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/app_background"
+            android:layout_height="50dp"
+            android:elevation="1dp"
+            android:layout_marginTop="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"/>
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:id="@+id/popularItemRecyclerView"
-            />
+            android:layout_height="0dp"
+            android:id="@+id/recyclerView"
+            android:paddingBottom="25dp"
+            android:paddingHorizontal="10dp"
+            android:clipToPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

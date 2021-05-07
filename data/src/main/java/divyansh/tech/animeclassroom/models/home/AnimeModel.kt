@@ -6,8 +6,8 @@ package divyansh.tech.animeclassroom.models.home
 data class AnimeModel(
     var name: String,
     var imageUrl: String,
-    var releaseDate: String? = null,
-    var animeUrl: String? = null,
+    var releaseDate: String,
+    var animeUrl: String,
     var genre: String? = null
 )
 
@@ -17,5 +17,6 @@ data class AnimeModel(
 data class AnimeMetaModel(
     var name: String,
     var imageUrl: String,
-    var episodeUrl: String
+    var episodeUrl: String,
+    var episodeNumber: String
 )

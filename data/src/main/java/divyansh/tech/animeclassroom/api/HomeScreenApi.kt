@@ -14,4 +14,16 @@ interface HomeScreenApi {
     * */
     @GET("/popular.html")
     suspend fun fetchHomeScreenData(): ResponseBody
+
+    /*
+    * Function to fetch popular movies
+    * */
+    @GET("/anime-movies.html")
+    suspend fun fetchPopularMovies(): ResponseBody
+
+    /*
+    * Function to fetch new seasons
+    * */
+    @GET("/new-season.html")
+    suspend fun fetchNewSeasons(): ResponseBody
 }

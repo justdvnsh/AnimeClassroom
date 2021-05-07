@@ -6,6 +6,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -21,8 +26,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -36,6 +44,10 @@ android {
     dataBinding {
         enabled true
     }
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -84,4 +96,9 @@ dependencies {
     // exoplayer
     implementation "com.google.android.exoplayer:exoplayer:$exoplayer"
     implementation "com.google.android.exoplayer:extension-mediasession:$exoplayer"
+
+    // epoxy
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 }

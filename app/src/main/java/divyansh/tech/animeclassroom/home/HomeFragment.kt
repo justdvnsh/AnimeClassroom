@@ -57,5 +57,27 @@ class HomeFragment: Fragment() {
                     }
                 }
         )
+
+        viewModel.popularMoviesLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    when (it) {
+                        is ResultWrapper.Success -> Log.i("HOME-MOVIES", it.data.toString())
+                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
+                        is ResultWrapper.Loading -> {}
+                    }
+                }
+        )
+
+        viewModel.newSeasonsLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    when (it) {
+                        is ResultWrapper.Success -> Log.i("HOME-SEASONS", it.data.toString())
+                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
+                        is ResultWrapper.Loading -> {}
+                    }
+                }
+        )
     }
 }

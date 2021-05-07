@@ -27,11 +27,13 @@ object Parser {
                 val url = it?.getElementsByClass("img")?.first()?.select("a")?.first()?.select("img")?.attr("src")
                 val name = it?.getElementsByClass("img")?.first()?.select("a")?.attr("title")
                 val released = it?.getElementsByClass("released")?.get(0)?.text().toString()
+                val animeUrl = it?.getElementsByClass("img")?.first()?.select("a")?.attr("href")
 
                 val animeModel = AnimeModel(
                     name = name.toString(),
                     imageUrl = url.toString(),
-                    releaseDate = released.substringAfter(": ")
+                    releaseDate = released.substringAfter(": "),
+                    animeUrl = animeUrl.toString()
                 )
                 list.add(animeModel)
             }
@@ -56,11 +58,13 @@ object Parser {
                 val name = it?.select("a")?.attr("title")
                 val episodeUrl = it?.select("a")?.attr("href")
                 val imageUrl = it?.getElementsByClass("thumbnail-recent")?.first()?.attr("style")
+                val episodeNumber = it?.getElementsByClass("time_2")?.get(0)?.text()
 
                 val animeMetaModel = AnimeMetaModel(
                     name = name.toString(),
                     imageUrl = imageUrl.toString().substringAfter("('").substringBefore("')"),
-                    episodeUrl = episodeUrl.toString()
+                    episodeUrl = episodeUrl.toString(),
+                    episodeNumber = episodeNumber.toString()
                 )
 
                 list.add(animeMetaModel)

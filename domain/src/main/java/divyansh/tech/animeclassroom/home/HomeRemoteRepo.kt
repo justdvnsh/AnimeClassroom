@@ -36,4 +36,27 @@ class HomeRemoteRepo @Inject constructor(
         else ResultWrapper.Error(message = "No Body To parse", data = null)
     }
 
+    /*
+    * Fetch the popular movies
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun getPopularMovies(): ResultWrapper<*> {
+        val response = parsePopularAnimeJson(
+                homeScreenApi.fetchPopularMovies().string()
+        )
+        return if (response is ResultWrapper.Success) ResultWrapper.Success(response.data)
+        else ResultWrapper.Error(message = "No Body to Parse", data = null)
+    }
+
+    /*
+    * Fetch the new seasons
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun getNewSeasons(): ResultWrapper<*> {
+        val response = parsePopularAnimeJson(
+                homeScreenApi.fetchNewSeasons().string()
+        )
+        return if (response is ResultWrapper.Success) ResultWrapper.Success(response.data)
+        else ResultWrapper.Error(message = "No Body to Parse", data = null)
+    }
 }
