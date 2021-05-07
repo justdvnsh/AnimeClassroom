@@ -2,7 +2,6 @@ package divyansh.tech.animeclassroom.utils
 
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
-import divyansh.tech.animeclassroom.models.home.AnimeMetaModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import okhttp3.Response
 import org.jsoup.Jsoup
@@ -51,7 +50,7 @@ object Parser {
     * */
     suspend fun parseRecentReleaseJson(response: String): ResultWrapper<*> {
         return try {
-            val list: MutableList<AnimeMetaModel> = mutableListOf<AnimeMetaModel>()
+            val list: MutableList<AnimeModel> = mutableListOf<AnimeModel>()
             val jsoup = Jsoup.parse(response)
             val recentReleases = jsoup?.getElementsByClass("menu_recent")?.first()?.select("ul")?.first()?.select("li")
             recentReleases?.forEach {
@@ -60,7 +59,7 @@ object Parser {
                 val imageUrl = it?.getElementsByClass("thumbnail-recent")?.first()?.attr("style")
                 val episodeNumber = it?.getElementsByClass("time_2")?.get(0)?.text()
 
-                val animeMetaModel = AnimeMetaModel(
+                val animeMetaModel = AnimeModel(
                     name = name.toString(),
                     imageUrl = imageUrl.toString().substringAfter("('").substringBefore("')"),
                     episodeUrl = episodeUrl.toString(),

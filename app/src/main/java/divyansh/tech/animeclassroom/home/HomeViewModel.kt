@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.ResultWrapper
-import divyansh.tech.animeclassroom.models.home.AnimeMetaModel
+import divyansh.tech.animeclassroom.home.dataModels.*
+import divyansh.tech.animeclassroom.home.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -19,66 +20,79 @@ class HomeViewModel @Inject constructor(
     private val repo: HomeDefaultRepo
 ): ViewModel() {
 
-    private val _popularAnimeLiveData: MutableLiveData<ResultWrapper<List<AnimeModel>>> = MutableLiveData()
-    val popularAnimeLiveData: LiveData<ResultWrapper<List<AnimeModel>>> get() = _popularAnimeLiveData
+    private val _animeList: MutableLiveData<ResultWrapper<List<HomeMainModel>>> = MutableLiveData()
+    val animeList: LiveData<ResultWrapper<List<HomeMainModel>>> get() = _animeList
 
-    private val _recentReleasesLiveData: MutableLiveData<ResultWrapper<List<AnimeMetaModel>>> = MutableLiveData()
-    val recentReleaseLiveData: LiveData<ResultWrapper<List<AnimeMetaModel>>> get() = _recentReleasesLiveData
-
-    private val _popularMoviesLiveData: MutableLiveData<ResultWrapper<List<AnimeModel>>> = MutableLiveData()
-    val popularMoviesLiveData: LiveData<ResultWrapper<List<AnimeModel>>> get() = _popularMoviesLiveData
-
-    private val _newSeasonsLiveData: MutableLiveData<ResultWrapper<List<AnimeModel>>> = MutableLiveData()
-    val newSeasonsLiveData: LiveData<ResultWrapper<List<AnimeModel>>> get() = _newSeasonsLiveData
+    private val _list: MutableList<HomeMainModel> = mutableListOf()
 
     init {
-        getPopularAnimes()
         getRecentReleases()
-        getPopularMovies()
+        getPopularAnimes()
         getNewSeasons()
+        getPopularMovies()
     }
 
     private fun getPopularAnimes() = viewModelScope.launch(Dispatchers.IO) {
-        _popularAnimeLiveData.postValue(ResultWrapper.Loading())
+        _animeList.postValue(ResultWrapper.Loading())
         val response = repo.parsePopularAnimes()
         response.collect {
-            if (it is ResultWrapper.Success)
-                _popularAnimeLiveData.postValue(ResultWrapper.Success(it.data as List<AnimeModel>))
+            if (it is ResultWrapper.Success) {
+                val model = HomeMainModel(
+                    typeValue = HomeTypes.POPULAR_ANIME,
+                    animeList = it.data as List<AnimeModel>)
+                _list.add(model)
+                _animeList.postValue(ResultWrapper.Success(_list))
+            }
             else
-                _popularAnimeLiveData.postValue(ResultWrapper.Error(it.message.toString()))
+                _animeList.postValue(ResultWrapper.Error(it.message.toString()))
         }
     }
 
     private fun getRecentReleases() = viewModelScope.launch(Dispatchers.IO) {
-        _recentReleasesLiveData.postValue(ResultWrapper.Loading())
+        _animeList.postValue(ResultWrapper.Loading())
         val response = repo.parseRecentReleases()
         response.collect {
-            if (it is ResultWrapper.Success)
-                _recentReleasesLiveData.postValue(ResultWrapper.Success(it.data as List<AnimeMetaModel>))
+            if (it is ResultWrapper.Success){
+                val model = HomeMainModel(
+                    typeValue = HomeTypes.RECENT_RELEASE,
+                    animeList = it.data as List<AnimeModel>)
+                _list.add(model)
+                _animeList.postValue(ResultWrapper.Success(_list))
+            }
             else
-                _recentReleasesLiveData.postValue(ResultWrapper.Error(it.message.toString()))
+                _animeList.postValue(ResultWrapper.Error(it.message.toString()))
         }
     }
 
     private fun getPopularMovies() = viewModelScope.launch(Dispatchers.IO) {
-        _popularMoviesLiveData.postValue(ResultWrapper.Loading())
+        _animeList.postValue(ResultWrapper.Loading())
         val response = repo.parsePopularMovies()
         response.collect {
-            if (it is ResultWrapper.Success)
-                _popularMoviesLiveData.postValue(ResultWrapper.Success(it.data as List<AnimeModel>))
+            if (it is ResultWrapper.Success){
+                val model = HomeMainModel(
+                    typeValue = HomeTypes.POPULAR_MOVIES,
+                    animeList = it.data as List<AnimeModel>)
+                _list.add(model)
+                _animeList.postValue(ResultWrapper.Success(_list))
+            }
             else
-                _popularMoviesLiveData.postValue(ResultWrapper.Error(it.message.toString()))
+                _animeList.postValue(ResultWrapper.Error(it.message.toString()))
         }
     }
 
     private fun getNewSeasons() = viewModelScope.launch(Dispatchers.IO) {
-        _newSeasonsLiveData.postValue(ResultWrapper.Loading())
+        _animeList.postValue(ResultWrapper.Loading())
         val response = repo.parseNewSeasons()
         response.collect {
-            if (it is ResultWrapper.Success)
-                _newSeasonsLiveData.postValue(ResultWrapper.Success(it.data as List<AnimeModel>))
+            if (it is ResultWrapper.Success){
+                val model = HomeMainModel(
+                    typeValue = HomeTypes.NEW_SEASON,
+                    animeList = it.data as List<AnimeModel>)
+                _list.add(model)
+                _animeList.postValue(ResultWrapper.Success(_list))
+            }
             else
-                _newSeasonsLiveData.postValue(ResultWrapper.Error(it.message.toString()))
+                _animeList.postValue(ResultWrapper.Error(it.message.toString()))
         }
     }
 }

@@ -8,21 +8,27 @@
             />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_height="wrap_content"
+            android:id="@+id/typeName"
             android:layout_width="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="20dp"
+            android:paddingBottom="26dp"
             android:text="@{headerTitle}"
-            tools:text="Popular Anime"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/recycler_mini_header_title"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Recent Sub" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

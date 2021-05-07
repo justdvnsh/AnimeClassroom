@@ -3,7 +3,7 @@
     <data>
         <variable
             name="anime"
-            type="divyansh.tech.animeclassroom.models.home.AnimeMetaModel"
+            type="divyansh.tech.animeclassroom.models.home.AnimeModel"
             />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentHomeBinding
+import divyansh.tech.animeclassroom.home.epoxy.EpoxyHomeController
 
 @AndroidEntryPoint
 class HomeFragment: Fragment() {
@@ -20,6 +22,7 @@ class HomeFragment: Fragment() {
     val binding: FragmentHomeBinding get() = _homeFragmentBinding
 
     private val viewModel by viewModels<HomeViewModel>()
+    private val homeController by lazy { EpoxyHomeController() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,51 +36,26 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = homeController.adapter
+        }
     }
 
     private fun setupObservers() {
-        viewModel.popularAnimeLiveData.observe(
+        viewModel.animeList.observe(
             viewLifecycleOwner,
             Observer {
                 when (it) {
-                    is ResultWrapper.Success -> Log.i("HOME", it.data.toString())
+                    is ResultWrapper.Success -> homeController.setData(it.data?.sortedBy { it.typeValue })
                     is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
                     is ResultWrapper.Loading -> {}
                 }
             }
-        )
-
-        viewModel.recentReleaseLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> Log.i("HOME-RECENT", it.data.toString())
-                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
-                        is ResultWrapper.Loading -> {}
-                    }
-                }
-        )
-
-        viewModel.popularMoviesLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> Log.i("HOME-MOVIES", it.data.toString())
-                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
-                        is ResultWrapper.Loading -> {}
-                    }
-                }
-        )
-
-        viewModel.newSeasonsLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> Log.i("HOME-SEASONS", it.data.toString())
-                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
-                        is ResultWrapper.Loading -> {}
-                    }
-                }
         )
     }
 }
