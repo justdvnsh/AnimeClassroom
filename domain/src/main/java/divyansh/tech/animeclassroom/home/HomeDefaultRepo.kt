@@ -7,20 +7,35 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+/*
+* Main default repo, to fetch data both from remote and locally
+* */
 class HomeDefaultRepo @Inject constructor(
     private val remoteRepo: HomeRemoteRepo,
     private val localRepo: HomeLocalRepo
 ) {
 
+    /*
+    * Call the function to fetch popular animes
+    * @returns: Flow<ResultWrapper<*>>
+    * */
     suspend fun parsePopularAnimes(): Flow<ResultWrapper<*>> {
         //TODO: Add local data first. (caching purpose)
         return flow {
             val response = remoteRepo.getPopularAnimes()
-            if (response is ResultWrapper.Success) {
-                emit(response)
-            } else {
-                emit(response)
-            }
+            emit(response)
+        }
+    }
+
+    /*
+    * Call the function to fetch recent releases
+    * @returns Flow<ResultWrapper<*>>
+    * */
+    suspend fun parseRecentReleases(): Flow<ResultWrapper<*>> {
+        // TODO: Add local data first.
+        return flow {
+            val response = remoteRepo.getRecentReleases()
+            emit(response)
         }
     }
 }

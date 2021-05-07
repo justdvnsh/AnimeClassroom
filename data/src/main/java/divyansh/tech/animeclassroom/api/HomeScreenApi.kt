@@ -13,5 +13,5 @@ interface HomeScreenApi {
     * Function to fetch popular animes and recent releases
     * */
     @GET("/popular.html")
-    suspend fun fetchPopularAnimes(): ResponseBody
+    suspend fun fetchHomeScreenData(): ResponseBody
 }

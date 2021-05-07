@@ -46,5 +46,16 @@ class HomeFragment: Fragment() {
                 }
             }
         )
+
+        viewModel.recentReleaseLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    when (it) {
+                        is ResultWrapper.Success -> Log.i("HOME-RECENT", it.data.toString())
+                        is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
+                        is ResultWrapper.Loading -> {}
+                    }
+                }
+        )
     }
 }
