@@ -21,12 +21,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject lateinit var homeFragment: HomeFragment
-    @Inject lateinit var favoritesFragment: FavoritesFragment
-    @Inject lateinit var mangaFragment: MangaFragment
-    @Inject lateinit var shopFragment: ShopFragment
-    @Inject lateinit var settingsFragment: SettingsFragment
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
