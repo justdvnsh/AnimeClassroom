@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/home_navigation"
-    app:startDestination="@id/homeFragment2">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/homeFragment2"
+        android:id="@+id/homeFragment"
         android:name="divyansh.tech.animeclassroom.home.HomeFragment"
         android:label="HomeFragment" >
         <action
@@ -15,4 +15,24 @@
         android:id="@+id/playerActivity"
         android:name="divyansh.tech.animeclassroom.player.PlayerActivity"
         android:label="PlayerActivity" />
+    <fragment
+        android:id="@+id/mangaFragment"
+        android:name="divyansh.tech.animeclassroom.manga.MangaFragment"
+        android:label="MangaFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="divyansh.tech.animeclassroom.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="divyansh.tech.animeclassroom.shop.ShopFragment"
+        android:label="ShopFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="divyansh.tech.animeclassroom.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
+        android:label="FavoritesFragment" />
 </navigation>

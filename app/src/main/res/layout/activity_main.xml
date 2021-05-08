@@ -27,9 +27,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="10dp"
-        app:layout_constraintHorizontal_bias="0.5"
         app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/colorPrimary"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

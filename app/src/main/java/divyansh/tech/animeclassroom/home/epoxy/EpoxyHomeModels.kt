@@ -6,6 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.BR
 import divyansh.tech.animeclassroom.R
+import divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 
@@ -31,9 +32,12 @@ abstract class EpoxyAnimeModels: DataBindingEpoxyModel() {
 
     @EpoxyAttribute
     lateinit var anime: AnimeModel
+    @EpoxyAttribute
+    lateinit var callback: AnimeClickCallback
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
-         binding.setVariable(BR.anime, anime)
+        binding.setVariable(BR.anime, anime)
+        binding.setVariable(BR.callback, callback)
     }
 }
 
@@ -45,9 +49,12 @@ abstract class EpoxyAnimeMetaModels: DataBindingEpoxyModel() {
 
     @EpoxyAttribute
     lateinit var anime: AnimeModel
+    @EpoxyAttribute
+    lateinit var callback: AnimeClickCallback
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.anime, anime)
+        binding.setVariable(BR.callback, callback)
     }
 }
 
@@ -59,9 +66,12 @@ abstract class EpoxyGenreModels: DataBindingEpoxyModel() {
 
     @EpoxyAttribute
     lateinit var genre: GenreModel
+    @EpoxyAttribute
+    lateinit var callback: AnimeClickCallback
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.genre, genre)
+        binding.setVariable(BR.callback, callback)
     }
 }
 

@@ -3,12 +3,15 @@ package divyansh.tech.animeclassroom.home.epoxy
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
+import divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.home.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 
-class EpoxyHomeController(): TypedEpoxyController<List<HomeMainModel>>() {
+class EpoxyHomeController(
+        private val callback: AnimeClickCallback
+): TypedEpoxyController<List<HomeMainModel>>() {
     override fun buildModels(data: List<HomeMainModel>?) {
         data?.let {
             data.forEach {
@@ -24,7 +27,7 @@ class EpoxyHomeController(): TypedEpoxyController<List<HomeMainModel>>() {
     }
 
     private fun addRecentSubs(title: String, data: ArrayList<*>) {
-        data?.let {
+        data.let {
             epoxyTitle {
                 id(title)
                 headerTitle(title)
@@ -34,22 +37,23 @@ class EpoxyHomeController(): TypedEpoxyController<List<HomeMainModel>>() {
 
             data.forEach {
                 list.add(
-                    EpoxyAnimeMetaModels_()
-                        .id((it as AnimeModel).episodeUrl)
-                        .anime(it)
+                        EpoxyAnimeMetaModels_()
+                                .id((it as AnimeModel).episodeUrl)
+                                .anime(it)
+                                .callback(callback)
                 )
             }
 
             CarouselModel_()
-                .id("RECENT_RELEASE")
-                .models(list)
-                .padding(Carousel.Padding.dp(20,0,20,0,20))
-                .addTo(this)
+                    .id("RECENT_RELEASE")
+                    .models(list)
+                    .padding(Carousel.Padding.dp(20,0,20,0,20))
+                    .addTo(this)
         }
     }
 
     private fun addAnime(title: String, data: ArrayList<*>) {
-        data?.let {
+        data.let {
             epoxyTitle {
                 id(title)
                 headerTitle(title)
@@ -59,22 +63,23 @@ class EpoxyHomeController(): TypedEpoxyController<List<HomeMainModel>>() {
 
             data.forEach {
                 list.add(
-                    EpoxyAnimeModels_()
-                        .id((it as AnimeModel).animeUrl)
-                        .anime(it)
+                        EpoxyAnimeModels_()
+                                .id((it as AnimeModel).animeUrl)
+                                .anime(it)
+                                .callback(callback)
                 )
             }
 
             CarouselModel_()
-                .id(title)
-                .models(list)
-                .padding(Carousel.Padding.dp(20,0,20,0,20))
-                .addTo(this)
+                    .id(title)
+                    .models(list)
+                    .padding(Carousel.Padding.dp(20,0,20,0,20))
+                    .addTo(this)
         }
     }
 
     private fun addGenres(title: String, data: ArrayList<*>) {
-        data?.let {
+        data.let {
             epoxyTitle {
                 id(title)
                 headerTitle(title)
@@ -87,6 +92,7 @@ class EpoxyHomeController(): TypedEpoxyController<List<HomeMainModel>>() {
                         EpoxyGenreModels_()
                                 .id((it as GenreModel).genreUrl)
                                 .genre(it)
+                                .callback(callback)
                 )
             }
 
