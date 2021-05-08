@@ -62,4 +62,16 @@ class HomeDefaultRepo @Inject constructor(
             emit(response)
         }
     }
+
+    /*
+    * Call the function to fetch new seasons
+    * @returns: Flow<ResultWrapper<*>>
+    * */
+    suspend fun parseGenres(): Flow<ResultWrapper<*>> {
+        //TODO: Add local data first. (caching purpose)
+        return flow {
+            val response = remoteRepo.getGenres()
+            emit(response)
+        }
+    }
 }

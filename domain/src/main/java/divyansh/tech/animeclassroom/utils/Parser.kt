@@ -3,6 +3,7 @@ package divyansh.tech.animeclassroom.utils
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.models.home.AnimeModel
+import divyansh.tech.animeclassroom.models.home.GenreModel
 import okhttp3.Response
 import org.jsoup.Jsoup
 import java.lang.Exception
@@ -67,6 +68,33 @@ object Parser {
                 )
 
                 list.add(animeMetaModel)
+            }
+            ResultWrapper.Success(list.toList())
+        } catch (e: Exception) {
+            ResultWrapper.Error(message = e.localizedMessage, data = null)
+        }
+    }
+
+    /*
+    * parse the genres
+    * @param response: Response from the home page
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun parseGenresAnimeJson(response: String): ResultWrapper<*> {
+        return try {
+            val list: MutableList<GenreModel> = mutableListOf<GenreModel>()
+            val jsoup = Jsoup.parse(response)
+            val recentReleases = jsoup?.getElementsByClass("genre")?.first()?.select("ul")?.first()?.select("li")
+            recentReleases?.forEach {
+                val title = it?.child(0)?.select("a")?.first()?.attr("title")
+                val url = it?.child(0)?.select("a")?.first()?.attr("href")
+
+                val genreModel = GenreModel(
+                        genreTitle = title.toString(),
+                        genreUrl = url.toString()
+                )
+
+                list.add(genreModel)
             }
             ResultWrapper.Success(list.toList())
         } catch (e: Exception) {

@@ -10,6 +10,7 @@ import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.home.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
+import divyansh.tech.animeclassroom.models.home.GenreModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -20,16 +21,17 @@ class HomeViewModel @Inject constructor(
     private val repo: HomeDefaultRepo
 ): ViewModel() {
 
-    private val _animeList: MutableLiveData<ResultWrapper<List<HomeMainModel>>> = MutableLiveData()
-    val animeList: LiveData<ResultWrapper<List<HomeMainModel>>> get() = _animeList
+    private val _animeList: MutableLiveData<ResultWrapper<ArrayList<HomeMainModel>>> = MutableLiveData()
+    val animeList: LiveData<ResultWrapper<ArrayList<HomeMainModel>>> get() = _animeList
 
-    private val _list: MutableList<HomeMainModel> = mutableListOf()
+    private val _list: ArrayList<HomeMainModel> = arrayListOf()
 
     init {
         getRecentReleases()
         getPopularAnimes()
         getNewSeasons()
         getPopularMovies()
+        getGenres()
     }
 
     private fun getPopularAnimes() = viewModelScope.launch(Dispatchers.IO) {
@@ -38,8 +40,8 @@ class HomeViewModel @Inject constructor(
         response.collect {
             if (it is ResultWrapper.Success) {
                 val model = HomeMainModel(
-                    typeValue = HomeTypes.POPULAR_ANIME,
-                    animeList = it.data as List<AnimeModel>)
+                    type = HomeTypes.POPULAR_ANIME,
+                    feedResult = it.data as ArrayList<AnimeModel>)
                 _list.add(model)
                 _animeList.postValue(ResultWrapper.Success(_list))
             }
@@ -54,8 +56,8 @@ class HomeViewModel @Inject constructor(
         response.collect {
             if (it is ResultWrapper.Success){
                 val model = HomeMainModel(
-                    typeValue = HomeTypes.RECENT_RELEASE,
-                    animeList = it.data as List<AnimeModel>)
+                    type = HomeTypes.RECENT_RELEASE,
+                    feedResult = it.data as ArrayList<AnimeModel>)
                 _list.add(model)
                 _animeList.postValue(ResultWrapper.Success(_list))
             }
@@ -70,8 +72,8 @@ class HomeViewModel @Inject constructor(
         response.collect {
             if (it is ResultWrapper.Success){
                 val model = HomeMainModel(
-                    typeValue = HomeTypes.POPULAR_MOVIES,
-                    animeList = it.data as List<AnimeModel>)
+                    type = HomeTypes.POPULAR_MOVIES,
+                    feedResult = it.data as ArrayList<AnimeModel>)
                 _list.add(model)
                 _animeList.postValue(ResultWrapper.Success(_list))
             }
@@ -86,8 +88,24 @@ class HomeViewModel @Inject constructor(
         response.collect {
             if (it is ResultWrapper.Success){
                 val model = HomeMainModel(
-                    typeValue = HomeTypes.NEW_SEASON,
-                    animeList = it.data as List<AnimeModel>)
+                    type = HomeTypes.NEW_SEASON,
+                    feedResult = it.data as ArrayList<AnimeModel>)
+                _list.add(model)
+                _animeList.postValue(ResultWrapper.Success(_list))
+            }
+            else
+                _animeList.postValue(ResultWrapper.Error(it.message.toString()))
+        }
+    }
+
+    private fun getGenres() = viewModelScope.launch(Dispatchers.IO) {
+        _animeList.postValue(ResultWrapper.Loading())
+        val response = repo.parseGenres()
+        response.collect {
+            if (it is ResultWrapper.Success){
+                val model = HomeMainModel(
+                        type = HomeTypes.GENRES,
+                        feedResult = it.data as ArrayList<GenreModel>)
                 _list.add(model)
                 _animeList.postValue(ResultWrapper.Success(_list))
             }

@@ -3,6 +3,7 @@ package divyansh.tech.animeclassroom.home
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.api.HomeScreenApi
+import divyansh.tech.animeclassroom.utils.Parser.parseGenresAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parsePopularAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parseRecentReleaseJson
 import okhttp3.ResponseBody
@@ -54,6 +55,18 @@ class HomeRemoteRepo @Inject constructor(
     * */
     suspend fun getNewSeasons(): ResultWrapper<*> {
         val response = parsePopularAnimeJson(
+                homeScreenApi.fetchNewSeasons().string()
+        )
+        return if (response is ResultWrapper.Success) ResultWrapper.Success(response.data)
+        else ResultWrapper.Error(message = "No Body to Parse", data = null)
+    }
+
+    /*
+    * Fetch the genres
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun getGenres(): ResultWrapper<*> {
+        val response = parseGenresAnimeJson(
                 homeScreenApi.fetchNewSeasons().string()
         )
         return if (response is ResultWrapper.Success) ResultWrapper.Success(response.data)

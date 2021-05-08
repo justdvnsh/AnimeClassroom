@@ -26,4 +26,10 @@ interface HomeScreenApi {
     * */
     @GET("/new-season.html")
     suspend fun fetchNewSeasons(): ResponseBody
+
+    /*
+    * Fetch genres
+    * */
+    @GET("")
+    suspend fun fetchGenres(): ResponseBody
 }

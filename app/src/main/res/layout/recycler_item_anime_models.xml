@@ -31,6 +31,7 @@
                 android:id="@+id/animeImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                imageUrl="@{anime.imageUrl}"
                 android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 

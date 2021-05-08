@@ -51,7 +51,7 @@ class HomeFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 when (it) {
-                    is ResultWrapper.Success -> homeController.setData(it.data?.sortedBy { it.typeValue })
+                    is ResultWrapper.Success -> homeController.setData(it.data?.sortedBy { it.type })
                     is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
                     is ResultWrapper.Loading -> {}
                 }
