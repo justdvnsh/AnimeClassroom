@@ -6,4 +6,26 @@
     <string name="shop">Shop</string>
     <string name="settings">Settings</string>
     <string name="browse">Browse</string>
+    <string name="retry">retry</string>
+    <string name="quality_auto" translatable="false">Auto</string>
+    <string name="speed" translatable="false">1x</string>
+    <string name="released">Released:</string>
+    <string name="type">Type:</string>
+    <string name="status">Status:</string>
+    <string name="next_episode"><u>Next Episode</u>&gt;</string>
+    <string name="previous_episode">&lt;<u>Previous Episode</u></string>
+    <string name="back_button">Back Button</string>
+    <string name="search">Search</string>
+    <string name="something_went_wrong">Something Went Wrong</string>
+
+    <string name="no_internet">No Internet Connection</string>
+    <string name="favourite">Favourites</string>
+    <string name="status_code_default">Something went Wrong</string>
+    <string name="server_error">Server Error</string>
+    <string name="added_to_favourites">Anime added to Favourites</string>
+    <string name="removed_from_favourites">Anime removed from Favourites</string>
+    <string name="see_more"><![CDATA[See more >]]></string>
+    <string name="video_quality">Video Quality</string>
+    <string name="toggle_to_night_mode" translatable="false">Toggle to Night Mode</string>
+    <string name="toggle_to_light_mode" translatable="false">Toggle to Light Mode</string>
 </resources>

@@ -1,10 +1,8 @@
 package divyansh.tech.animeclassroom.utils
 
-import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
-import okhttp3.Response
 import org.jsoup.Jsoup
 import java.lang.Exception
 

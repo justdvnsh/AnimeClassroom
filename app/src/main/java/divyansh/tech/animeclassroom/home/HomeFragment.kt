@@ -41,7 +41,7 @@ class HomeFragment: Fragment() {
 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = LinearLayoutManager(requireActivity())
             adapter = homeController.adapter
         }
     }

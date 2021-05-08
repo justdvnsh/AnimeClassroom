@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/home_navigation"
+    app:startDestination="@id/homeFragment2">
+
+    <fragment
+        android:id="@+id/homeFragment2"
+        android:name="divyansh.tech.animeclassroom.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment2_to_playerActivity"
+            app:destination="@id/playerActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="divyansh.tech.animeclassroom.player.PlayerActivity"
+        android:label="PlayerActivity" />
+</navigation>

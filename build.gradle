@@ -26,6 +26,7 @@ buildscript {
         glide="4.10.0"
         exoplayer="2.10.8"
         epoxyVersion="4.5.0"
+        safeArgs="2.3.5"
     }
     repositories {
         google()
@@ -35,6 +36,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$safeArgs"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
