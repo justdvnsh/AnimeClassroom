@@ -68,7 +68,13 @@ class HomeFragment: Fragment() {
         viewModel.onAnimeClickedEventLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+                    val bundle = Bundle().apply {
+                        putSerializable(getString(R.string.anime_model), it)
+                    }
+                    findNavController().navigate(
+                        R.id.action_homeFragment_to_animeDetailFragment,
+                        bundle
+                    )
                 }
         )
 

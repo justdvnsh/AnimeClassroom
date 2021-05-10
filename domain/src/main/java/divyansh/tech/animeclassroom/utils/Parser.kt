@@ -99,4 +99,17 @@ object Parser {
             ResultWrapper.Error(message = e.localizedMessage, data = null)
         }
     }
+
+    /*
+    * parse the anime details
+    * @param response: Response from the anime page
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun parseAnimeDetails(response: String): ResultWrapper<*> {
+        return try {
+
+        } catch (e: Exception) {
+            ResultWrapper.Error(message = e.localizedMessage, data = null)
+        }
+    }
 }

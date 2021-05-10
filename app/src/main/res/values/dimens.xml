@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="anime_info_item_spacing">6dp</dimen>
+    <dimen name="anime_info_item_start_margin">20dp</dimen>
+    <dimen name="episode_offset_left">8dp</dimen>
+    <dimen name="episode_offset_right">20dp</dimen>
+    <dimen name="episode_offset_top">5dp</dimen>
+    <dimen name="episode_offset_bottom">5dp</dimen>
+</resources>

@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import divyansh.tech.animeclassroom.C.BASE_URL
+import divyansh.tech.animeclassroom.api.AnimeDetailScreenApi
 import divyansh.tech.animeclassroom.api.HomeScreenApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -38,4 +39,15 @@ class NetworkModule {
     fun providesHomeScreenApi(
         retrofit: Retrofit
     ): HomeScreenApi = retrofit.create(HomeScreenApi::class.java)
+
+    /*
+    * Provides animeDetailScreenApi
+    * @param retrofit: Retrofit
+    * @returns -> AnimeDetailScreenApi service
+    * */
+    @Provides
+    @Singleton
+    fun providesAnimeDetailScreenApi(
+        retrofit: Retrofit
+    ): AnimeDetailScreenApi = retrofit.create(AnimeDetailScreenApi::class.java)
 }

@@ -10,11 +10,18 @@
         <action
             android:id="@+id/action_homeFragment2_to_playerActivity"
             app:destination="@id/playerActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
     </fragment>
     <activity
         android:id="@+id/playerActivity"
         android:name="divyansh.tech.animeclassroom.player.PlayerActivity"
-        android:label="PlayerActivity" />
+        android:label="PlayerActivity" >
+        <argument
+            android:name="anime"
+            app:argType="divyansh.tech.animeclassroom.models.home.AnimeModel" />
+    </activity>
     <fragment
         android:id="@+id/mangaFragment"
         android:name="divyansh.tech.animeclassroom.manga.MangaFragment"
@@ -22,7 +29,11 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="divyansh.tech.animeclassroom.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shopFragment"
         android:name="divyansh.tech.animeclassroom.shop.ShopFragment"
@@ -34,5 +45,17 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" />
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animeDetailFragment"
+        android:name="divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragment"
+        android:label="AnimeDetailFragment" >
+        <argument
+            android:name="AnimeModel"
+            app:argType="divyansh.tech.animeclassroom.models.home.AnimeModel" />
+    </fragment>
 </navigation>

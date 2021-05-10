@@ -27,6 +27,7 @@ buildscript {
         exoplayer="2.10.8"
         epoxyVersion="4.5.0"
         safeArgs="2.3.5"
+        expandableTextView="0.1.4"
     }
     repositories {
         google()

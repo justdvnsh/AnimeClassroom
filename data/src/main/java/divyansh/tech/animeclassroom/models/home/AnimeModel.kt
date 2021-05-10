@@ -15,5 +15,16 @@ data class AnimeModel(
         var episodeUrl: String? = null,
         var episodeNumber: String? = null,
         var genre: String? = null,
-        var episodes: ArrayList<EpisodeModel>? = null
+): Serializable
+
+
+data class AnimeDetailModel(
+    var name: String,
+    var imageUrl: String,
+    var releaseDate: String,
+    var episodeList: List<EpisodeModel>,
+    var genre: List<GenreModel>,
+    var plotSummary: String,
+    var status: String,
+    var type: String
 )
