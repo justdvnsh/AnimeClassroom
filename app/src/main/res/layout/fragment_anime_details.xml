@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-        <variable
-            name="anime"
-            type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />
+<!--        <variable-->
+<!--            name="anime"-->
+<!--            type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />-->
     </data>
     <androidx.constraintlayout.motion.widget.MotionLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,7 +33,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/plot_summary"
-                android:text="@{anime.plotSummary}"
                 tools:text="asasasasaaaaaaaaaaaaaaaaaaaaaa" />
 
             <ImageButton
@@ -71,7 +70,6 @@
                     android:id="@+id/animeInfoImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    imageUrl="@{anime.imageUrl}"
                     android:scaleType="centerCrop" />
 
             </androidx.cardview.widget.CardView>
@@ -92,7 +90,6 @@
                 app:layout_constraintStart_toEndOf="@id/animeCardView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"
-                android:text="@{anime.name}"
                 tools:text="BAKUSOU KYOUDAI LET'S GO WGP" />
 
             <LinearLayout
@@ -148,7 +145,6 @@
                     android:id="@+id/animeInfoReleased"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{anime.type}"
                     android:theme="@style/type_value"
                     tools:text="TV Series" />
             </LinearLayout>
@@ -178,7 +174,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:theme="@style/type_value"
-                    android:text="@{anime.status}"
                     tools:text="Completed" />
             </LinearLayout>
 

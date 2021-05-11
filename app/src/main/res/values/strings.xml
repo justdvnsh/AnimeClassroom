@@ -29,4 +29,5 @@
     <string name="toggle_to_night_mode" translatable="false">Toggle to Night Mode</string>
     <string name="toggle_to_light_mode" translatable="false">Toggle to Light Mode</string>
     <string name="anime_model">Anime Model</string>
+    <string name="anime_url">anime_url</string>
 </resources>

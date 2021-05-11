@@ -1,9 +1,12 @@
 package divyansh.tech.animeclassroom.utils
 
+import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 import org.jsoup.Jsoup
+import org.jsoup.select.Elements
 import java.lang.Exception
 
 /*
@@ -107,9 +110,86 @@ object Parser {
     * */
     suspend fun parseAnimeDetails(response: String): ResultWrapper<*> {
         return try {
+            val jsoup = Jsoup.parse(response)
+            val imageUrl = jsoup?.getElementsByClass("anime_info_body_bg")?.first()?.select("img")?.first()?.absUrl("src")
+            val name = jsoup?.getElementsByClass("anime_info_body_bg")?.first()?.select("h1")?.first()?.text()
+            val lists = jsoup?.getElementsByClass("type")
+            lateinit var type: String
+            lateinit var releaseTime: String
+            lateinit var status: String
+            lateinit var plotSummary: String
+            val genre: ArrayList<GenreModel> = ArrayList()
+            lists?.forEachIndexed { index, element ->
+                when(index){
+                    0-> type = element.text()
+                    1-> plotSummary = element.text()
+                    2-> genre.addAll(getGenreList(element.select("a")))
+                    3-> releaseTime = element.text()
+                    4-> status = element.text()
+                }
+            }
+            val episodeInfo = jsoup.getElementById("episode_page")
+            val episodeList = episodeInfo.select("a").last()
+            val endEpisode = episodeList.attr("ep_end")
+            val alias = jsoup.getElementById("alias_anime").attr("value")
+            val id = jsoup.getElementById("movie_id").attr("value")
+            Log.i("HOME-NAME", name.toString())
+            val model = AnimeDetailModel(
+                name = name.toString(),
+                imageUrl = imageUrl.toString(),
+                type = formatInfoValues(type),
+                releaseDate = formatInfoValues(releaseTime),
+                status = formatInfoValues(status),
+                genre = genre,
+                plotSummary = plotSummary,
+                endEpisode = endEpisode.toInt()
+            )
 
+            return ResultWrapper.Success(model)
         } catch (e: Exception) {
             ResultWrapper.Error(message = e.localizedMessage, data = null)
         }
+    }
+
+    private fun filterGenreName(genreName: String): String{
+        return if(genreName.contains(',')){
+            genreName.substring(genreName.indexOf(',')+1)
+        }else{
+            genreName
+        }
+    }
+
+    private fun getGenreList(genreHtmlList: Elements): ArrayList<GenreModel>{
+        val genreList = ArrayList<GenreModel>()
+        genreHtmlList.forEach {
+            val genreUrl = it.attr("href")
+            val genreName = it.text()
+
+            genreList.add(
+                GenreModel(
+                    genreUrl = genreUrl,
+                    genreTitle = filterGenreName(genreName)
+                )
+            )
+
+        }
+
+        return genreList
+    }
+
+    private fun formatInfoValues(infoValue: String): String{
+        return infoValue.substring(infoValue.indexOf(':')+1, infoValue.length)
+    }
+
+    private fun getCategoryUrl(url: String): String {
+        return try{
+            var categoryUrl =  url.substring(url.lastIndexOf('/') + 1, url.lastIndexOf('.'))
+            categoryUrl = "/category/$categoryUrl"
+            categoryUrl
+        }catch (exception: StringIndexOutOfBoundsException){
+//            Timber.e("Image URL: $url")
+            ""
+        }
+
     }
 }

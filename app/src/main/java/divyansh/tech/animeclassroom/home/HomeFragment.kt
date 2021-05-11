@@ -68,8 +68,9 @@ class HomeFragment: Fragment() {
         viewModel.onAnimeClickedEventLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
+                    Log.i("HOME", it.animeUrl.toString())
                     val bundle = Bundle().apply {
-                        putSerializable(getString(R.string.anime_model), it)
+                        putString(getString(R.string.anime_url), "https://www1.gogoanime.ai${it.animeUrl.toString()}")
                     }
                     findNavController().navigate(
                         R.id.action_homeFragment_to_animeDetailFragment,
