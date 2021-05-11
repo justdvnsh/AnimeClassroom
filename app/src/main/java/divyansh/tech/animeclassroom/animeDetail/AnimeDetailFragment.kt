@@ -82,7 +82,9 @@ class AnimeDetailFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
-                    findNavController().navigate(R.id.action_homeFragment2_to_playerActivity)
+                    findNavController().navigate(
+                        AnimeDetailFragmentDirections.actionAnimeDetailFragmentToPlayerActivity(it)
+                    )
                 }
             }
         )
@@ -119,6 +121,6 @@ class AnimeDetailFragment: Fragment() {
     }
 
     private fun onBackPressed() {
-        findNavController().popBackStack()
+        findNavController().popBackStack(R.id.animeDetailFragment, true)
     }
 }

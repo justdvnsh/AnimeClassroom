@@ -5,6 +5,7 @@ import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
+import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.lang.Exception
@@ -151,6 +152,36 @@ object Parser {
         }
     }
 
+    /*
+    * parse the episode details
+    * @param response: Response from the anime page
+    * @returns ResultWrapper<*>
+    * */
+    suspend fun parseEpisodeDetails(response: String): ResultWrapper<*> {
+//        Log.i("Player", response)
+        return try {
+            val jsoup = Jsoup.parse(response)
+            val animeName = jsoup?.getElementsByClass("title_name")?.first()?.select("h2")?.get(0)?.text()
+            val streamingUrl = jsoup?.getElementsByClass("play-video")?.first()?.select("iframe")?.first()?.attr("src")
+            val prevEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_l")?.first()?.select("a")?.first()?.attr("href")
+            val nextEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_r")?.first()?.select("a")?.first()?.attr("href")
+            Log.i("Player-Name", animeName.toString())
+            Log.i("Player-Streaming", streamingUrl.toString())
+            Log.i("Player-prev", prevEpisode.toString())
+            Log.i("Player-next", nextEpisode.toString())
+            val model = PlayerScreenModel(
+                animeName = animeName.toString(),
+                streamingUrl = "https:${streamingUrl.toString()}",
+                previousEpisodeUrl = prevEpisode.toString(),
+                nextEpisodeUrl = nextEpisode.toString()
+            )
+            ResultWrapper.Success(model)
+        } catch (e: Exception) {
+            Log.i("Player-Name", e.message.toString())
+            ResultWrapper.Error(message = e.localizedMessage, data = null)
+        }
+    }
+
     private fun filterGenreName(genreName: String): String{
         return if(genreName.contains(',')){
             genreName.substring(genreName.indexOf(',')+1)
@@ -192,4 +223,5 @@ object Parser {
         }
 
     }
+
 }

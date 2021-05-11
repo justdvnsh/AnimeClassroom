@@ -95,8 +95,14 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide"
 
     // exoplayer
-    implementation "com.google.android.exoplayer:exoplayer:$exoplayer"
-    implementation "com.google.android.exoplayer:extension-mediasession:$exoplayer"
+    implementation (
+            "com.google.android.exoplayer:exoplayer:$exoplayer",
+            "com.google.android.exoplayer:extension-mediasession:$exoplayer",
+            "com.google.android.exoplayer:exoplayer-core:$exoplayer",
+            "com.google.android.exoplayer:exoplayer-dash:$exoplayer",
+            "com.google.android.exoplayer:exoplayer-ui:$exoplayer",
+            "com.google.android.exoplayer:exoplayer-smoothstreaming:$exoplayer"
+    )
 
     // epoxy
     implementation "com.airbnb.android:epoxy:$epoxyVersion"

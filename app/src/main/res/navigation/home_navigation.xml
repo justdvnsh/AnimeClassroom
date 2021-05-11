@@ -17,7 +17,11 @@
     <activity
         android:id="@+id/playerActivity"
         android:name="divyansh.tech.animeclassroom.player.PlayerActivity"
-        android:label="PlayerActivity" />
+        android:label="PlayerActivity" >
+        <argument
+            android:name="episodeUrl"
+            app:argType="string" />
+    </activity>
     <fragment
         android:id="@+id/mangaFragment"
         android:name="divyansh.tech.animeclassroom.manga.MangaFragment"
@@ -54,5 +58,8 @@
             app:argType="string"
             android:defaultValue="null"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_animeDetailFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
 </navigation>

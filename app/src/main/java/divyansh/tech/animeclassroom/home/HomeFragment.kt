@@ -68,13 +68,8 @@ class HomeFragment: Fragment() {
         viewModel.onAnimeClickedEventLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
-                    Log.i("HOME", it.animeUrl.toString())
-                    val bundle = Bundle().apply {
-                        putString(getString(R.string.anime_url), "https://www1.gogoanime.ai${it.animeUrl.toString()}")
-                    }
                     findNavController().navigate(
-                        R.id.action_homeFragment_to_animeDetailFragment,
-                        bundle
+                        HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
                     )
                 }
         )
@@ -89,7 +84,10 @@ class HomeFragment: Fragment() {
         viewModel.onEpisodeClickedEventLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
-                    startActivity(Intent(requireContext(), PlayerActivity::class.java))
+                    it.episodeUrl?.let {
+                        findNavController()
+                            .navigate(HomeFragmentDirections.actionHomeFragment2ToPlayerActivity(it))
+                    }
                 }
         )
     }

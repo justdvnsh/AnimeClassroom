@@ -30,4 +30,6 @@
     <string name="toggle_to_light_mode" translatable="false">Toggle to Light Mode</string>
     <string name="anime_model">Anime Model</string>
     <string name="anime_url">anime_url</string>
+    <string name="episode_url">episodeUrl</string>
+    <string name="user_agent">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36</string>
 </resources>
