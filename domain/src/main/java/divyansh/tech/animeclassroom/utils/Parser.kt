@@ -7,6 +7,7 @@ import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 import java.lang.Exception
 
@@ -162,7 +163,7 @@ object Parser {
         return try {
             val jsoup = Jsoup.parse(response)
             val animeName = jsoup?.getElementsByClass("title_name")?.first()?.select("h2")?.get(0)?.text()
-            val streamingUrl = jsoup?.getElementsByClass("play-video")?.first()?.select("iframe")?.first()?.attr("src")
+            val streamingUrl = jsoup?.getElementsByClass("favorites_book")?.first()?.select("ul")?.first()?.select("li")?.first()?.select("a")?.first()?.attr("href")
             val prevEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_l")?.first()?.select("a")?.first()?.attr("href")
             val nextEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_r")?.first()?.select("a")?.first()?.attr("href")
             Log.i("Player-Name", animeName.toString())
@@ -171,13 +172,30 @@ object Parser {
             Log.i("Player-next", nextEpisode.toString())
             val model = PlayerScreenModel(
                 animeName = animeName.toString(),
-                streamingUrl = "https:${streamingUrl.toString()}",
+                streamingUrl = streamingUrl.toString(),
                 previousEpisodeUrl = prevEpisode.toString(),
                 nextEpisodeUrl = nextEpisode.toString()
             )
             ResultWrapper.Success(model)
         } catch (e: Exception) {
             Log.i("Player-Name", e.message.toString())
+            ResultWrapper.Error(message = e.localizedMessage, data = null)
+        }
+    }
+
+    suspend fun parseStreamingUrl(response: String, playerModel: PlayerScreenModel): ResultWrapper<*> {
+        return try {
+            val list: ArrayList<String> = arrayListOf()
+            val jsoup = Jsoup.parse(response)
+            val streamingUrl = jsoup?.getElementsByClass("mirror_link")?.first()?.select("div")
+            streamingUrl?.forEach {
+                list.add(it.select("a")?.first()?.attr("href").toString())
+            }
+            Log.i("Player Parser", streamingUrl.toString())
+            Log.i("Player URL", list.toString())
+            val model = playerModel.copy(streamingUrl = list[0], mirrorLinks = list)
+            ResultWrapper.Success(model)
+        } catch (e: Exception) {
             ResultWrapper.Error(message = e.localizedMessage, data = null)
         }
     }

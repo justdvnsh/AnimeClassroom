@@ -27,6 +27,7 @@ import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
+import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 
 //const val URL: String = "https://storage.googleapis.com/shining-berm-311304/R1R9M7P74XZH/22a_1620705665_4129.mp4"
 
@@ -80,6 +81,8 @@ class PlayerFragment: Fragment() {
 
         exoPlayer = ExoPlayerFactory.newSimpleInstance(requireContext(), renderersFactory, trackSelector, loadControl)
         binding.exoPlayerView.player = exoPlayer
+        if (data.nextEpisodeUrl.equals("null")) binding.exoPlayerView.nextEpisode.visibility = View.GONE
+        if (data.previousEpisodeUrl == null) binding.exoPlayerView.previousEpisode.visibility = View.GONE
         play(data)
     }
 
