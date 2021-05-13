@@ -42,8 +42,15 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
         setupObservers()
         setupRecyclerView()
+    }
+
+    private fun setupListeners() {
+        binding.search.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -85,6 +92,7 @@ class HomeFragment: Fragment() {
                 viewLifecycleOwner,
                 Observer {
                     it.episodeUrl?.let {
+                        Log.i("EPISODE", it)
                         findNavController()
                             .navigate(HomeFragmentDirections.actionHomeFragment2ToPlayerActivity(it))
                     }

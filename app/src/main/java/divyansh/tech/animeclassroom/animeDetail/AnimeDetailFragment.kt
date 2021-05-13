@@ -82,6 +82,7 @@ class AnimeDetailFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 it?.let {
+                    Log.i("EPISODE", it)
                     findNavController().navigate(
                         AnimeDetailFragmentDirections.actionAnimeDetailFragmentToPlayerActivity(it)
                     )

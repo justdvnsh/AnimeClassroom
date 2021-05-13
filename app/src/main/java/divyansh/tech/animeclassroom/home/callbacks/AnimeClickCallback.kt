@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.home.callbacks
 
+import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.home.HomeViewModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
@@ -7,7 +8,7 @@ import divyansh.tech.animeclassroom.models.home.GenreModel
 /*
 * Collection of click callbacks on the home screen
 * */
-class AnimeClickCallback(val viewModel: HomeViewModel) {
+class AnimeClickCallback(val viewModel: CommonViewModel) {
 
     /*
     * When user clicks on popular animes, movies or new seasons

@@ -30,10 +30,11 @@ class AnimeDetailRepo @Inject constructor(
         for (i in 1 until endEpisode + 1) {
             val model = EpisodeModel(
                 episodeNumber = i.toString(),
-                episodeUrl = "$animeUrl-episode-$i"
+                episodeUrl = "/${animeUrl.split("/").last()}-episode-$i"
             )
             _list.add(model)
         }
+        Log.i("Episodes", animeUrl.split("/").last())
         return ResultWrapper.Success(_list)
     }
 }

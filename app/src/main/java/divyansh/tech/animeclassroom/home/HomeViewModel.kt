@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.home.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
@@ -19,22 +20,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repo: HomeDefaultRepo
-): ViewModel() {
+): CommonViewModel() {
 
     private val _animeList: MutableLiveData<ResultWrapper<ArrayList<HomeMainModel>>> = MutableLiveData()
     val animeList: LiveData<ResultWrapper<ArrayList<HomeMainModel>>> get() = _animeList
 
     private val _list: ArrayList<HomeMainModel> = arrayListOf()
-
-    // Clicked events
-    private val _onAnimeClickedEventLiveData: MutableLiveData<AnimeModel> = MutableLiveData()
-    val onAnimeClickedEventLiveData: LiveData<AnimeModel> get() = _onAnimeClickedEventLiveData
-
-    private val _onEpisodeClickedLiveData: MutableLiveData<AnimeModel> = MutableLiveData()
-    val onEpisodeClickedEventLiveData: LiveData<AnimeModel> get() = _onEpisodeClickedLiveData
-
-    private val _onGenreClickedEventLiveData: MutableLiveData<GenreModel> = MutableLiveData()
-    val onGenreClickedEventLiveData: LiveData<GenreModel> get() = _onGenreClickedEventLiveData
 
     init {
         getRecentReleases()
@@ -122,20 +113,5 @@ class HomeViewModel @Inject constructor(
             else
                 _animeList.postValue(ResultWrapper.Error(it.message.toString()))
         }
-    }
-
-    /*
-    * Helper functions -> Events
-    * */
-    fun changeOnAnimeClickedLiveDataValue(anime: AnimeModel) {
-        _onAnimeClickedEventLiveData.value = anime
-    }
-
-    fun changeOnEpisodeClickedLiveDataValue(anime: AnimeModel) {
-        _onEpisodeClickedLiveData.value = anime
-    }
-
-    fun changeOnGenreClickedLiveDataValue(genre: GenreModel) {
-        _onGenreClickedEventLiveData.value = genre
     }
 }

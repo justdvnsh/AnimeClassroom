@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_animeDetailFragment"
             app:destination="@id/animeDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <activity
         android:id="@+id/playerActivity"
@@ -28,7 +31,7 @@
         android:label="MangaFragment" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="divyansh.tech.animeclassroom.search.SearchFragment"
+        android:name="divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_animeDetailFragment"
