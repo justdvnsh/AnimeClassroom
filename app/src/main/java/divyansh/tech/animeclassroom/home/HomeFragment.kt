@@ -76,7 +76,7 @@ class HomeFragment: Fragment() {
                 viewLifecycleOwner,
                 Observer {
                     findNavController().navigate(
-                        HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
+                        HomeFragmentDirections.actionGlobalAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
                     )
                 }
         )
@@ -94,7 +94,7 @@ class HomeFragment: Fragment() {
                     it.episodeUrl?.let {
                         Log.i("EPISODE", it)
                         findNavController()
-                            .navigate(HomeFragmentDirections.actionHomeFragment2ToPlayerActivity(it))
+                            .navigate(HomeFragmentDirections.actionGlobalPlayerActivity(it))
                     }
                 }
         )

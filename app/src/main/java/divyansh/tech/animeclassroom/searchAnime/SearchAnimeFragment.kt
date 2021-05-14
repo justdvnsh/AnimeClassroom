@@ -95,7 +95,7 @@ class SearchAnimeFragment: Fragment() {
                 viewLifecycleOwner,
                 Observer {
                     findNavController().navigate(
-                            SearchAnimeFragmentDirections.actionSearchFragmentToAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
+                            SearchAnimeFragmentDirections.actionGlobalAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
                     )
                 }
         )

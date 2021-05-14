@@ -8,12 +8,6 @@
         android:name="divyansh.tech.animeclassroom.home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment2_to_playerActivity"
-            app:destination="@id/playerActivity" />
-        <action
-            android:id="@+id/action_homeFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
@@ -32,11 +26,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragment"
-        android:label="SearchFragment" >
-        <action
-            android:id="@+id/action_searchFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
-    </fragment>
+        android:label="SearchFragment" />
     <fragment
         android:id="@+id/shopFragment"
         android:name="divyansh.tech.animeclassroom.shop.ShopFragment"
@@ -48,21 +38,24 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" >
-        <action
-            android:id="@+id/action_favoritesFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
-    </fragment>
+        android:label="FavoritesFragment" />
     <fragment
         android:id="@+id/animeDetailFragment"
         android:name="divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragment"
         android:label="AnimeDetailFragment" >
         <argument android:name="anime_url"
-            app:argType="string"
-            android:defaultValue="null"
-            app:nullable="true" />
+            app:argType="string" />
         <action
-            android:id="@+id/action_animeDetailFragment_to_playerActivity"
-            app:destination="@id/playerActivity" />
+            android:id="@+id/action_animeDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
+    <action
+        android:id="@+id/action_global_animeDetailFragment"
+        app:destination="@id/animeDetailFragment"
+        app:popUpToInclusive="false"
+        app:popUpTo="@id/homeFragment"/>
+    <action
+        android:id="@+id/action_global_playerActivity"
+        app:destination="@id/playerActivity" />
 </navigation>

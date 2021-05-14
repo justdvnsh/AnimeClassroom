@@ -2,9 +2,11 @@ package divyansh.tech.animeclassroom.animeDetail
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -84,7 +86,7 @@ class AnimeDetailFragment: Fragment() {
                 it?.let {
                     Log.i("EPISODE", it)
                     findNavController().navigate(
-                        AnimeDetailFragmentDirections.actionAnimeDetailFragmentToPlayerActivity(it)
+                        AnimeDetailFragmentDirections.actionGlobalPlayerActivity(it)
                     )
                 }
             }
@@ -103,7 +105,6 @@ class AnimeDetailFragment: Fragment() {
             animeInfoSummary.text = animeDetailModel.plotSummary
             back.setOnClickListener { onBackPressed() }
         }
-
     }
 
     private fun setupRecyclerView() {
@@ -115,13 +116,14 @@ class AnimeDetailFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        animeUrl.animeUrl?.let {
-            Log.i("HOME-ANIME", it)
-            viewModel.getAnimeDetails(it)
-        }
+        viewModel.getAnimeDetails(animeUrl.animeUrl)
     }
 
+    //TODO: Fix the navigation issue. Fragmetn getting recreating on popBackstack()
     private fun onBackPressed() {
-        findNavController().popBackStack(R.id.animeDetailFragment, true)
+        findNavController()
+            .navigate(AnimeDetailFragmentDirections.actionAnimeDetailFragmentToHomeFragment())
     }
+
+
 }

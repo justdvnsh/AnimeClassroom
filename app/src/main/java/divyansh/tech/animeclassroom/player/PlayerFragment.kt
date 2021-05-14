@@ -38,6 +38,8 @@ class PlayerFragment: Fragment() {
     private lateinit var exoPlayer: ExoPlayer
     private val viewModel by viewModels<PlayerViewModel>()
 
+    private var isFullScreen = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
