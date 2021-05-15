@@ -31,7 +31,6 @@
         android:maxLines="2"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-
         android:layout_marginStart="4dp"
         app:layout_constraintStart_toEndOf="@id/back"
         app:layout_constraintTop_toTopOf="parent"
@@ -162,7 +161,8 @@
         android:src="@drawable/exo_controls_fullscreen_enter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/media_player_controls" />
+        app:tint="@color/media_player_controls"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -178,7 +178,8 @@
         android:paddingTop="20dp"
         android:paddingStart="20dp"
         android:paddingBottom="20dp"
-        android:paddingEnd="10dp"/>
+        android:paddingEnd="10dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -194,7 +195,8 @@
         android:paddingTop="20dp"
         android:paddingStart="20dp"
         android:paddingBottom="20dp"
-        android:paddingEnd="10dp"/>
+        android:paddingEnd="10dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -208,7 +210,5 @@
         android:id="@+id/nextEpisode"
         app:layout_constraintBottom_toTopOf="@id/exo_duration"
         />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

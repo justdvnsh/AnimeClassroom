@@ -15,9 +15,15 @@ import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentArgs
 class PlayerActivity : AppCompatActivity() {
 
     val episodeUrl: PlayerActivityArgs by navArgs()
+    private val viewModel by viewModels<PlayerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getStreamingUrl(episodeUrl.episodeUrl)
     }
 }

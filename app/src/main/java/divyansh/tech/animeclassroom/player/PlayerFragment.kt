@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
@@ -34,7 +35,7 @@ class PlayerFragment: Fragment() {
 
     private lateinit var binding: FragmentPlayerBinding
     private lateinit var exoPlayer: ExoPlayer
-    private val viewModel by viewModels<PlayerViewModel>()
+    private val viewModel by activityViewModels<PlayerViewModel>()
 
     private var isFullScreen = false
 
@@ -48,30 +49,12 @@ class PlayerFragment: Fragment() {
             container,
             false
         )
-        viewModel.getStreamingUrl(episodeUrl = (requireActivity() as PlayerActivity).episodeUrl.episodeUrl)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
-    }
-
-    private fun setupObservers() {
-        viewModel.streamingLiveData.observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    is ResultWrapper.Success -> {
-                        Log.i("Player-Frag", it.data.toString())
-                        it.data?.let { it1 -> initializePlayer(it1) }
-                    }
-                    else -> {
-                        Log.i("Player-Frag", it.toString())
-                    }
-                }
-            }
-        )
     }
 
     private fun initializePlayer(data: PlayerScreenModel) {
@@ -96,14 +79,62 @@ class PlayerFragment: Fragment() {
         exoPlayer.playWhenReady = true
     }
 
+    private fun setupObservers() {
+        viewModel.streamingLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    when (it) {
+                        is ResultWrapper.Success -> {
+                            Log.i("Player-Frag", it.data.toString())
+                            it.data?.let { it1 -> initializePlayer(it1) }
+                        }
+                        else -> {
+                            Log.i("Player-Frag", it.toString())
+                        }
+                    }
+                }
+        )
+
+        viewModel.clickControlLiveData.observe(
+                viewLifecycleOwner,
+                Observer {
+                    when (it) {
+                        PlayerViewModel.PlayerClick.BACK -> Toast.makeText(requireContext(), "BACK", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> Toast.makeText(requireContext(), "SPEED", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> Toast.makeText(requireContext(), "FULLSCREEN", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.PREV_EPISODE -> Toast.makeText(requireContext(), "PREVIOUS", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.NEXT_EPISODE -> Toast.makeText(requireContext(), "NEXT", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        )
+    }
+
+    private fun hideSystemUi() {
+        binding.exoPlayerView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideSystemUi()
+    }
+
     override fun onPause() {
         super.onPause()
-        exoPlayer.stop()
-        exoPlayer.release()
+        releasePlayer()
     }
 
     override fun onStop() {
         super.onStop()
+        releasePlayer()
+    }
+
+    private fun releasePlayer() {
         exoPlayer.stop()
         exoPlayer.release()
     }
