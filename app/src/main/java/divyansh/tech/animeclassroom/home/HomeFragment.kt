@@ -1,6 +1,5 @@
 package divyansh.tech.animeclassroom.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,9 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentHomeBinding
-import divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback
+import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.epoxy.EpoxyHomeController
-import divyansh.tech.animeclassroom.player.PlayerActivity
 
 @AndroidEntryPoint
 class HomeFragment: Fragment() {
@@ -28,7 +26,7 @@ class HomeFragment: Fragment() {
 
     private val viewModel by viewModels<HomeViewModel>()
     private val homeController by lazy {
-        EpoxyHomeController(AnimeClickCallback(viewModel))
+        EpoxyHomeController(HomeScreenCallbacks(viewModel))
     }
 
     override fun onCreateView(
@@ -72,31 +70,11 @@ class HomeFragment: Fragment() {
             }
         )
 
-        viewModel.onAnimeClickedEventLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    findNavController().navigate(
-                        HomeFragmentDirections.actionGlobalAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
-                    )
-                }
-        )
-
-        viewModel.onGenreClickedEventLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-                }
-        )
-
-        viewModel.onEpisodeClickedEventLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    it.episodeUrl?.let {
-                        Log.i("EPISODE", it)
-                        findNavController()
-                            .navigate(HomeFragmentDirections.actionGlobalPlayerActivity(it))
-                    }
-                }
+        viewModel.navigation.observe(
+            viewLifecycleOwner,
+            Observer {
+                findNavController().navigate(it)
+            }
         )
     }
 }

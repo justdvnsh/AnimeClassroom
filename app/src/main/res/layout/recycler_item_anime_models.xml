@@ -7,7 +7,7 @@
             />
         <variable
             name="callback"
-            type="divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback" />
+            type="divyansh.tech.animeclassroom.common.AnimeClickCallback" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,7 +17,7 @@
         android:clipToPadding="false"
         android:foreground="?selectableItemBackgroundBorderless"
         android:layout_marginBottom="20dp"
-        android:onClick="@{() -> callback.onAnimeClicked(anime)}"
+        android:onClick="@{() -> callback.onAnimeClicked(anime.animeUrl)}"
         android:id="@+id/root">
 
         <androidx.cardview.widget.CardView

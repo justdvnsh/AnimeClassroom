@@ -80,15 +80,10 @@ class AnimeDetailFragment: Fragment() {
             }
         )
 
-        viewModel.episodeClickedLiveData.observe(
+        viewModel.navigation.observe(
             viewLifecycleOwner,
             Observer {
-                it?.let {
-                    Log.i("EPISODE", it)
-                    findNavController().navigate(
-                        AnimeDetailFragmentDirections.actionGlobalPlayerActivity(it)
-                    )
-                }
+                findNavController().navigate(it)
             }
         )
     }
@@ -121,8 +116,7 @@ class AnimeDetailFragment: Fragment() {
 
     //TODO: Fix the navigation issue. Fragmetn getting recreating on popBackstack()
     private fun onBackPressed() {
-        findNavController()
-            .navigate(AnimeDetailFragmentDirections.actionAnimeDetailFragmentToHomeFragment())
+        findNavController().popBackStack()
     }
 
 

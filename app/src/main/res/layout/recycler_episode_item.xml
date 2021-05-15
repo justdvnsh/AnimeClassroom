@@ -3,7 +3,7 @@
     <data>
         <variable
             name="clickListener"
-            type="divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeItemClickCallback"
+            type="divyansh.tech.animeclassroom.common.AnimeClickCallback"
             />
         <variable
             name="episode"
@@ -22,7 +22,7 @@
         app:cardElevation="0dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:focusable="true"
-        android:onClick="@{() -> clickListener.onEpisodeItemClicked(episode.episodeUrl)}"
+        android:onClick="@{() -> clickListener.onEpisodeClicked(episode.episodeUrl)}"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -11,21 +11,16 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentSearchBinding
-import divyansh.tech.animeclassroom.home.HomeFragmentDirections
-import divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback
+import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.searchAnime.epoxy.EpoxySearchController
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SearchAnimeFragment: Fragment() {
@@ -33,7 +28,7 @@ class SearchAnimeFragment: Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private val viewModel by viewModels<SearchAnimeViewModel>()
     private val searchController by lazy {
-        EpoxySearchController(AnimeClickCallback(viewModel))
+        EpoxySearchController(HomeScreenCallbacks(viewModel))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -91,12 +86,10 @@ class SearchAnimeFragment: Fragment() {
                 }
         )
 
-        viewModel.onAnimeClickedEventLiveData.observe(
+        viewModel.navigation.observe(
                 viewLifecycleOwner,
                 Observer {
-                    findNavController().navigate(
-                            SearchAnimeFragmentDirections.actionGlobalAnimeDetailFragment("https://www1.gogoanime.ai${it.animeUrl.toString()}")
-                    )
+                    findNavController().navigate(it)
                 }
         )
     }

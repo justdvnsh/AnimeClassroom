@@ -7,7 +7,7 @@
             />
         <variable
             name="callback"
-            type="divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback" />
+            type="divyansh.tech.animeclassroom.common.AnimeClickCallback" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,7 +17,7 @@
         android:layout_marginBottom="20dp"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:onClick="@{() -> callback.onEpisodeClicked(anime)}"
+        android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl)}"
         >
 
         <androidx.cardview.widget.CardView
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/backgroundImage"
                 android:src="@color/transparent_background"
-                android:onClick="@{() -> callback.onEpisodeClicked(anime)}"
+                android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl)}"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true" />

@@ -2,10 +2,11 @@ package divyansh.tech.animeclassroom.animeDetail.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeItemClickCallback
+import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
 
 class EpoxyEpisodeController (
-    private val clickCallback: EpisodeItemClickCallback
+    private val clickCallback: AnimeClickCallback
 ): TypedEpoxyController<List<EpisodeModel>>() {
     override fun buildModels(data: List<EpisodeModel>?) {
         data?.let {

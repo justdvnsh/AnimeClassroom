@@ -29,8 +29,6 @@ import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 
-//const val URL: String = "https://storage.googleapis.com/shining-berm-311304/R1R9M7P74XZH/22a_1620705665_4129.mp4"
-
 @AndroidEntryPoint
 class PlayerFragment: Fragment() {
 

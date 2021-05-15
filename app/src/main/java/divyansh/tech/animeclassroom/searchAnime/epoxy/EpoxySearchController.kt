@@ -1,7 +1,8 @@
 package divyansh.tech.animeclassroom.searchAnime.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
-import divyansh.tech.animeclassroom.home.callbacks.AnimeClickCallback
+import divyansh.tech.animeclassroom.common.AnimeClickCallback
+import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.epoxy.epoxyAnimeModels
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 

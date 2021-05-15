@@ -10,6 +10,12 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
     <activity
         android:id="@+id/playerActivity"
@@ -26,7 +32,11 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/shopFragment"
         android:name="divyansh.tech.animeclassroom.shop.ShopFragment"
@@ -46,9 +56,8 @@
         <argument android:name="anime_url"
             app:argType="string" />
         <action
-            android:id="@+id/action_animeDetailFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpToInclusive="false"/>
+            android:id="@+id/action_animeDetailFragment_to_playerActivity"
+            app:destination="@id/playerActivity" />
     </fragment>
     <action
         android:id="@+id/action_global_animeDetailFragment"

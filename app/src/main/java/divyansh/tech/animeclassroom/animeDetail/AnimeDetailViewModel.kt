@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
@@ -17,16 +18,13 @@ import javax.inject.Inject
 @HiltViewModel
 class AnimeDetailViewModel @Inject constructor(
     private val animeDetailRepo: AnimeDetailRepo
-): ViewModel(){
+): CommonViewModel(){
 
     private val _animeDetailLiveData: MutableLiveData<ResultWrapper<AnimeDetailModel>> = MutableLiveData()
     val animeDetailLiveData: LiveData<ResultWrapper<AnimeDetailModel>> get() = _animeDetailLiveData
 
     private val _episodeListLiveData: MutableLiveData<ResultWrapper<List<EpisodeModel>>> = MutableLiveData()
     val episodeListLiveData: LiveData<ResultWrapper<List<EpisodeModel>>> get() = _episodeListLiveData
-
-    private val _episodeClickedLiveData: MutableLiveData<String?> = MutableLiveData()
-    val episodeClickedLiveData: LiveData<String?> get() = _episodeClickedLiveData
 
     fun getAnimeDetails(animeUrl: String) = viewModelScope.launch(Dispatchers.IO) {
         Log.i("HOME-VIEWMODEL", animeUrl)
@@ -38,9 +36,5 @@ class AnimeDetailViewModel @Inject constructor(
             }
             is ResultWrapper.Error -> _animeDetailLiveData.postValue(ResultWrapper.Error(response.message.toString()))
         }
-    }
-
-    fun changeEpisodeClickedLiveData(episodeUrl: String) {
-        _episodeClickedLiveData.value = episodeUrl
     }
 }
