@@ -31,7 +31,7 @@ import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 
 @AndroidEntryPoint
-class PlayerFragment: Fragment() {
+class PlayerFragment: Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentPlayerBinding
     private lateinit var exoPlayer: ExoPlayer
@@ -137,5 +137,11 @@ class PlayerFragment: Fragment() {
     private fun releasePlayer() {
         exoPlayer.stop()
         exoPlayer.release()
+    }
+
+    override fun onClick(v: View?) {
+//        when (v) {
+//            R.id.back -> requireActivity().finish()
+//        }
     }
 }
