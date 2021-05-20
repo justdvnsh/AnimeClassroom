@@ -13,7 +13,7 @@ class EpisodeItemClickCallback(
     }
 
     override fun onEpisodeClicked(episodeUrl: String) {
-        val action = AnimeDetailFragmentDirections.actionAnimeDetailFragmentToPlayerActivity(episodeUrl)
+        val action = AnimeDetailFragmentDirections.actionGlobalPlayerActivity(episodeUrl)
         viewModel.changeNavigation(action)
     }
 

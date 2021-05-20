@@ -43,6 +43,7 @@
             </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
 
 
+
             <!--        <include layout="@layout/fragment_video_player_placeholder"/>-->
             <!--        <include layout="@layout/error_screen_video_player"/>-->
         </androidx.cardview.widget.CardView>
