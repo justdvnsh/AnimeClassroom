@@ -77,8 +77,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
         exoPlayer = ExoPlayerFactory.newSimpleInstance(requireContext(), renderersFactory, trackSelector, loadControl)
         binding.exoPlayerView.player = exoPlayer
-        if (data.nextEpisodeUrl.equals("null")) binding.exoPlayerView.nextEpisode.visibility = View.GONE
-        if (data.previousEpisodeUrl == null) binding.exoPlayerView.previousEpisode.visibility = View.GONE
         play(data)
     }
 
@@ -101,6 +99,10 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             Log.i("Player-Frag", it.data.toString())
                             it.data?.let { it1 ->
                                 initializePlayer(it1)
+                                if (it1.nextEpisodeUrl == null || it1.nextEpisodeUrl.equals("null"))
+                                    binding.exoPlayerView.nextEpisode.visibility = View.GONE
+                                if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null"))
+                                    binding.exoPlayerView.previousEpisode.visibility = View.GONE
                                 episodeName.text = it1.animeName
                                 nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->
                                     onEpisodeClicked(
@@ -162,7 +164,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                     .setImageDrawable(
                             ContextCompat.getDrawable(
                                     requireContext(),
-                                    R.drawable.exo_controls_fullscreen_enter
+                                    R.drawable.exo_controls_fullscreen_exit
                             )
                     )
         } else {
@@ -173,7 +175,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                     .setImageDrawable(
                             ContextCompat.getDrawable(
                                     requireContext(),
-                                    R.drawable.exo_controls_fullscreen_exit
+                                    R.drawable.exo_controls_fullscreen_enter
                             )
                     )
         }
@@ -184,7 +186,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     }
 
     override fun onEpisodeClicked(episodeUrl: String) {
-        Toast.makeText(requireContext(), "PREV", Toast.LENGTH_SHORT).show()
+        exoPlayer.playWhenReady = false
         (requireActivity() as PlayerActivity).updateEpisode(episodeUrl)
     }
 }
