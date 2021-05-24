@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentSearchBinding
 import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
+import divyansh.tech.animeclassroom.home.callbacks.SearchScreenCallbacks
 import divyansh.tech.animeclassroom.searchAnime.epoxy.EpoxySearchController
 
 @AndroidEntryPoint
@@ -28,7 +29,7 @@ class SearchAnimeFragment: Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private val viewModel by viewModels<SearchAnimeViewModel>()
     private val searchController by lazy {
-        EpoxySearchController(HomeScreenCallbacks(viewModel))
+        EpoxySearchController(SearchScreenCallbacks(viewModel))
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

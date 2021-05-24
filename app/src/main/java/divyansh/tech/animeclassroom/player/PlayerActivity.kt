@@ -24,6 +24,10 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getStreamingUrl(episodeUrl.episodeUrl)
+        updateEpisode(episodeUrl.episodeUrl)
+    }
+
+    fun updateEpisode(url: String) {
+        viewModel.getStreamingUrl(url)
     }
 }

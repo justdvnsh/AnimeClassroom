@@ -8,33 +8,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.DefaultRenderersFactory
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.ExoPlayerFactory
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
+import divyansh.tech.animeclassroom.home.HomeFragmentDirections
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.player.PlayerActivityDirections.Companion.actionGlobalPlayerActivity
+import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
+import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
+import kotlinx.android.synthetic.main.fragment_player.*
 
 @AndroidEntryPoint
-class PlayerFragment: Fragment(), View.OnClickListener {
+class PlayerFragment: Fragment(), PlayerControlListener {
 
     private lateinit var binding: FragmentPlayerBinding
-    private lateinit var exoPlayer: ExoPlayer
+    private lateinit var exoPlayer: SimpleExoPlayer
     private val viewModel by activityViewModels<PlayerViewModel>()
 
     private var isFullScreen = false
@@ -55,6 +60,14 @@ class PlayerFragment: Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
+        setupListeners()
+    }
+
+    private fun setupListeners() {
+        back.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.BACK) }
+        exo_track_selection_view.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.QUALITY_CONTROL) }
+        exo_speed_selection_view.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.SPEED_CONTROL) }
+        exo_full_Screen.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE) }
     }
 
     private fun initializePlayer(data: PlayerScreenModel) {
@@ -86,7 +99,20 @@ class PlayerFragment: Fragment(), View.OnClickListener {
                     when (it) {
                         is ResultWrapper.Success -> {
                             Log.i("Player-Frag", it.data.toString())
-                            it.data?.let { it1 -> initializePlayer(it1) }
+                            it.data?.let { it1 ->
+                                initializePlayer(it1)
+                                episodeName.text = it1.animeName
+                                nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->
+                                    onEpisodeClicked(
+                                        it2
+                                    )
+                                } }
+                                previousEpisode.setOnClickListener { it1.previousEpisodeUrl?.let { it2 ->
+                                    onEpisodeClicked(
+                                        it2
+                                    )
+                                } }
+                            }
                         }
                         else -> {
                             Log.i("Player-Frag", it.toString())
@@ -98,30 +124,15 @@ class PlayerFragment: Fragment(), View.OnClickListener {
         viewModel.clickControlLiveData.observe(
                 viewLifecycleOwner,
                 Observer {
-                    when (it) {
-                        PlayerViewModel.PlayerClick.BACK -> Toast.makeText(requireContext(), "BACK", Toast.LENGTH_SHORT).show()
+                    when(it) {
+                        PlayerViewModel.PlayerClick.BACK ->
+                            requireActivity().finish()
                         PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
                         PlayerViewModel.PlayerClick.SPEED_CONTROL -> Toast.makeText(requireContext(), "SPEED", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> Toast.makeText(requireContext(), "FULLSCREEN", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.PREV_EPISODE -> Toast.makeText(requireContext(), "PREVIOUS", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.NEXT_EPISODE -> Toast.makeText(requireContext(), "NEXT", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
                     }
                 }
         )
-    }
-
-    private fun hideSystemUi() {
-        binding.exoPlayerView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        hideSystemUi()
     }
 
     override fun onPause() {
@@ -139,9 +150,41 @@ class PlayerFragment: Fragment(), View.OnClickListener {
         exoPlayer.release()
     }
 
-    override fun onClick(v: View?) {
-//        when (v) {
-//            R.id.back -> requireActivity().finish()
-//        }
+    /*
+    * Method Selections
+    * */
+    private fun toggleFullScreen() {
+        if (isFullScreen) {
+            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+            isFullScreen = false
+            exo_full_Screen
+                    .setImageDrawable(
+                            ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.exo_controls_fullscreen_enter
+                            )
+                    )
+        } else {
+            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
+            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+            isFullScreen = true
+            exo_full_Screen
+                    .setImageDrawable(
+                            ContextCompat.getDrawable(
+                                    requireContext(),
+                                    R.drawable.exo_controls_fullscreen_exit
+                            )
+                    )
+        }
+    }
+
+    override fun onButtonClicked(item: PlayerViewModel.PlayerClick) {
+        viewModel.updateButtonClick(item)
+    }
+
+    override fun onEpisodeClicked(episodeUrl: String) {
+        Toast.makeText(requireContext(), "PREV", Toast.LENGTH_SHORT).show()
+        (requireActivity() as PlayerActivity).updateEpisode(episodeUrl)
     }
 }

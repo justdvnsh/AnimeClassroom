@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.C
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
     private val playerRepo: PlayerRepo
-): ViewModel() {
+): CommonViewModel() {
 
     private val _streamingUrlLiveData: MutableLiveData<ResultWrapper<PlayerScreenModel>> =
         MutableLiveData()
@@ -45,11 +46,11 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
-    fun controlClick(clickType: PlayerClick) {
+    fun updateButtonClick(clickType: PlayerClick) {
         _clickControlLiveData.value = clickType
     }
 
     enum class PlayerClick {
-        BACK, NEXT_EPISODE, PREV_EPISODE, FULLSCREEN_TOGGLE, SPEED_CONTROL, QUALITY_CONTROL;
+        BACK, FULLSCREEN_TOGGLE, SPEED_CONTROL, QUALITY_CONTROL;
     }
 }
