@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toTopOf="@+id/topGuideline"
+            app:layout_constraintBottom_toBottomOf="@+id/bottomGuideline"
+            app:layout_constraintEnd_toStartOf="@id/searchManga"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            android:layout_marginStart="@dimen/spacing_very_small"
+            style="@style/toolbarStyle"
+            android:text="@string/manga"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/searchManga"
+            android:layout_height="24dp"
+            android:layout_width="24dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
+            android:baselineAlignBottom="true"
+            app:layout_constraintBaseline_toBaselineOf="@id/title"
+            />
+
+        <include
+            layout="@layout/guideline_views"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,63 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data/>
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/motion_scene"
+        android:layout_width="match_parent"
         >
 
-        <TextView
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:id="@+id/header"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:textSize="36sp"
-            android:textColor="@color/home_header"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/browse"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:id="@+id/search"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic_search"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:padding="10dp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:clickable="true"
-            app:layout_constraintBottom_toTopOf="@id/shadowLayout"
-            android:focusable="true" />
-
-        <LinearLayout
-            android:id="@+id/shadowLayout"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:background="@color/app_background"
-            android:layout_height="50dp"
-            android:elevation="1dp"
-            android:layout_marginTop="300dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header"/>
-
+        <include
+            android:id="@+id/mangaToolbar"
+            layout="@layout/toolbar_layout_manga"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/recyclerView"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:id="@+id/mangaRv"
+            app:layout_constraintTop_toBottomOf="@id/mangaToolbar"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header"/>
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
+            />
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+        <include
+            layout="@layout/guideline_views"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,4 +6,10 @@
     <dimen name="episode_offset_right">20dp</dimen>
     <dimen name="episode_offset_top">5dp</dimen>
     <dimen name="episode_offset_bottom">5dp</dimen>
+
+    <dimen name="spacing_minimum">4dp</dimen>
+    <dimen name="spacing_very_small">8dp</dimen>
+    <dimen name="spacing_small">16dp</dimen>
+    <dimen name="spacing_medium">20dp</dimen>
+    <dimen name="spacing_maximum">24dp</dimen>
 </resources>

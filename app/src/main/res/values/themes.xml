@@ -59,4 +59,12 @@
         <item name="android:textSize">8sp</item>
     </style>
 
+<!--    Toolbar title Styles-->
+
+    <style name="toolbarStyle">
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/anime_title</item>
+    </style>
+
 </resources>

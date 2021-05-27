@@ -9,6 +9,7 @@ import divyansh.tech.animeclassroom.api.AnimeDetailScreenApi
 import divyansh.tech.animeclassroom.api.AnimeSearchApi
 import divyansh.tech.animeclassroom.api.EpisodeStreamingApi
 import divyansh.tech.animeclassroom.api.HomeScreenApi
+import divyansh.tech.animeclassroom.mangaApi.MangaHomeApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -74,4 +75,15 @@ class NetworkModule {
     fun providesAnimeSearchApi(
             retrofit: Retrofit
     ): AnimeSearchApi = retrofit.create(AnimeSearchApi::class.java)
+
+    /*
+    * Provides MangaHomeApi
+    * @param retrofit: Retrofit
+    * @returns -> MangaHomeApi
+    * */
+    @Provides
+    @Singleton
+    fun providesMangaHomeApi(
+        retrofit: Retrofit
+    ): MangaHomeApi = retrofit.create(MangaHomeApi::class.java)
 }
