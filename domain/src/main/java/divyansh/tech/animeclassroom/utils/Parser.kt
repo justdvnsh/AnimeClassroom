@@ -10,6 +10,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 import java.lang.Exception
+import java.util.regex.Pattern
 
 /*
 * Parser object
@@ -22,6 +23,7 @@ object Parser {
     * @returns ResultWrapper<*>
     *  */
     fun parsePopularAnimeJson(response: String): ResultWrapper<*> {
+        Log.i("Popular Anime -> ", response)
         return try {
             val list: MutableList<AnimeModel> = mutableListOf()
             val jsoup = Jsoup.parse(response)
@@ -53,6 +55,7 @@ object Parser {
     * @returns ResultWrapper<*>
     * */
     suspend fun parseRecentReleaseJson(response: String): ResultWrapper<*> {
+        Log.i("Recent Anime -> ", response)
         return try {
             val list: MutableList<AnimeModel> = mutableListOf<AnimeModel>()
             val jsoup = Jsoup.parse(response)
@@ -84,6 +87,7 @@ object Parser {
     * @returns ResultWrapper<*>
     * */
     suspend fun parseGenresAnimeJson(response: String): ResultWrapper<*> {
+        Log.i("Genre Anime -> ", response)
         return try {
             val list: MutableList<GenreModel> = mutableListOf<GenreModel>()
             val jsoup = Jsoup.parse(response)
@@ -111,6 +115,7 @@ object Parser {
     * @returns ResultWrapper<*>
     * */
     suspend fun parseAnimeDetails(response: String): ResultWrapper<*> {
+        Log.i("Anime Details -> ", response)
         return try {
             val jsoup = Jsoup.parse(response)
             val imageUrl = jsoup?.getElementsByClass("anime_info_body_bg")?.first()?.select("img")?.first()?.absUrl("src")
@@ -163,16 +168,16 @@ object Parser {
         return try {
             val jsoup = Jsoup.parse(response)
             val animeName = jsoup?.getElementsByClass("title_name")?.first()?.select("h2")?.get(0)?.text()
-            val streamingUrl = jsoup?.getElementsByClass("favorites_book")?.first()?.select("ul")?.first()?.select("li")?.first()?.select("a")?.first()?.attr("href")
-            val prevEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_l")?.first()?.select("a")?.first()?.attr("href")
-            val nextEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_r")?.first()?.select("a")?.first()?.attr("href")
+            val streamingUrl = jsoup?.getElementsByClass("vidcdn")?.first()?.select("a")?.attr("data-video")
+            val prevEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_l")?.select("a")?.first()?.attr("href")
+            val nextEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_r")?.select("a")?.first()?.attr("href")
             Log.i("Player-Name", animeName.toString())
             Log.i("Player-Streaming", streamingUrl.toString())
             Log.i("Player-prev", prevEpisode.toString())
             Log.i("Player-next", nextEpisode.toString())
             val model = PlayerScreenModel(
                 animeName = animeName.toString(),
-                streamingUrl = streamingUrl.toString(),
+                streamingUrl = "https:$streamingUrl",
                 previousEpisodeUrl = prevEpisode.toString(),
                 nextEpisodeUrl = nextEpisode.toString()
             )
@@ -184,20 +189,30 @@ object Parser {
     }
 
     suspend fun parseStreamingUrl(response: String, playerModel: PlayerScreenModel): ResultWrapper<*> {
+        Log.i("STREAMING ", response)
+        val M3U8_REGEX_PATTERN = "(http|https)://([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:/~+#-]*[\\w@?^=%&/~+#-])?"
+        var m3u8Url: String? = ""
+        val document = Jsoup.parse(response)
+        val info = document?.getElementsByClass("videocontent")
+        val pattern = Pattern.compile(M3U8_REGEX_PATTERN)
+        val matcher = pattern.matcher(info.toString())
         return try {
-            val list: ArrayList<String> = arrayListOf()
-            val jsoup = Jsoup.parse(response)
-            val streamingUrl = jsoup?.getElementsByClass("mirror_link")?.first()?.select("div")
-            streamingUrl?.forEach {
-                list.add(it.select("a")?.first()?.attr("href").toString())
+            while (matcher.find()) {
+                Log.e("Matcher -> ", matcher.group((0)).toString())
+                if (matcher.group(0)!!.contains("m3u8") || matcher.group(0)!!
+                        .contains("googlevideo")
+                ) {
+                    m3u8Url = matcher.group(0)
+                    break
+                }
             }
-            Log.i("Player Parser", streamingUrl.toString())
-            Log.i("Player URL", list.toString())
-            val model = playerModel.copy(streamingUrl = list[0], mirrorLinks = list)
+            Log.i("STREAMING URL", m3u8Url.toString())
+            val model = playerModel.copy(streamingUrl = m3u8Url.toString())
             ResultWrapper.Success(model)
-        } catch (e: Exception) {
-            ResultWrapper.Error(message = e.localizedMessage, data = null)
+        } catch (npe: NullPointerException) {
+            ResultWrapper.Error(npe.localizedMessage, null)
         }
+
     }
 
     private fun filterGenreName(genreName: String): String{

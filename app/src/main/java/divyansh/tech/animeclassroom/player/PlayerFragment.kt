@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -19,17 +20,22 @@ import androidx.navigation.navArgs
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
 import com.google.android.exoplayer2.source.ExtractorMediaSource
+import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
+import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
+import com.google.android.exoplayer2.upstream.HttpDataSource
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
 import divyansh.tech.animeclassroom.home.HomeFragmentDirections
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
-import divyansh.tech.animeclassroom.player.PlayerActivityDirections.Companion.actionGlobalPlayerActivity
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
@@ -81,13 +87,33 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     }
 
     private fun play(data: PlayerScreenModel) {
-        val mediaSource = ExtractorMediaSource
-            .Factory(DefaultDataSourceFactory(requireContext(), getString(R.string.user_agent)))
-            .setExtractorsFactory(DefaultExtractorsFactory())
-            .createMediaSource(Uri.parse(data.streamingUrl))
-
-        exoPlayer.prepare(mediaSource)
+        exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
         exoPlayer.playWhenReady = true
+    }
+
+    private fun buildMediaSource(uri: Uri): MediaSource {
+
+
+        val lastPath = uri.lastPathSegment
+        val defaultDataSourceFactory =
+            DefaultHttpDataSourceFactory("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36")
+
+        if (lastPath!!.contains("m3u8")) {
+            return HlsMediaSource.Factory(
+                HlsDataSourceFactory {
+                    val dataSource: HttpDataSource =
+                        DefaultHttpDataSource("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36")
+                    dataSource.setRequestProperty("Referer", "https://goload.one")
+                    dataSource
+                })
+                .setAllowChunklessPreparation(true)
+                .createMediaSource(uri)
+        } else {
+//            val dashChunkSourceFactory = DefaultDashChunkSource.Factory(defaultDataSourceFactory)
+            return ExtractorMediaSource.Factory(defaultDataSourceFactory)
+                .createMediaSource(uri)
+        }
+
     }
 
     private fun setupObservers() {

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.C
+import divyansh.tech.animeclassroom.C.BASE_URL
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
@@ -31,7 +32,7 @@ class PlayerViewModel @Inject constructor(
     val clickControlLiveData: LiveData<PlayerClick> get() = _clickControlLiveData
 
     fun getStreamingUrl(episodeUrl: String) = viewModelScope.launch(Dispatchers.IO) {
-        val url = if (!episodeUrl.startsWith(C.BASE_URL)) "https://www1.gogoanime.ai$episodeUrl" else episodeUrl
+        val url = if (!episodeUrl.startsWith(BASE_URL)) BASE_URL + episodeUrl else episodeUrl
         Log.i("Player", url)
         val response = playerRepo.getEpisodeDetails(url)
         response.collect {
@@ -41,7 +42,10 @@ class PlayerViewModel @Inject constructor(
                     _streamingUrlLiveData.postValue(ResultWrapper.Success(it.data as PlayerScreenModel))
                     _animeName.postValue((it.data as PlayerScreenModel).animeName)
                 }
-                else -> _streamingUrlLiveData.postValue(ResultWrapper.Error(message = it.message!!, data = null))
+                else -> {
+                    Log.i("Player-Response", it.data.toString())
+                    _streamingUrlLiveData.postValue(ResultWrapper.Error(message = it.message!!, data = null))
+                }
             }
         }
     }
