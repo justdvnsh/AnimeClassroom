@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -21,10 +22,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setupNavigation()
     }
 
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     */
     private fun setupNavigation() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.mainNavHost) as NavHostFragment
+        navController = navHostFragment.findNavController()
         NavigationUI.setupWithNavController(bottomNavigation, navHostFragment.findNavController())
         navHostFragment.findNavController().addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
@@ -41,9 +44,13 @@ class MainActivity : AppCompatActivity() {
                 R.id.mangaFragment -> bottomNavigation.visibility = View.VISIBLE
                 R.id.shopFragment -> bottomNavigation.visibility = View.VISIBLE
                 R.id.settingsFragment -> bottomNavigation.visibility = View.VISIBLE
-                R.id.animeDetailFragment -> bottomNavigation.visibility = View.VISIBLE
+//                R.id.animeDetailFragment -> bottomNavigation.visibility = View.VISIBLE
                 else -> bottomNavigation.visibility = View.GONE
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

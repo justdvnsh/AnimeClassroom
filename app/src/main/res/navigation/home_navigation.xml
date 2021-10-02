@@ -46,19 +46,16 @@
         android:id="@+id/favoritesFragment"
         android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
         android:label="FavoritesFragment" />
+
+    <action
+        android:id="@+id/action_global_playerActivity"
+        app:destination="@id/playerActivity" />
     <fragment
         android:id="@+id/animeDetailFragment"
         android:name="divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragment"
         android:label="AnimeDetailFragment" >
-        <argument android:name="anime_url"
+        <argument
+            android:name="anime_url"
             app:argType="string" />
     </fragment>
-    <action
-        android:id="@+id/action_global_animeDetailFragment"
-        app:destination="@id/animeDetailFragment"
-        app:popUpToInclusive="false"
-        app:popUpTo="@id/homeFragment"/>
-    <action
-        android:id="@+id/action_global_playerActivity"
-        app:destination="@id/playerActivity" />
 </navigation>

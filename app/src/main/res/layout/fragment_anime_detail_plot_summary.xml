@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="anime"
+            type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <com.ms.square.android.expandabletextview.ExpandableTextView
+            xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/animeInfoSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            expandableTextView:layout_constraintTop_toTopOf="parent"
+            expandableTextView:animDuration="200"
+            expandableTextView:maxCollapsedLines="2">
+
+            <TextView
+                android:id="@id/expandable_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/plot_summary"
+                android:text="@{anime.plotSummary}"
+                tools:text="asasasasaaaaaaaaaaaaaaaaaaaaaa" />
+
+            <ImageButton
+                android:id="@id/expand_collapse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/transparent"
+                android:visibility="invisible" />
+        </com.ms.square.android.expandabletextview.ExpandableTextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

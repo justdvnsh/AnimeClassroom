@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentHomeBinding
@@ -72,7 +73,7 @@ class HomeFragment: Fragment() {
 
         viewModel.navigation.observe(
             viewLifecycleOwner,
-            Observer {
+            EventObserver {
                 findNavController().navigate(it)
             }
         )
