@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][https://linkedin.com/in/justdvnsh]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 
@@ -81,47 +81,47 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
 - [x] Setup a clean architecture for the app
 - [x] Parse Animes
     - [x] Parse Anime Details
-        - [] Create a new modern UI for the Anime Detail fragment
+        - Create a new modern UI for the Anime Detail fragment
     - [x] Add Anime Search option
-        - [] Handle the errors when anime not found
-    - [] Handle the network error (When not connected to internet)
-    - [] Handle cases when the unwanted errors occur
-        - [] Could Not Parse Exception
-        - [] Could Not Load Exception
-    - [] Make the background function calls more efficient.
-    - [] Need a better architecture for video player
-        - [] handle audio focus change
-        - [] add PIP mode for the player
-        - [] handle speed changes
-        - [] handle quality changes 
+        - Handle the errors when anime not found
+    - Handle the network error (When not connected to internet)
+    - Handle cases when the unwanted errors occur
+        - Could Not Parse Exception
+        - Could Not Load Exception
+    - Make the background function calls more efficient.
+    - Need a better architecture for video player
+        - handle audio focus change
+        - add PIP mode for the player
+        - handle speed changes
+        - handle quality changes 
 - [x] Parse Mangas
-    - [] Setup the home page for mangas 
-    - [] Parse Manga details
-        - [] Create a modern UI for the Manga detail page
-        - [] Setup viewpager based manga player to read manga like a book
-    - [] Handle the network error (When not connected to internet)
-    - [] Handle cases when the unwanted errors occur
-        - [] Could Not Parse Exception
-        - [] Could Not Load Exception
-    - [] Need a better architecture for manga player
-            - [] handle viewpager
-            - [] handle night light support
-            - [] handle quality changes 
+    - Setup the home page for mangas 
+    - Parse Manga details
+        - Create a modern UI for the Manga detail page
+        - Setup viewpager based manga player to read manga like a book
+    - Handle the network error (When not connected to internet)
+    - Handle cases when the unwanted errors occur
+        - Could Not Parse Exception
+        - Could Not Load Exception
+    - Need a better architecture for manga player
+            - handle viewpager
+            - handle night light support
+            - handle quality changes 
 - [x] Setup Favorites page
-    - [] Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.
-    - [] setup room to save the details
-    - [] make a modern motion layout based UI for the page.
+    - Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.
+    - setup room to save the details
+    - make a modern motion layout based UI for the page.
 - [x] Setup Settings page
-    - [] Multi-language Support
-    - [] dark mode toggle
-    - [] downloaded videos
-    - [] about
-    - [] help
-    - [] FAQ's 
-- [] Setup a new module to provide glide dependencies
-- [] Setup a new module to provide coroutines dependencies
-    - [] load glide components in a background thread.
-- [] A new modern color scheme for the app.
+    - Multi-language Support
+    - dark mode toggle
+    - downloaded videos
+    - about
+    - help
+    - FAQ's 
+- Setup a new module to provide glide dependencies
+- Setup a new module to provide coroutines dependencies
+    - load glide components in a background thread.
+- A new modern color scheme for the app.
 
 See the [open issues](https://github.com/justdvnsh/AnimeClassroom/issues) for a full list of proposed features (and known issues).
 
@@ -134,6 +134,8 @@ Contributions are what make the open source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "feature-request".
 Don't forget to give the project a star! Thanks again!
+
+__NOTE -> Every PR will be reviewed before merging.__
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -153,7 +155,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_linkedin](https://linkedin.com/in/justdvnsh) - justdvnsh2208@gmail.com
+Divyansh Dwivedi - [@justdvnsh](https://linkedin.com/in/justdvnsh) - justdvnsh2208@gmail.com
 
 Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/justdvnsh/AnimeClassroom)
 
@@ -173,5 +175,5 @@ Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/j
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://linkedin.com/in/justdvnsh
 [product-screenshot]: images/screenshot.png
