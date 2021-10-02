@@ -63,6 +63,8 @@ Why an anime app ? Here's why:
 * You can easily download the animes and also read manga in your phone itself. 
 
 __WARNING: THIS PROJECT IS STILL IN HEAVY DEVELOPMENT, THEREFORE YOU MAY ENCOUNTER BUGS. You can OPEN the ISSUE on GITHUB REPOSITORY.__
+
+__NEW ISSUES WILL BE ADDED REGULARLY__ 
   
 __Do not PUT ANIMECLASSROOM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE or Any other Store. It may VIOLATE THEIR TERMS AND CONDITIONS or you may encounter legal obligations.__
 
