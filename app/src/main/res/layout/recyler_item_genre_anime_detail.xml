@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:toold="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="genre"
+            type="divyansh.tech.animeclassroom.models.home.GenreModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardPreventCornerOverlap="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:backgroundTint="@color/transparent_background"
+            >
+            <TextView
+                android:id="@+id/ivGenre"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="@{genre.genreTitle}"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                toold:text="Action"/>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

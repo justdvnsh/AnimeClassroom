@@ -8,6 +8,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
+import divyansh.tech.animeclassroom.models.home.GenreModel
 
 @EpoxyModelClass(layout = R.layout.fragment_anime_details_header)
 abstract class EpoxyAnimeDetailHeaderModel: DataBindingEpoxyModel() {
@@ -26,6 +27,16 @@ abstract class EpoxyAnimeDetailPlotSummaryModel: DataBindingEpoxyModel() {
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.anime, anime)
+    }
+}
+
+@EpoxyModelClass(layout = R.layout.recyler_item_genre_anime_detail)
+abstract class EpoxyAnimeDetailGenreModel: DataBindingEpoxyModel() {
+    @EpoxyAttribute
+    lateinit var genre: GenreModel
+
+    override fun setDataBindingVariables(binding: ViewDataBinding) {
+        binding.setVariable(BR.genre, genre)
     }
 }
 

@@ -47,6 +47,8 @@ class AnimeDetailFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.animeDetailRv.apply {
             layoutManager = GridLayoutManager(requireActivity(), 3)
+            animeDetailController.spanCount = 3
+            (layoutManager as GridLayoutManager).spanSizeLookup = animeDetailController.spanSizeLookup
             adapter = animeDetailController.adapter
         }
     }
@@ -56,7 +58,10 @@ class AnimeDetailFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 when (it) {
-                    is ResultWrapper.Success -> animeDetailController.setData(it.data, viewModel.episodeListLiveData.value?.data)
+                    is ResultWrapper.Success -> {
+                        Log.i("ANIME DETAIL -> ", it.data.toString())
+                        animeDetailController.setData(it.data, viewModel.episodeListLiveData.value?.data)
+                    }
                     is ResultWrapper.Error -> Log.i("ANIME DETAIL", it.message.toString())
                     is ResultWrapper.Loading -> {}
                 }
