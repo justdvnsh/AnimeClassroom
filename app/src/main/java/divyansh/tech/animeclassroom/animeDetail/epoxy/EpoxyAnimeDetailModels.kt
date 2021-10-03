@@ -6,6 +6,7 @@ import com.airbnb.epoxy.DataBindingEpoxyModel
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.R
+import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
@@ -45,7 +46,11 @@ abstract class EpoxyAnimeDetailEpisodeModel: DataBindingEpoxyModel() {
     @EpoxyAttribute
     lateinit var episode: EpisodeModel
 
+    @EpoxyAttribute
+    lateinit var clickCallback: EpisodeClickCallback
+
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.episode, episode)
+        binding.setVariable(BR.clickListener, clickCallback)
     }
 }

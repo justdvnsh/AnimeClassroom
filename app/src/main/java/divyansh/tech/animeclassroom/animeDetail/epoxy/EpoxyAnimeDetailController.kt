@@ -3,6 +3,7 @@ package divyansh.tech.animeclassroom.animeDetail.epoxy
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.Typed2EpoxyController
+import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.home.epoxy.EpoxyGenreModels_
 import divyansh.tech.animeclassroom.home.epoxy.epoxyGenreModels
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
@@ -10,7 +11,9 @@ import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 
-class EpoxyAnimeDetailController: Typed2EpoxyController<AnimeDetailModel, List<EpisodeModel>>() {
+class EpoxyAnimeDetailController(
+    private val clickCallback: EpisodeClickCallback
+): Typed2EpoxyController<AnimeDetailModel, List<EpisodeModel>>() {
     override fun buildModels(data1: AnimeDetailModel?, data2: List<EpisodeModel>?) {
         data1?.let {
             epoxyAnimeDetailHeader {
@@ -59,6 +62,7 @@ class EpoxyAnimeDetailController: Typed2EpoxyController<AnimeDetailModel, List<E
                         EpoxyAnimeDetailEpisodeModel_()
                             .id(it.episodeUrl)
                             .episode(it)
+                            .clickCallback(clickCallback)
                     )
                 }
 

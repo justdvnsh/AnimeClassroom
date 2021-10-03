@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailController
 import divyansh.tech.animeclassroom.databinding.FragmentAnimeDetailsBinding
 
@@ -26,7 +27,8 @@ class AnimeDetailFragment: Fragment() {
     private val viewModel by viewModels<AnimeDetailViewModel>()
     private val args by navArgs<AnimeDetailFragmentArgs>()
     private val animeDetailController by lazy {
-        EpoxyAnimeDetailController()
+        val clickCallback = EpisodeClickCallback(viewModel)
+        EpoxyAnimeDetailController(clickCallback)
     }
 
     override fun onCreateView(
