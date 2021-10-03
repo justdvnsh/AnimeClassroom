@@ -3,8 +3,7 @@ package divyansh.tech.animeclassroom.common
 import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import divyansh.tech.animeclassroom.C.BASE_URL
+import divyansh.tech.animeclassroom.di.GlideApp
 
 /*
 * Load Images into imageViews
@@ -12,5 +11,5 @@ import divyansh.tech.animeclassroom.C.BASE_URL
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String) {
     Log.i("IMAGE URL -> ", url)
-    Glide.with(view).load(url).into(view)
+    GlideApp.with(view.context).load(url).into(view)
 }
