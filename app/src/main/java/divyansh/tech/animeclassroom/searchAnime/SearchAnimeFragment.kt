@@ -87,6 +87,13 @@ class SearchAnimeFragment: Fragment() {
                     }
                 }
         )
+        viewModel.invalidAnimeSearch.observe(viewLifecycleOwner){
+            if(it){
+                binding.noResultsView.visibility=View.VISIBLE
+            }else{
+                binding.noResultsView.visibility=View.GONE
+            }
+        }
 
         viewModel.navigation.observe(
                 viewLifecycleOwner,
