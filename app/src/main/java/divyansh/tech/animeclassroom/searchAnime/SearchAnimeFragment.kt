@@ -90,8 +90,10 @@ class SearchAnimeFragment: Fragment() {
         viewModel.invalidAnimeSearch.observe(viewLifecycleOwner){
             if(it){
                 binding.noResultsView.visibility=View.VISIBLE
+                binding.searchRecyclerView.visibility=View.INVISIBLE
             }else{
                 binding.noResultsView.visibility=View.GONE
+                binding.searchRecyclerView.visibility=View.VISIBLE
             }
         }
 
