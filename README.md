@@ -3,7 +3,7 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
-<a href="https://www.patreon.com/bePatron?u=62573854" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+<a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
 
 
 
@@ -149,7 +149,7 @@ __NOTE -> Every PR will be reviewed before merging.__
 
 __Want to support me by buying me a coffee ?__ [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
 
-__Want to contribute to this project by supporting us through money ?__ <a href="https://www.patreon.com/bePatron?u=62573854" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://c6.patreon.com/becomePatronButton.bundle.js"></script>
+__Want to contribute to this project by supporting us through money ?__ <a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
