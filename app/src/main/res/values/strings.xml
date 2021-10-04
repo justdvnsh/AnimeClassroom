@@ -33,5 +33,5 @@
     <string name="episode_url">episodeUrl</string>
     <string name="user_agent">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36</string>
     <string name="plot_summary">Plot Summary</string>
-    <string name="no_result_for_searched_query">No result for searched query</string>
+    <string name="no_result_for_searched_query">No results for searched query</string>
 </resources>

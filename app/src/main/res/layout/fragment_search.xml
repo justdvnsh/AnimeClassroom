@@ -91,7 +91,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:layout_marginStart="72dp"
+                android:layout_marginStart="60dp"
                 app:srcCompat="@drawable/ic_sad" />
 
             <TextView

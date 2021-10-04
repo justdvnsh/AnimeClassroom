@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -23,9 +25,10 @@ import divyansh.tech.animeclassroom.databinding.FragmentSearchBinding
 import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.callbacks.SearchScreenCallbacks
 import divyansh.tech.animeclassroom.searchAnime.epoxy.EpoxySearchController
+import java.lang.ClassCastException
 
 @AndroidEntryPoint
-class SearchAnimeFragment: Fragment() {
+class SearchAnimeFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val viewModel by viewModels<SearchAnimeViewModel>()
@@ -33,11 +36,15 @@ class SearchAnimeFragment: Fragment() {
         EpoxySearchController(SearchScreenCallbacks(viewModel))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentSearchBinding.inflate(
-                inflater,
-                container,
-                false
+            inflater,
+            container,
+            false
         )
         return binding.root
     }
@@ -79,29 +86,32 @@ class SearchAnimeFragment: Fragment() {
     private fun setupObservers() {
 
         viewModel.searchAnimeLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> searchController.setData(it.data)
-                        else -> {}
+            viewLifecycleOwner,
+            Observer {
+                Log.d("SearchAnimeFragment", "${it.data}")
+                when (it) {
+                    is ResultWrapper.Success -> {
+                        binding.searchRecyclerView.visibility=View.VISIBLE
+                        binding.noResultsView.visibility=View.GONE
+                            searchController.setData(it.data)
+                        }
+
+                    is ResultWrapper.Error ->{
+                            binding.searchRecyclerView.visibility=View.INVISIBLE
+                            binding.noResultsView.visibility=View.VISIBLE
+                    }
+                    else -> {
+
                     }
                 }
-        )
-        viewModel.invalidAnimeSearch.observe(viewLifecycleOwner){
-            if(it){
-                binding.noResultsView.visibility=View.VISIBLE
-                binding.searchRecyclerView.visibility=View.INVISIBLE
-            }else{
-                binding.noResultsView.visibility=View.GONE
-                binding.searchRecyclerView.visibility=View.VISIBLE
             }
-        }
+        )
 
         viewModel.navigation.observe(
-                viewLifecycleOwner,
-                EventObserver {
-                    findNavController().navigate(it)
-                }
+            viewLifecycleOwner,
+            EventObserver {
+                findNavController().navigate(it)
+            }
         )
     }
 
