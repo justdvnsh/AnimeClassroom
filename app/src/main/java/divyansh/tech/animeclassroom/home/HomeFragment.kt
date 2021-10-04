@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.R
@@ -54,7 +55,7 @@ class HomeFragment: Fragment() {
 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireActivity())
+            layoutManager = LinearLayoutManager(requireActivity(), RecyclerView.VERTICAL, false)
             adapter = homeController.adapter
         }
     }
