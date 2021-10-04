@@ -1,5 +1,7 @@
 package divyansh.tech.animeclassroom.player
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -156,7 +158,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                         PlayerViewModel.PlayerClick.BACK ->
                             requireActivity().finish()
                         PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> Toast.makeText(requireContext(), "SPEED", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
                         PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
                     }
                 }
@@ -205,6 +207,25 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             )
                     )
         }
+    }
+
+    private fun speedControl(){
+        var playbackPosition = 0
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Set your playback speed")
+        val items = arrayOf("1x", "1.25x", "1.5x", "2x")
+        alertDialog.setItems(items, DialogInterface.OnClickListener { _, pos ->
+            when (pos) {
+                0 -> exoPlayer.playbackParameters = PlaybackParameters(1f).also { exo_speed_selection_view.text = "1x" }
+                1 -> exoPlayer.playbackParameters = PlaybackParameters(1.25f).also { exo_speed_selection_view.text = "1.25x" }
+                2 -> exoPlayer.playbackParameters = PlaybackParameters(1.5f).also { exo_speed_selection_view.text = "1.5x" }
+                3 -> exoPlayer.playbackParameters = PlaybackParameters(2f).also { exo_speed_selection_view.text = "2x" }
+            }
+            playbackPosition = pos
+        })
+        val alert: AlertDialog = alertDialog.create()
+        alert.setCanceledOnTouchOutside(true)
+        alert.show()
     }
 
     override fun onButtonClicked(item: PlayerViewModel.PlayerClick) {
