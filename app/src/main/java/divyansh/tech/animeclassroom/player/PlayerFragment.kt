@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -210,16 +211,18 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     }
 
     private fun speedControl(){
-        var playbackPosition = 0
+        var playbackPosition = 2
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialog.setTitle("Set your playback speed")
-        val items = arrayOf("1x", "1.25x", "1.5x", "2x")
+        val items = arrayOf("0.5","0.75","1x", "1.25x", "1.5x", "2x")
         alertDialog.setItems(items, DialogInterface.OnClickListener { _, pos ->
             when (pos) {
-                0 -> exoPlayer.playbackParameters = PlaybackParameters(1f).also { exo_speed_selection_view.text = "1x" }
-                1 -> exoPlayer.playbackParameters = PlaybackParameters(1.25f).also { exo_speed_selection_view.text = "1.25x" }
-                2 -> exoPlayer.playbackParameters = PlaybackParameters(1.5f).also { exo_speed_selection_view.text = "1.5x" }
-                3 -> exoPlayer.playbackParameters = PlaybackParameters(2f).also { exo_speed_selection_view.text = "2x" }
+                0 -> exoPlayer.playbackParameters = PlaybackParameters(0.5f).also { exo_speed_selection_view.text = "0.5x" }
+                1 -> exoPlayer.playbackParameters = PlaybackParameters(0.75f).also { exo_speed_selection_view.text = "0.75x" }
+                2 -> exoPlayer.playbackParameters = PlaybackParameters(1f).also { exo_speed_selection_view.text = "1x" }
+                3 -> exoPlayer.playbackParameters = PlaybackParameters(1.25f).also { exo_speed_selection_view.text = "1.25x" }
+                4 -> exoPlayer.playbackParameters = PlaybackParameters(1.5f).also { exo_speed_selection_view.text = "1.5x" }
+                5 -> exoPlayer.playbackParameters = PlaybackParameters(2f).also { exo_speed_selection_view.text = "2x" }
             }
             playbackPosition = pos
         })
