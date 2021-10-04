@@ -3,7 +3,8 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
-<a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
+[![Patreon][patreon-shield]][patreon-url]
+[![Slack][slack-shield]][slack-url]
 
 
 
@@ -147,9 +148,13 @@ __NOTE -> Every PR will be reviewed before merging.__
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+#### PLEASE MAKE SURE TO REMOVE THE .idea/ files before pushing a commit
+
 __Want to support me by buying me a coffee ?__ [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
 
-__Want to contribute to this project by supporting us through money ?__ <a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
+__Want to contribute to this project by supporting us through money ?__ [![Patreon][patreon-shield]][patreon-url]
+
+__Want to join the discussions ?__ [![Slack][slack-shield]][slack-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -166,6 +171,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Divyansh Dwivedi - [@justdvnsh](https://linkedin.com/in/justdvnsh) - justdvnsh2208@gmail.com
 
 Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/justdvnsh/AnimeClassroom)
+
+Join the Discussion at: [![Slack][slack-shield]][slack-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -185,3 +192,7 @@ Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/j
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/justdvnsh
 [product-screenshot]: images/screenshot.png
+[patreon-shield]: https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white
+[patreon-url]: https://www.patreon.com/justdvnsh
+[slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
+[slack-url]: https://join.slack.com/t/animeclassroom/shared_invite/zt-wut0t5mp-Y4kF6OGyxLBpyNM0eU6psw
