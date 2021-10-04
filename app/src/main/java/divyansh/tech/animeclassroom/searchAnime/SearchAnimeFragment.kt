@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -79,20 +80,32 @@ class SearchAnimeFragment: Fragment() {
     private fun setupObservers() {
 
         viewModel.searchAnimeLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> searchController.setData(it.data)
-                        else -> {}
+            viewLifecycleOwner,
+            Observer {
+                Log.i("SearchAnimeFragment", "${it.data}")
+                when (it) {
+                    is ResultWrapper.Success -> {
+                        binding.searchRecyclerView.visibility=View.VISIBLE
+                        binding.noResultsView.visibility=View.GONE
+                        searchController.setData(it.data)
+                    }
+
+                    is ResultWrapper.Error ->{
+                        binding.searchRecyclerView.visibility=View.INVISIBLE
+                        binding.noResultsView.visibility=View.VISIBLE
+                    }
+                    else -> {
+
                     }
                 }
+            }
         )
 
         viewModel.navigation.observe(
-                viewLifecycleOwner,
-                EventObserver {
-                    findNavController().navigate(it)
-                }
+            viewLifecycleOwner,
+            EventObserver {
+                findNavController().navigate(it)
+            }
         )
     }
 
