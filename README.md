@@ -148,6 +148,8 @@ __NOTE -> Every PR will be reviewed before merging.__
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+#### PLEASE MAKE SURE TO REMOVE THE .idea/ files before pushing a commit
+
 __Want to support me by buying me a coffee ?__ [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
 
 __Want to contribute to this project by supporting us through money ?__ [![Patreon][patreon-shield]][patreon-url]
