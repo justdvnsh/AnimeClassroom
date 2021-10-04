@@ -3,6 +3,11 @@
 /local.properties
 /.idea/caches
 /.idea/libraries
+/.idea/Compiler
+/.idea/misc.xml
+/.idea/runConfigurations.xml
+/.idea/codeStyles/Project.xml
+/.idea/runConfigurations.xml
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
