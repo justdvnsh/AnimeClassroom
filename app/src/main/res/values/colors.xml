@@ -11,6 +11,7 @@
     <color name="progress">#e5e5e5</color>
     <color name="secondary_background">#EAEAEB</color>
     <color name="black">#191818</color>
+    <color name="white">#ffffff</color>
 
     //Home Fragment
     <color name="home_header">@color/header</color>
