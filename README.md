@@ -86,21 +86,21 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
 - [x] Setup a clean architecture for the app
 - [x] Parse Animes
     - [x] Parse Anime Details
-        - Create a new modern UI for the Anime Detail fragment
+        - [x] Create a new modern UI for the Anime Detail fragment
     - [x] Add Anime Search option
-        - Handle the errors when anime not found
-    - Handle the network error (When not connected to internet)
-    - Handle cases when the unwanted errors occur
+        - [x] Handle the errors when anime not found
+    - [x] Handle the network error (When not connected to internet)
+    - [x] Handle cases when the unwanted errors occur
         - Could Not Parse Exception
         - Could Not Load Exception
-    - Make the background function calls more efficient.
+    - [x] Make the background function calls more efficient.
     - Need a better architecture for video player
         - handle audio focus change
         - add PIP mode for the player
-        - handle speed changes
+        - [x] handle speed changes
         - handle quality changes 
 - [x] Parse Mangas
-    - Setup the home page for mangas 
+    - [x] Setup the home page for mangas 
     - Parse Manga details
         - Create a modern UI for the Manga detail page
         - Setup viewpager based manga player to read manga like a book
@@ -113,19 +113,19 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
             - handle night light support
             - handle quality changes 
 - [x] Setup Favorites page
-    - Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.
+    - [x] Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.
     - setup room to save the details
     - make a modern motion layout based UI for the page.
 - [x] Setup Settings page
     - Multi-language Support
-    - dark mode toggle
+    - [x] dark mode toggle
     - downloaded videos
     - about
     - help
     - FAQ's 
-- Setup a new module to provide glide dependencies
-- Setup a new module to provide coroutines dependencies
-    - load glide components in a background thread.
+- [x] Setup a new module to provide glide dependencies
+- [x] Setup a new module to provide coroutines dependencies
+    - [x] load glide components in a background thread.
 - A new modern color scheme for the app.
 
 See the [open issues](https://github.com/justdvnsh/AnimeClassroom/issues) for a full list of proposed features (and known issues).
