@@ -14,7 +14,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_height="0dp"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:id="@+id/mangaRv"
             app:layout_constraintTop_toBottomOf="@id/mangaToolbar"
             app:layout_constraintBottom_toBottomOf="parent"

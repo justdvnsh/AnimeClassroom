@@ -20,12 +20,11 @@ object MangaParser {
             val jsoup = Jsoup.parse(response)
             val latestUpdates =
                 jsoup.getElementById("latest_update").select("a")
-//            Log.i("MANGA", latestUpdates.toString())
             for (i in 0 until latestUpdates.size - 1 step 3) {
                 val imageUrl = latestUpdates[i].select("img").first().attr("data-src")
-                val name = latestUpdates[i+1].attr("title")
-                val chapterNum = latestUpdates[i+2].text()
-                val chapterUrl = latestUpdates[i+2].attr("href")
+                val name = latestUpdates[i + 1].attr("title")
+                val chapterNum = latestUpdates[i + 2].text()
+                val chapterUrl = latestUpdates[i + 2].attr("href")
                 val model = Manga(
                     name = name.toString(),
                     imageUrl = imageUrl.toString(),
@@ -34,8 +33,21 @@ object MangaParser {
                 )
                 mangaList.add(model)
             }
-            Log.i("MANGA-LIST", mangaList.toString())
-            ResultWrapper.Success("good")
+            ResultWrapper.Success(mangaList)
+        } catch (e: Exception) {
+            ResultWrapper.Error("Something went wrong", null)
+        }
+    }
+
+    /*
+    * Parse the Featured Titles
+    * */
+    fun parseFeaturedTitles(response: String): ResultWrapper<*> {
+        return try {
+            val jsoup = Jsoup.parse(response)
+            val featuredTitles = jsoup.getElementsByClass("hled_titles_own_carousel")
+            Log.i("FEATURED TITLES -> ", featuredTitles.toString())
+            ResultWrapper.Success(featuredTitles)
         } catch (e: Exception) {
             ResultWrapper.Error("Something went wrong", null)
         }
