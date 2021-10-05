@@ -9,19 +9,10 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"
-            />
+            app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_homeFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"/>
+            app:destination="@id/animeDetailFragment" />
     </fragment>
     <activity
         android:id="@+id/playerActivity"
@@ -41,11 +32,7 @@
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left"/>
+            app:destination="@id/animeDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
@@ -62,11 +49,7 @@
 
     <action
         android:id="@+id/action_global_playerActivity"
-        app:destination="@id/playerActivity"
-        app:enterAnim="@anim/from_left"
-        app:exitAnim="@anim/to_right"
-        app:popEnterAnim="@anim/from_right"
-        app:popExitAnim="@anim/to_left"       />
+        app:destination="@id/playerActivity" />
     <fragment
         android:id="@+id/animeDetailFragment"
         android:name="divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragment"
