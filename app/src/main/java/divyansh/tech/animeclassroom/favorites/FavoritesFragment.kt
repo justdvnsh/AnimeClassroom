@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.databinding.FragmentFavoritesBinding
+import divyansh.tech.animeclassroom.favorites.utils.ViewPagerAdapter
 
 @AndroidEntryPoint
 class FavoritesFragment: Fragment() {
@@ -23,6 +20,13 @@ class FavoritesFragment: Fragment() {
     lateinit var pagerAdapter: ViewPagerAdapter
     private var mediator: TabLayoutMediator? = null
     val tabNames= listOf("Animes","Mangas")
+
+    private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +40,10 @@ class FavoritesFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViewpager()
+    }
+
+    private fun setUpViewpager(){
 
         pagerAdapter = ViewPagerAdapter(fragmentManager = childFragmentManager, lifecycle = lifecycle)
 
@@ -66,63 +74,11 @@ class FavoritesFragment: Fragment() {
         )
 
         mediator?.attach()
-
     }
-
 
     override fun onStop() {
         binding.viewPager2.unregisterOnPageChangeCallback(pageChangeCallback)
         super.onStop()
-    }
-
-    private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
-
-        override fun onPageSelected(position: Int) {
-            super.onPageSelected(position)
-        }
-    }
-
-    class ViewPagerAdapter( private val list: MutableList<Fragment> = mutableListOf(),
-                            fragmentManager: FragmentManager ,
-                            lifecycle: Lifecycle
-    ): FragmentStateAdapter(fragmentManager , lifecycle) {
-
-        private val pageIds= mutableListOf<Long>()
-
-        override fun getItemCount(): Int {
-            return list.size
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return list[position]
-        }
-
-        fun addFragments(ls:List<String>){
-            pageIds.clear()
-            ls.forEach {
-                    category ->
-                list.add(DynamicTabFragment.getInstance(category))
-            }
-
-            pageIds.addAll(list.map { it.hashCode().toLong() })
-            notifyDataSetChanged()
-        }
-
-        fun removeAllFragments(){
-            list.clear()
-            pageIds.clear()
-            notifyDataSetChanged()
-        }
-
-        override fun getItemId(position: Int): Long {
-            return pageIds[position]
-        }
-
-        override fun containsItem(itemId: Long): Boolean {
-            return pageIds.contains(itemId)
-        }
-
-
     }
 
 
