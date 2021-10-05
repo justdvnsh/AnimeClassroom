@@ -6,4 +6,5 @@ package divyansh.tech.animeclassroom
 object C {
 
     const val BASE_URL = "https://gogoanime.pe/"
+    const val MANGA_URL = "https://mangadex.tv/"
 }

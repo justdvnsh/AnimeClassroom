@@ -17,4 +17,11 @@ class MangaHomeDefaultRepo @Inject constructor(
             emit(response)
         }
     }
+
+    suspend fun getFeaturedTitles(url: String): Flow<ResultWrapper<*>> {
+        return flow {
+            val responseFeaturedTitles = remoteRepo.getFeaturedTitles(url)
+            emit(responseFeaturedTitles)
+        }
+    }
 }

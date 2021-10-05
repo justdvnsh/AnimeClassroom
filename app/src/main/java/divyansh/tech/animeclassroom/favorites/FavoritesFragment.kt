@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.databinding.FragmentFavoritesBinding
 import divyansh.tech.animeclassroom.favorites.utils.ViewPagerAdapter
 
@@ -40,7 +41,13 @@ class FavoritesFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
         setUpViewpager()
+    }
+
+    private fun setupViews() {
+        binding.toolbar.goBack.visibility = View.GONE
+        binding.toolbar.title.text = getString(R.string.favorites)
     }
 
     private fun setUpViewpager(){
