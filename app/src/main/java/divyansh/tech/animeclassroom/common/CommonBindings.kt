@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import divyansh.tech.animeclassroom.C.MANGA_URL
 import divyansh.tech.animeclassroom.di.GlideApp
 
 /*
@@ -20,6 +21,15 @@ import divyansh.tech.animeclassroom.di.GlideApp
 fun loadImage(view: ImageView, url: String) {
     Log.i("IMAGE URL -> ", url)
     GlideApp.with(view.context).load(url).into(view)
+}
+
+/*
+* Load Images into imageViews
+* */
+@BindingAdapter("mangaImageUrl")
+fun loadMangaImage(view: ImageView, url: String) {
+    Log.i("IMAGE URL -> ", url)
+    GlideApp.with(view.context).load(MANGA_URL + url).into(view)
 }
 
 @BindingAdapter("setErrorImage")
