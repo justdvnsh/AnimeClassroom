@@ -20,21 +20,28 @@ object MangaParser {
             val jsoup = Jsoup.parse(response)
             val latestUpdates =
                 jsoup.getElementById("latest_update").select("a")
+//            Log.i("LATEST-UPDATES", latestUpdates.toString())
             for (i in 0 until latestUpdates.size - 1 step 3) {
+                if (latestUpdates[i].select("img").first() == null) continue
                 val imageUrl = latestUpdates[i].select("img").first().attr("data-src")
                 val name = latestUpdates[i + 1].attr("title")
-                val chapterNum = latestUpdates[i + 2].text()
-                val chapterUrl = latestUpdates[i + 2].attr("href")
+                val mangaUrl = latestUpdates[i + 1].attr("href")
+//                val chapterNum = latestUpdates[i + 2].text()
+//                val chapterUrl = latestUpdates[i + 2].attr("href")
+                Log.i("IMAGE", imageUrl)
+                Log.i("NAME", name)
+                Log.i("MANGA", mangaUrl)
                 val model = Manga(
-                    name = name.toString(),
-                    imageUrl = imageUrl.toString(),
-                    chapterNum = chapterNum.toString(),
-                    chapterUrl = chapterUrl.toString()
+                    name = name,
+                    imageUrl = imageUrl,
+                    mangaUrl = mangaUrl
                 )
                 mangaList.add(model)
             }
+            Log.i("MANGA-LIST -> ", mangaList.toString())
             ResultWrapper.Success(mangaList)
         } catch (e: Exception) {
+            Log.i("MANGA EX -> ", e.stackTraceToString())
             ResultWrapper.Error("Something went wrong", null)
         }
     }

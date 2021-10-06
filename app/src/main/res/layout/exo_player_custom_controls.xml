@@ -51,7 +51,6 @@
         />
 
     <ImageButton
-        android:id="@+id/exo_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_media_play"
@@ -67,7 +66,6 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/exo_rew"
         android:src="@drawable/ic_media_seek_backward"
         android:padding="16dp"
         android:background="?selectableItemBackgroundBorderless"
@@ -79,7 +77,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageButton
-        android:id="@+id/exo_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -96,7 +93,6 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/exo_ffwd"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="16dp"
         android:layout_marginStart="20dp"

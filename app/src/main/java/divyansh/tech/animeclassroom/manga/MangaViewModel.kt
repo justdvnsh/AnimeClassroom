@@ -43,7 +43,7 @@ class MangaViewModel @Inject constructor(
                             _mangaListLiveData.postValue(ResultWrapper.Error("Could not parse"))
                         }
                     }
-                    is ResultWrapper.Error -> {}
+                    is ResultWrapper.Error -> Log.i("MANGA -> ", it.message.toString())
                     else -> {}
                 }
             }
