@@ -87,12 +87,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="60dp"
-                app:srcCompat="@drawable/ic_sad" />
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView"-->
+<!--                android:layout_width="56dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:layout_marginStart="60dp"-->
+<!--                android:src="@drawable/ic_sad" />-->
 
             <TextView
                 android:id="@+id/textView"

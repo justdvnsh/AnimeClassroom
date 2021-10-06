@@ -4,6 +4,7 @@ import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.Typed2EpoxyController
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
+import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.home.epoxy.EpoxyGenreModels_
 import divyansh.tech.animeclassroom.home.epoxy.epoxyGenreModels
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
@@ -12,13 +13,17 @@ import divyansh.tech.animeclassroom.models.home.EpisodeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 
 class EpoxyAnimeDetailController(
-    private val clickCallback: EpisodeClickCallback
+    private val clickCallback: EpisodeClickCallback,
+    private val favoriteClickCallback: FavoriteClickCallback,
+    private val animeUrl: String
 ): Typed2EpoxyController<AnimeDetailModel, List<EpisodeModel>>() {
     override fun buildModels(data1: AnimeDetailModel?, data2: List<EpisodeModel>?) {
         data1?.let {
             epoxyAnimeDetailHeader {
                 id(it.imageUrl)
                 anime(it)
+                favoriteClickCallback(favoriteClickCallback)
+                animeUrl(animeUrl)
                 spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount }
             }
 

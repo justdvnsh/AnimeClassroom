@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
+import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailController
 import divyansh.tech.animeclassroom.databinding.FragmentAnimeDetailsBinding
 
@@ -28,7 +30,8 @@ class AnimeDetailFragment: Fragment() {
     private val args by navArgs<AnimeDetailFragmentArgs>()
     private val animeDetailController by lazy {
         val clickCallback = EpisodeClickCallback(viewModel)
-        EpoxyAnimeDetailController(clickCallback)
+        val favoriteClickCallback = FavoriteClickCallback(viewModel)
+        EpoxyAnimeDetailController(clickCallback, favoriteClickCallback, args.animeUrl)
     }
 
     override fun onCreateView(
@@ -78,6 +81,24 @@ class AnimeDetailFragment: Fragment() {
                     is ResultWrapper.Error -> Log.i("ANIME DETAIL", it.message.toString())
                     is ResultWrapper.Loading -> {}
                 }
+            }
+        )
+
+        viewModel.animeSavedLiveData.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                if (it)
+                    Snackbar.make(
+                        requireView(),
+                        "Anime Saved Successfully",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                else
+                    Snackbar.make(
+                        requireView(),
+                        "Anime Could not be saved !",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
             }
         )
 

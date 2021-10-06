@@ -65,4 +65,9 @@ dependencies {
             "com.squareup.retrofit2:converter-gson:$gson",
             "com.squareup.retrofit2:retrofit:$retrofit"
     )
+
+    def room_version = "2.3.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }
