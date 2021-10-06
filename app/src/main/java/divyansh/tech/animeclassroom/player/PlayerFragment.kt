@@ -1,5 +1,7 @@
 package divyansh.tech.animeclassroom.player
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -7,26 +9,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+
 import androidx.activity.viewModels
+import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.navArgs
-import androidx.navigation.navArgs
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
+import com.google.android.exoplayer2.Player.*
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
@@ -34,7 +33,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
-import divyansh.tech.animeclassroom.home.HomeFragmentDirections
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
@@ -74,6 +72,11 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         exo_track_selection_view.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.QUALITY_CONTROL) }
         exo_speed_selection_view.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.SPEED_CONTROL) }
         exo_full_Screen.setOnClickListener { onButtonClicked(PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE) }
+
+        binding.retry.setOnClickListener {
+            if (exoPlayer.playbackError != null)
+                exoPlayer.retry()
+        }
     }
 
     private fun initializePlayer(data: PlayerScreenModel) {
@@ -81,9 +84,89 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         val loadControl = DefaultLoadControl()
         val renderersFactory = DefaultRenderersFactory(requireContext())
 
-        exoPlayer = ExoPlayerFactory.newSimpleInstance(requireContext(), renderersFactory, trackSelector, loadControl)
+        exoPlayer = ExoPlayerFactory.newSimpleInstance(
+            requireContext(),
+            renderersFactory,
+            trackSelector,
+            loadControl
+        )
+
+        exoPlayer.addListener(object : EventListener {
+            override fun onPlayerError(error: ExoPlaybackException?) {
+                super.onPlayerError(error)
+                when (error?.type) {
+                    ExoPlaybackException.TYPE_OUT_OF_MEMORY -> {
+                        exoplayerErrorLayoutChange(
+                            visible = true,
+                            image = R.drawable.ic_general_error,
+                            errorText = R.string.status_code_default
+                        )
+                    }
+                    ExoPlaybackException.TYPE_REMOTE -> {
+                        exoplayerErrorLayoutChange(
+                            visible = true,
+                            image = R.drawable.ic_general_error,
+                            errorText = R.string.server_error
+                        )
+                    }
+                    ExoPlaybackException.TYPE_RENDERER -> {
+                        exoplayerErrorLayoutChange(
+                            visible = true,
+                            image = R.drawable.ic_general_error,
+                            errorText = R.string.status_code_default
+                        )
+                    }
+                    ExoPlaybackException.TYPE_SOURCE -> {
+                        exoplayerErrorLayoutChange(
+                            visible = true,
+                            image = R.drawable.ic_no_internet,
+                            errorText = R.string.no_internet
+                        )
+
+                    }
+                    ExoPlaybackException.TYPE_UNEXPECTED -> {
+                        exoplayerErrorLayoutChange(
+                            visible = true,
+                            image = R.drawable.ic_general_error,
+                            errorText = R.string.status_code_default
+                        )
+                    }
+                }
+            }
+
+            override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                super.onPlayerStateChanged(playWhenReady, playbackState)
+                when (playbackState) {
+                    STATE_IDLE -> {
+
+                    }
+                    STATE_BUFFERING -> {
+                        exoplayerErrorLayoutChange(visible = false)
+
+                    }
+                    STATE_READY -> {
+                        exoplayerErrorLayoutChange(visible = false)
+                    }
+                    STATE_ENDED -> {
+                        exoplayerErrorLayoutChange(visible = false)
+
+                    }
+                }
+            }
+
+        })
         binding.exoPlayerView.player = exoPlayer
         play(data)
+    }
+
+    private fun exoplayerErrorLayoutChange(
+        visible: Boolean,
+        image: Int = R.drawable.ic_no_internet,
+        errorText: Int = R.string.no_internet
+    ) {
+        binding.errorLayout.isVisible = visible
+        binding.errorImage.setImageResource(image)
+        binding.errorText.text = getString(errorText)
     }
 
     private fun play(data: PlayerScreenModel) {
@@ -156,7 +239,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                         PlayerViewModel.PlayerClick.BACK ->
                             requireActivity().finish()
                         PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> Toast.makeText(requireContext(), "SPEED", Toast.LENGTH_SHORT).show()
+                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
                         PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
                     }
                 }
@@ -205,6 +288,27 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             )
                     )
         }
+    }
+
+    private fun speedControl(){
+        var playbackPosition = 2
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Set your playback speed")
+        val items = arrayOf("0.5","0.75","1x", "1.25x", "1.5x", "2x")
+        alertDialog.setItems(items, DialogInterface.OnClickListener { _, pos ->
+            when (pos) {
+                0 -> exoPlayer.playbackParameters = PlaybackParameters(0.5f).also { exo_speed_selection_view.text = "0.5x" }
+                1 -> exoPlayer.playbackParameters = PlaybackParameters(0.75f).also { exo_speed_selection_view.text = "0.75x" }
+                2 -> exoPlayer.playbackParameters = PlaybackParameters(1f).also { exo_speed_selection_view.text = "1x" }
+                3 -> exoPlayer.playbackParameters = PlaybackParameters(1.25f).also { exo_speed_selection_view.text = "1.25x" }
+                4 -> exoPlayer.playbackParameters = PlaybackParameters(1.5f).also { exo_speed_selection_view.text = "1.5x" }
+                5 -> exoPlayer.playbackParameters = PlaybackParameters(2f).also { exo_speed_selection_view.text = "2x" }
+            }
+            playbackPosition = pos
+        })
+        val alert: AlertDialog = alertDialog.create()
+        alert.setCanceledOnTouchOutside(true)
+        alert.show()
     }
 
     override fun onButtonClicked(item: PlayerViewModel.PlayerClick) {

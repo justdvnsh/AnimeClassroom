@@ -6,6 +6,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'org.jetbrains.kotlin.android.extensions'
     id 'androidx.navigation.safeargs.kotlin'
+
 }
 
 kapt {
@@ -14,16 +15,17 @@ kapt {
 
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "divyansh.tech.animeclassroom"
         minSdkVersion 24
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -54,22 +56,30 @@ androidExtensions {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //noinspection GradleDependency
     implementation "androidx.core:core-ktx:$core_ktx"
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$appcompat"
+    //noinspection GradleDependency
     implementation "com.google.android.material:material:$material"
+    //noinspection GradleDependency
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout"
 
     // library modules
     implementation project(path: ':data')
     implementation project(path: ':testing')
     implementation project(path: ':domain')
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // test dependencies
     testImplementation "junit:junit:$junit"
+    //noinspection GradleDependency
     androidTestImplementation "androidx.test.ext:junit:$junit_ext"
+    //noinspection GradleDependency
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
 
     //fragment
+    //noinspection GradleDependency
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx"
 
     // navigation
@@ -83,6 +93,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_viewModels"
 
     // dagger hilt
+    //noinspection GradleDependency
     api "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
@@ -91,6 +102,7 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$dagger_compiler"
 
     // image loading
+    //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
@@ -98,6 +110,7 @@ dependencies {
     implementation (
             "com.google.android.exoplayer:exoplayer:$exoplayer",
             "com.google.android.exoplayer:extension-mediasession:$exoplayer",
+             "com.airbnb.android:lottie:4.1.0",
             "com.google.android.exoplayer:exoplayer-core:$exoplayer",
             "com.google.android.exoplayer:exoplayer-dash:$exoplayer",
             "com.google.android.exoplayer:exoplayer-ui:$exoplayer",
@@ -110,4 +123,13 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
     implementation "com.ms-square:expandableTextView:$expandableTextView"
+
+//
+//    // Lottie
+
+    def room_version = "2.3.0"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
 }

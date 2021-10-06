@@ -3,7 +3,8 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
-<a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
+[![Patreon][patreon-shield]][patreon-url]
+[![Slack][slack-shield]][slack-url]
 
 
 
@@ -81,25 +82,25 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
 <!-- ROADMAP -->
 ## Roadmap for Version 1 release of the app.
 
-- [x] Add README
-- [x] Setup a clean architecture for the app
+- [x] ~Add README~
+- [x] ~Setup a clean architecture for the app~
 - [x] Parse Animes
-    - [x] Parse Anime Details
-        - Create a new modern UI for the Anime Detail fragment
-    - [x] Add Anime Search option
-        - Handle the errors when anime not found
-    - Handle the network error (When not connected to internet)
-    - Handle cases when the unwanted errors occur
+    - [x] ~Parse Anime Details~
+        - [x] ~Create a new modern UI for the Anime Detail fragment~
+    - [x] ~Add Anime Search option~
+        - [x] ~Handle the errors when anime not found~
+    - [x] ~Handle the network error (When not connected to internet)~
+    - [x] Handle cases when the unwanted errors occur
         - Could Not Parse Exception
         - Could Not Load Exception
-    - Make the background function calls more efficient.
+    - [x] ~Make the background function calls more efficient.~
     - Need a better architecture for video player
         - handle audio focus change
         - add PIP mode for the player
-        - handle speed changes
+        - [x] ~handle speed changes~
         - handle quality changes 
 - [x] Parse Mangas
-    - Setup the home page for mangas 
+    - [x] ~Setup the home page for mangas~ 
     - Parse Manga details
         - Create a modern UI for the Manga detail page
         - Setup viewpager based manga player to read manga like a book
@@ -112,19 +113,19 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
             - handle night light support
             - handle quality changes 
 - [x] Setup Favorites page
-    - Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.
+    - [x] ~Make a viewpager to display all the saved animes in one tab, while all the saved mangas in the other.~
     - setup room to save the details
     - make a modern motion layout based UI for the page.
 - [x] Setup Settings page
     - Multi-language Support
-    - dark mode toggle
+    - [x] ~dark mode toggle~
     - downloaded videos
     - about
     - help
     - FAQ's 
-- Setup a new module to provide glide dependencies
-- Setup a new module to provide coroutines dependencies
-    - load glide components in a background thread.
+- [x] ~Setup a new module to provide glide dependencies~
+- [x] ~Setup a new module to provide coroutines dependencies~
+    - [x] ~load glide components in a background thread.~
 - A new modern color scheme for the app.
 
 See the [open issues](https://github.com/justdvnsh/AnimeClassroom/issues) for a full list of proposed features (and known issues).
@@ -147,9 +148,13 @@ __NOTE -> Every PR will be reviewed before merging.__
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+#### PLEASE MAKE SURE TO REMOVE THE .idea/ files before pushing a commit
+
 __Want to support me by buying me a coffee ?__ [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/justdvnsh)
 
-__Want to contribute to this project by supporting us through money ?__ <a href="https://patreon.com/endel"><img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3justdvnsh%26type%3Dpatrons&style=for-the-badge" /></a>
+__Want to contribute to this project by supporting us through money ?__ [![Patreon][patreon-shield]][patreon-url]
+
+__Want to join the discussions ?__ [![Slack][slack-shield]][slack-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -166,6 +171,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Divyansh Dwivedi - [@justdvnsh](https://linkedin.com/in/justdvnsh) - justdvnsh2208@gmail.com
 
 Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/justdvnsh/AnimeClassroom)
+
+Join the Discussion at: [![Slack][slack-shield]][slack-url]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -185,3 +192,7 @@ Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/j
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/justdvnsh
 [product-screenshot]: images/screenshot.png
+[patreon-shield]: https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white
+[patreon-url]: https://www.patreon.com/justdvnsh
+[slack-shield]: https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
+[slack-url]: https://join.slack.com/t/animeclassroom/shared_invite/zt-wut0t5mp-Y4kF6OGyxLBpyNM0eU6psw
