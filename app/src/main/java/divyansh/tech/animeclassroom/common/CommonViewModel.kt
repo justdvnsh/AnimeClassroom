@@ -1,15 +1,12 @@
 package divyansh.tech.animeclassroom.common
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import divyansh.tech.animeclassroom.Event
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.models.home.AnimeModel
-import divyansh.tech.animeclassroom.models.home.GenreModel
-import retrofit2.HttpException
-import java.net.HttpURLConnection
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -25,6 +22,11 @@ open class CommonViewModel: ViewModel() {
     // Clicked events
     private val _navigationLiveData: MutableLiveData<Event<NavDirections>> = MutableLiveData()
     val navigation: LiveData<Event<NavDirections>> get() = _navigationLiveData
+    private val _startPlayer = MutableLiveData(false)
+    val startPlayer get() = _startPlayer
+    private var _episodeUrl = ""
+    val episodeUrl get() = _episodeUrl
+
 
 
     private fun updateErrorModel(e: Throwable?) {
@@ -67,7 +69,14 @@ open class CommonViewModel: ViewModel() {
    * Helper functions -> Events
    * */
     fun changeNavigation(navDirections: NavDirections) {
+        Log.d(TAG, "changeNavigation: $navDirections")
         _navigationLiveData.value = Event(navDirections)
+    }
+
+    fun startPlayerWithNewIntent(episodeUrl: String) {
+        this._episodeUrl=episodeUrl
+        _startPlayer.value = true
+        _startPlayer.value = false
     }
 
     enum class Error {
@@ -76,5 +85,9 @@ open class CommonViewModel: ViewModel() {
 
     enum class Loading {
         LOADING, COMPLETED, ERROR
+    }
+
+    companion object {
+        private const val TAG = "CommonViewModel"
     }
 }

@@ -1,34 +1,54 @@
 package divyansh.tech.animeclassroom.player
 
+
+import android.app.PictureInPictureParams
+import android.content.Intent
+import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.navigation.NavArgs
-import androidx.navigation.fragment.navArgs
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.navArgs
-import com.google.android.exoplayer2.Player
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentArgs
+
 
 @AndroidEntryPoint
 class PlayerActivity : AppCompatActivity() {
 
-    val episodeUrl: PlayerActivityArgs by navArgs()
+    var episodeUrl:String?=""
     private val viewModel by viewModels<PlayerViewModel>()
-
+    private lateinit var pipParams: PictureInPictureParams
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
         setupStatusBar()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            pipParams =
+                PictureInPictureParams.Builder()
+                    .build()
+        }
+
+        episodeUrl = intent?.extras?.getString("episodeUrl")
+        episodeUrl?.let {
+
+        updateEpisode(it)
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        updateEpisode(episodeUrl.episodeUrl)
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+
+        episodeUrl = intent?.extras?.getString("episodeUrl")
+        episodeUrl?.let {
+
+            updateEpisode(it)
+        }
     }
 
     fun updateEpisode(url: String) {
@@ -42,4 +62,20 @@ class PlayerActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
+
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            enterPictureInPictureMode(pipParams)
+        }
+
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            enterPictureInPictureMode(pipParams)
+        }
+    }
+
 }

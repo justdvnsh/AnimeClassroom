@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.animeDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,13 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailController
 import divyansh.tech.animeclassroom.databinding.FragmentAnimeDetailsBinding
+import divyansh.tech.animeclassroom.player.PlayerActivity
 
 @AndroidEntryPoint
 class AnimeDetailFragment: Fragment() {
@@ -74,13 +75,28 @@ class AnimeDetailFragment: Fragment() {
             viewLifecycleOwner,
             Observer {
                 when (it) {
-                    is ResultWrapper.Success -> animeDetailController.setData(viewModel.animeDetailLiveData.value?.data, it.data)
+                    is ResultWrapper.Success -> animeDetailController.setData(
+                        viewModel.animeDetailLiveData.value?.data,
+                        it.data
+                    )
                     is ResultWrapper.Error -> Log.i("ANIME DETAIL", it.message.toString())
-                    is ResultWrapper.Loading -> {}
+                    is ResultWrapper.Loading -> {
+                    }
                 }
             }
         )
 
+        //activity needs to be started with intent to  handle the new video
+        viewModel.startPlayer.observe(viewLifecycleOwner, {
+            it?.let {
+                if (it) {
+                    Intent(requireContext(), PlayerActivity::class.java).apply {
+                        putExtra("episodeUrl", viewModel.episodeUrl)
+                        startActivity(this)
+                    }
+                }
+            }
+        })
         viewModel.navigation.observe(
             viewLifecycleOwner,
             EventObserver {

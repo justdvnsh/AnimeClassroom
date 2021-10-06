@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.home.callbacks
 
+import android.util.Log
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentDirections
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.common.Clicks
@@ -18,11 +19,14 @@ class HomeScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickCal
     * */
 
     override fun onAnimeClicked(animeUrl: String) {
+
+        Log.d("TAG", "onEpisodeClicked1: $animeUrl")
         val action = HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(animeUrl)
         viewModel.changeNavigation(action)
     }
 
     override fun onEpisodeClicked(episodeUrl: String) {
+        Log.d("TAG", "onEpisodeClicked: $episodeUrl")
         val action = HomeFragmentDirections.actionGlobalPlayerActivity(episodeUrl)
         viewModel.changeNavigation(action)
     }

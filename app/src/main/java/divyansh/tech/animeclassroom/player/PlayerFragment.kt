@@ -4,14 +4,15 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.media.MediaMetadataCompat
+import android.support.v4.media.session.MediaControllerCompat
+import android.support.v4.media.session.MediaSessionCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
-import androidx.activity.viewModels
-import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
@@ -20,6 +21,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.Player.*
+import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
@@ -39,14 +41,21 @@ import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 import kotlinx.android.synthetic.main.fragment_player.*
 
+
 @AndroidEntryPoint
 class PlayerFragment: Fragment(), PlayerControlListener {
 
     private lateinit var binding: FragmentPlayerBinding
     private lateinit var exoPlayer: SimpleExoPlayer
     private val viewModel by activityViewModels<PlayerViewModel>()
-
+    private lateinit var mediaSessionCompat: MediaSessionCompat
     private var isFullScreen = false
+    val MEDIA_ACTIONS_PLAY_PAUSE = (PlaybackStateCompat.ACTION_PLAY
+            or PlaybackStateCompat.ACTION_PAUSE
+            or PlaybackStateCompat.ACTION_PLAY_PAUSE)
+    val MEDIA_ACTIONS_ALL: Long = (MEDIA_ACTIONS_PLAY_PAUSE
+            or PlaybackStateCompat.ACTION_SKIP_TO_NEXT
+            or PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,6 +72,8 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         setupObservers()
         setupListeners()
     }
@@ -77,6 +88,8 @@ class PlayerFragment: Fragment(), PlayerControlListener {
             if (exoPlayer.playbackError != null)
                 exoPlayer.retry()
         }
+
+
     }
 
     private fun initializePlayer(data: PlayerScreenModel) {
@@ -90,6 +103,18 @@ class PlayerFragment: Fragment(), PlayerControlListener {
             trackSelector,
             loadControl
         )
+        mediaSessionCompat = MediaSessionCompat(requireContext(), TAG)
+        mediaSessionCompat.isActive = true
+        val connector = MediaSessionConnector(mediaSessionCompat)
+        MediaControllerCompat.setMediaController(requireActivity(), mediaSessionCompat.controller)
+        connector.setPlayer(exoPlayer)
+        val metadata = MediaMetadataCompat.Builder()
+            .putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_TITLE, data.animeName)
+            .build()
+
+        mediaSessionCompat.setMetadata(metadata)
+
+
 
         exoPlayer.addListener(object : EventListener {
             override fun onPlayerError(error: ExoPlaybackException?) {
@@ -233,27 +258,40 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         )
 
         viewModel.clickControlLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when(it) {
-                        PlayerViewModel.PlayerClick.BACK ->
-                            requireActivity().finish()
-                        PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
-                        PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
-                    }
+            viewLifecycleOwner,
+            {
+                when (it) {
+                    PlayerViewModel.PlayerClick.BACK ->
+                        requireActivity().finish()
+                    PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(
+                        requireContext(),
+                        "QUALITY",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
+                    PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
                 }
+            }
         )
     }
 
     override fun onPause() {
         super.onPause()
-        releasePlayer()
+        if (exoPlayer.isPlaying) {
+            if (requireActivity().isInPictureInPictureMode.not())
+                releasePlayer()
+        }
+        else {
+            releasePlayer()
+
+        }
     }
 
     override fun onStop() {
         super.onStop()
-        releasePlayer()
+
+        if (requireActivity().isInPictureInPictureMode.not())
+            releasePlayer()
     }
 
     private fun releasePlayer() {
@@ -318,5 +356,28 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     override fun onEpisodeClicked(episodeUrl: String) {
         exoPlayer.playWhenReady = false
         (requireActivity() as PlayerActivity).updateEpisode(episodeUrl)
+    }
+
+    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+
+        if (isInPictureInPictureMode) {
+            hideExoplayerContents(false)
+            exoPlayer.playWhenReady = true
+        } else {
+            hideExoplayerContents(true)
+            exoPlayer.playWhenReady=false
+             }
+    }
+
+
+    private fun hideExoplayerContents(hide: Boolean) {
+        binding.exoPlayerView.useController = hide
+    }
+
+
+
+
+    companion object {
+        private const val TAG = "PlayerFragment"
     }
 }

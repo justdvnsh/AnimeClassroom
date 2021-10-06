@@ -23,7 +23,14 @@
         </activity>
         <activity
             android:name=".player.PlayerActivity"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorLandscape"
+            android:supportsPictureInPicture="true"
+            android:excludeFromRecents="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="false"
+            android:configChanges=
+                "screenSize|smallestScreenSize|screenLayout|orientation"
+            />
         <activity android:name=".MainActivity" />
     </application>
 
