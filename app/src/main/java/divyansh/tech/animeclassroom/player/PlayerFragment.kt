@@ -50,12 +50,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     private val viewModel by activityViewModels<PlayerViewModel>()
     private lateinit var mediaSessionCompat: MediaSessionCompat
     private var isFullScreen = false
-    val MEDIA_ACTIONS_PLAY_PAUSE = (PlaybackStateCompat.ACTION_PLAY
-            or PlaybackStateCompat.ACTION_PAUSE
-            or PlaybackStateCompat.ACTION_PLAY_PAUSE)
-    val MEDIA_ACTIONS_ALL: Long = (MEDIA_ACTIONS_PLAY_PAUSE
-            or PlaybackStateCompat.ACTION_SKIP_TO_NEXT
-            or PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS)
 
     override fun onCreateView(
         inflater: LayoutInflater,
