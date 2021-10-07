@@ -58,20 +58,20 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-The project aims to solve a personal problem of watching anime. This app helps you watch and download anime without any ads. Plus it also lets you read and save mangas into the app itself. It parses the animes online from the web in real-time to provide you with a seamless watching experience. 
+The project aims to solve a personal problem of watching anime. It helps you watch/download anime without any Annoying Ads. It also lets you read and save mangas(comics) into the app itself. It parses the animes online from the web in real-time to provide you with a seamless watching experience. 
 
 Why an anime app ? Here's why:
-* Netflix contains anime's, but there is no denying that the list of anime's are very limited in Netflix.
-* You can watch anime online, but you have to suffer with the ads.
-* You can easily download the animes and also read manga in your phone itself. 
+ * Netflix contains anime's, but there is no denying that the list of anime's are very limited on Netflix.
+ * You can watch anime online, but you have to suffer with the ads.
+ * You can easily download the Animes and also read manga in your device itself. 
 
-__WARNING: THIS PROJECT IS STILL IN HEAVY DEVELOPMENT, THEREFORE YOU MAY ENCOUNTER BUGS. You can OPEN the ISSUE on GITHUB REPOSITORY.__
+__WARNING! : THIS PROJECT IS STILL IN HEAVY DEVELOPMENT, THEREFORE YOU MAY ENCOUNTER BUGS. You can OPEN the ISSUE on GITHUB REPOSITORY.__
 
 __NEW ISSUES WILL BE ADDED REGULARLY__ 
   
-__Do not PUT ANIMECLASSROOM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE or Any other Store. It may VIOLATE THEIR TERMS AND CONDITIONS or you may encounter legal obligations.__
+__Do not PUT ANIMECLASSROOM OR ANY FORK OF IT INTO GOOGLE PLAYSTORE or Any other Store. It may VIOLATE THEIR TERMS AND CONDITIONS and you may encounter legal obligations.__
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 <!-- GETTING STARTED -->
@@ -130,7 +130,7 @@ Simply fork the repo. Clone it into your machine and let AndroidStudio handle th
 
 See the [open issues](https://github.com/justdvnsh/AnimeClassroom/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -156,7 +156,7 @@ __Want to contribute to this project by supporting us through money ?__ [![Patre
 
 __Want to join the discussions ?__ [![Slack][slack-shield]][slack-url]
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
@@ -172,9 +172,9 @@ Divyansh Dwivedi - [@justdvnsh](https://linkedin.com/in/justdvnsh) - justdvnsh22
 
 Project Link: [https://github.com/justdvnsh/AnimeClassroom](https://github.com/justdvnsh/AnimeClassroom)
 
-Join the Discussion at: [![Slack][slack-shield]][slack-url]
+Join Discussion at: [![Slack][slack-shield]][slack-url]
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
