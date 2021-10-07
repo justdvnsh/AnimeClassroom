@@ -143,10 +143,14 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                     }
                     STATE_BUFFERING -> {
                         exoplayerErrorLayoutChange(visible = false)
-
+                        binding.exoPlayerView.exo_play.setImageResource(0)
+                        binding.exoPlayerView.exo_pause.setImageResource(0)
                     }
                     STATE_READY -> {
+                        exoPlayerView.videoSurfaceView.visibility = View.VISIBLE
                         exoplayerErrorLayoutChange(visible = false)
+                        binding.exoPlayerView.exo_play.setImageResource(R.drawable.ic_media_play)
+                        binding.exoPlayerView.exo_pause.setImageResource(R.drawable.ic_media_pause)
                     }
                     STATE_ENDED -> {
                         exoplayerErrorLayoutChange(visible = false)
