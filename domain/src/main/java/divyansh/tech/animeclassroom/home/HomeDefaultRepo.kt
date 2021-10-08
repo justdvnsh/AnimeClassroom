@@ -2,10 +2,15 @@ package divyansh.tech.animeclassroom.home
 
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
-import divyansh.tech.animeclassroom.api.HomeScreenApi
+import divyansh.tech.animeclassroom.models.home.AnimeModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
+
+const val POPULAR_ANIME="PopularAnime"
+const val POPULAR_MOVIE="PopularMovies"
+const val RECENT_RELEASE="RecentRelease"
+const val NEW_SEASON="NewSeason"
 
 /*
 * Main default repo, to fetch data both from remote and locally
@@ -23,6 +28,9 @@ class HomeDefaultRepo @Inject constructor(
         //TODO: Add local data first. (caching purpose)
         return flow {
             val response = remoteRepo.getPopularAnimes()
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, POPULAR_ANIME)
+            localRepo.getAllPopularAnime()
             emit(response)
         }
     }
@@ -32,9 +40,15 @@ class HomeDefaultRepo @Inject constructor(
     * @returns Flow<ResultWrapper<*>>
     * */
     suspend fun parseRecentReleases(): Flow<ResultWrapper<*>> {
-        // TODO: Add local data first.
+
         return flow {
             val response = remoteRepo.getRecentReleases()
+
+            // TODO: Add function to check if local data already exists or not
+
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, RECENT_RELEASE)
+            localRepo.getAllRecentReleases()
             emit(response)
         }
     }
@@ -44,9 +58,14 @@ class HomeDefaultRepo @Inject constructor(
     * @returns: Flow<ResultWrapper<*>>
     * */
     suspend fun parsePopularMovies(): Flow<ResultWrapper<*>> {
-        //TODO: Add local data first. (caching purpose)
         return flow {
             val response = remoteRepo.getPopularMovies()
+
+            // TODO: Add function to check if local data already exists or not
+
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, POPULAR_MOVIE)
+            localRepo.getAllPopularMovies()
             emit(response)
         }
     }
@@ -56,9 +75,14 @@ class HomeDefaultRepo @Inject constructor(
     * @returns: Flow<ResultWrapper<*>>
     * */
     suspend fun parseNewSeasons(): Flow<ResultWrapper<*>> {
-        //TODO: Add local data first. (caching purpose)
         return flow {
             val response = remoteRepo.getNewSeasons()
+
+            // TODO: Add function to check if local data already exists or not 
+
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, NEW_SEASON)
+            localRepo.getAllNewSeasons()
             emit(response)
         }
     }

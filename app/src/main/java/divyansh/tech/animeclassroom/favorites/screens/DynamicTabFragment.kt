@@ -41,7 +41,7 @@ class DynamicTabFragment : Fragment() {
         Log.i("CATEGORY", arguments?.getString(CATEGORY).toString())
         if (arguments?.getString(CATEGORY).toString() == "Animes") {
             binding.text.text = "ANIMES IS HERE"
-        } else binding.text.text = "MAGAS IS HERE"
+        } else binding.text.text = "MANGAS IS HERE"
     }
 
 }
