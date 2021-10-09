@@ -60,7 +60,11 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" />
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_animeDetailFragment"
+            app:destination="@id/animeDetailFragment" />
+    </fragment>
 
     <action
         android:id="@+id/action_global_playerActivity"
