@@ -10,11 +10,11 @@ import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
 @Dao
 interface AnimeDao {
     @Query("SELECT * FROM animes")
-    fun getAllAnimes(): List<OfflineAnimeModel>
+    suspend fun getAllAnimes(): List<OfflineAnimeModel>
 
     @Insert
-    fun insertAnime(anime: OfflineAnimeModel)
+    suspend fun insertAnime(anime: OfflineAnimeModel)
 
     @Delete
-    fun deleteAnime(anime: OfflineAnimeModel)
+    suspend fun deleteAnime(anime: OfflineAnimeModel)
 }
