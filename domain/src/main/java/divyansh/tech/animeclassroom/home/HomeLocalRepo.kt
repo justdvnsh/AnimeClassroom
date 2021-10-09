@@ -1,8 +1,8 @@
 package divyansh.tech.animeclassroom.home
 
-import android.util.Log
 import divyansh.tech.animeclassroom.api.HomeScreenApi
 import divyansh.tech.animeclassroom.database.AnimeDao
+import divyansh.tech.animeclassroom.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
 import javax.inject.Inject
@@ -17,41 +17,29 @@ class HomeLocalRepo @Inject constructor(
             name = anime.name,
             imageUrl = anime.imageUrl.toString(),
             animeUrl = anime.animeUrl.toString(),
+            releaseDate = anime.releaseDate,
+            episodeNumber = anime.episodeNumber,
+            episodeUrl = anime.episodeUrl,
+            genre = anime.genre,
             category = category
         )
         dao.insertAnime(model)
     }
 
-    suspend fun getAllPopularAnime(){
-        // added logs for testing purpose
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_ANIME)[0].category)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_ANIME)[0].animeUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_ANIME)[0].imageUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_ANIME)[0].name)
+    suspend fun getAllPopularAnime(): List<OfflineAnimeModel> {
+        return dao.getAnimeOfCategory(HomeTypes.POPULAR_ANIME.name)
     }
 
-    suspend fun getAllPopularMovies(){
-        // added logs for testing purpose
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_MOVIE)[0].category)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_MOVIE)[0].animeUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_MOVIE)[0].imageUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(POPULAR_MOVIE)[0].name)
+    suspend fun getAllPopularMovies(): List<OfflineAnimeModel> {
+        return dao.getAnimeOfCategory(HomeTypes.POPULAR_MOVIES.name)
     }
 
-    suspend fun getAllNewSeasons(){
-        // added logs for testing purpose
-        Log.d("Localdb", dao.getAnimeOfCategory(NEW_SEASON)[0].category)
-        Log.d("Localdb", dao.getAnimeOfCategory(NEW_SEASON)[0].animeUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(NEW_SEASON)[0].imageUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(NEW_SEASON)[0].name)
+    suspend fun getAllNewSeasons(): List<OfflineAnimeModel> {
+        return dao.getAnimeOfCategory(HomeTypes.NEW_SEASON.name)
     }
 
-    suspend fun getAllRecentReleases(){
-        // added logs for testing purpose
-        Log.d("Localdb", dao.getAnimeOfCategory(RECENT_RELEASE)[0].category)
-        Log.d("Localdb", dao.getAnimeOfCategory(RECENT_RELEASE)[0].animeUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(RECENT_RELEASE)[0].imageUrl)
-        Log.d("Localdb", dao.getAnimeOfCategory(RECENT_RELEASE)[0].name)
+    suspend fun getAllRecentReleases(): List<OfflineAnimeModel> {
+       return dao.getAnimeOfCategory(HomeTypes.RECENT_RELEASE.name)
     }
 
 }

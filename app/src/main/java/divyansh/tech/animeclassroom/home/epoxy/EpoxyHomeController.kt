@@ -4,9 +4,8 @@ import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.dataModels.*
-import divyansh.tech.animeclassroom.home.utils.HomeTypes
+import divyansh.tech.animeclassroom.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
 

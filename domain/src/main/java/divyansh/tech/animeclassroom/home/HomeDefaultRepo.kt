@@ -3,14 +3,11 @@ package divyansh.tech.animeclassroom.home
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.models.home.AnimeModel
+import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-
-const val POPULAR_ANIME="PopularAnime"
-const val POPULAR_MOVIE="PopularMovies"
-const val RECENT_RELEASE="RecentRelease"
-const val NEW_SEASON="NewSeason"
+import divyansh.tech.animeclassroom.utils.HomeTypes
 
 /*
 * Main default repo, to fetch data both from remote and locally
@@ -25,13 +22,22 @@ class HomeDefaultRepo @Inject constructor(
     * @returns: Flow<ResultWrapper<*>>
     * */
     suspend fun parsePopularAnimes(): Flow<ResultWrapper<*>> {
-        //TODO: Add local data first. (caching purpose)
         return flow {
-            val response = remoteRepo.getPopularAnimes()
-            for(anime in (response.data as ArrayList<AnimeModel>))
-                localRepo.saveAnimeDataOffline(anime, POPULAR_ANIME)
-            localRepo.getAllPopularAnime()
-            emit(response)
+
+            val localData=localRepo.getAllPopularAnime()
+
+            if(localData.isNotEmpty()){
+                val response= arrayListOf<AnimeModel>()
+                for (data in localData)
+                    response.add(convertOfflineAnimeModel(data))
+                emit(ResultWrapper.Success(response))
+            } else {
+                val response = remoteRepo.getPopularAnimes()
+                for(anime in (response.data as ArrayList<AnimeModel>))
+                    localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_ANIME.name)
+                emit(response)
+            }
+
         }
     }
 
@@ -42,14 +48,22 @@ class HomeDefaultRepo @Inject constructor(
     suspend fun parseRecentReleases(): Flow<ResultWrapper<*>> {
 
         return flow {
-            val response = remoteRepo.getRecentReleases()
 
-            // TODO: Add function to check if local data already exists or not
+            val localData=localRepo.getAllRecentReleases()
 
-            for(anime in (response.data as ArrayList<AnimeModel>))
-                localRepo.saveAnimeDataOffline(anime, RECENT_RELEASE)
-            localRepo.getAllRecentReleases()
-            emit(response)
+            if(localData.isNotEmpty()){
+                val response= arrayListOf<AnimeModel>()
+                for (data in localData)
+                    response.add(convertOfflineAnimeModel(data))
+                emit(ResultWrapper.Success(response))
+            } else {
+                val response = remoteRepo.getRecentReleases()
+
+                for(anime in (response.data as ArrayList<AnimeModel>))
+                    localRepo.saveAnimeDataOffline(anime, HomeTypes.RECENT_RELEASE.name)
+                emit(response)
+            }
+
         }
     }
 
@@ -59,14 +73,22 @@ class HomeDefaultRepo @Inject constructor(
     * */
     suspend fun parsePopularMovies(): Flow<ResultWrapper<*>> {
         return flow {
-            val response = remoteRepo.getPopularMovies()
 
-            // TODO: Add function to check if local data already exists or not
+            val localData=localRepo.getAllPopularMovies()
 
-            for(anime in (response.data as ArrayList<AnimeModel>))
-                localRepo.saveAnimeDataOffline(anime, POPULAR_MOVIE)
-            localRepo.getAllPopularMovies()
-            emit(response)
+            if(localData.isNotEmpty()){
+                val response= arrayListOf<AnimeModel>()
+                for (data in localData)
+                    response.add(convertOfflineAnimeModel(data))
+                emit(ResultWrapper.Success(response))
+            } else {
+                val response = remoteRepo.getPopularMovies()
+
+                for(anime in (response.data as ArrayList<AnimeModel>))
+                    localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_MOVIES.name)
+                emit(response)
+            }
+
         }
     }
 
@@ -76,14 +98,22 @@ class HomeDefaultRepo @Inject constructor(
     * */
     suspend fun parseNewSeasons(): Flow<ResultWrapper<*>> {
         return flow {
-            val response = remoteRepo.getNewSeasons()
 
-            // TODO: Add function to check if local data already exists or not 
+            val localData=localRepo.getAllNewSeasons()
 
-            for(anime in (response.data as ArrayList<AnimeModel>))
-                localRepo.saveAnimeDataOffline(anime, NEW_SEASON)
-            localRepo.getAllNewSeasons()
-            emit(response)
+            if(localData.isNotEmpty()){
+                val response= arrayListOf<AnimeModel>()
+                for (data in localData)
+                    response.add(convertOfflineAnimeModel(data))
+                emit(ResultWrapper.Success(response))
+            } else {
+                val response = remoteRepo.getNewSeasons()
+
+                for(anime in (response.data as ArrayList<AnimeModel>))
+                    localRepo.saveAnimeDataOffline(anime, HomeTypes.NEW_SEASON.name)
+                emit(response)
+            }
+
         }
     }
 
@@ -98,4 +128,16 @@ class HomeDefaultRepo @Inject constructor(
             emit(response)
         }
     }
+
+    fun convertOfflineAnimeModel(offlineAnimeModel: OfflineAnimeModel):AnimeModel{
+        return AnimeModel(
+            name = offlineAnimeModel.name,
+            imageUrl = offlineAnimeModel.imageUrl,
+            releaseDate = offlineAnimeModel.releaseDate,
+            animeUrl = offlineAnimeModel.animeUrl,
+            episodeNumber = offlineAnimeModel.episodeNumber,
+            episodeUrl = offlineAnimeModel.episodeUrl,
+            genre = offlineAnimeModel.genre)
+    }
+
 }

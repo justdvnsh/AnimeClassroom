@@ -36,7 +36,15 @@ open class OfflineAnimeModel(
     @SerializedName("name")
     var name: String = "",
     @SerializedName("animeUrl")
-    var animeUrl: String = "",
+    var animeUrl: String? = null,
     @SerializedName("category")
-    var category: String = ""
+    var category: String? = null,
+    @SerializedName("releaseDate")
+    var releaseDate: String? = null,
+    @SerializedName("episodeUrl")
+    var episodeUrl: String? = null,
+    @SerializedName("episodeNumber")
+    var episodeNumber: String? = null,
+    @SerializedName("genre")
+    var genre: String? = null
 )
