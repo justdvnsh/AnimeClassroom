@@ -36,7 +36,11 @@
     <fragment
         android:id="@+id/mangaFragment"
         android:name="divyansh.tech.animeclassroom.manga.MangaFragment"
-        android:label="MangaFragment" />
+        android:label="MangaFragment" >
+        <action
+            android:id="@+id/action_mangaFragment_to_mangaDetailFragment"
+            app:destination="@id/mangaDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragment"
@@ -77,4 +81,19 @@
             android:name="anime_url"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/mangaDetailFragment"
+        android:name="divyansh.tech.animeclassroom.manga.screens.mangaDetail.MangaDetailFragment"
+        android:label="MangaDetailFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_mangaDetailFragment_to_mangaPlayerFragment"
+            app:destination="@id/mangaPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mangaPlayerFragment"
+        android:name="divyansh.tech.animeclassroom.manga.screens.mangaPlayer.MangaPlayerFragment"
+        android:label="MangaPlayerFragment" />
 </navigation>
