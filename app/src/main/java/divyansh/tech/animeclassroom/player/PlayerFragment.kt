@@ -20,7 +20,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.Player.*
-import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
@@ -143,14 +142,10 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                     }
                     STATE_BUFFERING -> {
                         exoplayerErrorLayoutChange(visible = false)
-                        binding.exoPlayerView.exo_play.setImageResource(0)
-                        binding.exoPlayerView.exo_pause.setImageResource(0)
+
                     }
                     STATE_READY -> {
-                        exoPlayerView.videoSurfaceView.visibility = View.VISIBLE
                         exoplayerErrorLayoutChange(visible = false)
-                        binding.exoPlayerView.exo_play.setImageResource(R.drawable.ic_media_play)
-                        binding.exoPlayerView.exo_pause.setImageResource(R.drawable.ic_media_pause)
                     }
                     STATE_ENDED -> {
                         exoplayerErrorLayoutChange(visible = false)
@@ -177,7 +172,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     private fun play(data: PlayerScreenModel) {
         exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
         exoPlayer.playWhenReady = true
-        audioFocus()
     }
 
     private fun buildMediaSource(uri: Uri): MediaSource {
@@ -294,14 +288,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             )
                     )
         }
-    }
-
-    private fun audioFocus(){
-        val audioAttributes: AudioAttributes = AudioAttributes.Builder()
-            .setUsage(C.USAGE_MEDIA)
-            .setContentType(C.CONTENT_TYPE_MOVIE)
-            .build()
-        exoPlayer.setAudioAttributes(audioAttributes, true)
     }
 
     private fun speedControl(){

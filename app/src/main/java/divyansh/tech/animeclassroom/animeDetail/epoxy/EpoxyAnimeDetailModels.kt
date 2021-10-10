@@ -7,7 +7,6 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
-import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.EpisodeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
@@ -17,16 +16,8 @@ abstract class EpoxyAnimeDetailHeaderModel: DataBindingEpoxyModel() {
     @EpoxyAttribute
     lateinit var anime: AnimeDetailModel
 
-    @EpoxyAttribute
-    lateinit var favoriteClickCallback: FavoriteClickCallback
-
-    @EpoxyAttribute
-    lateinit var animeUrl: String
-
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.anime, anime)
-        binding.setVariable(BR.favoriteCallback, favoriteClickCallback)
-        binding.setVariable(BR.animeUrl, animeUrl)
     }
 }
 

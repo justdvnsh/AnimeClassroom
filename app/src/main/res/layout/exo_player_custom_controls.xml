@@ -65,9 +65,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/exo_rew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/exo_rew"
         android:src="@drawable/ic_media_seek_backward"
         android:padding="16dp"
         android:background="?selectableItemBackgroundBorderless"
@@ -94,9 +94,9 @@
 
 
     <ImageButton
-        android:id="@+id/exo_ffwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/exo_ffwd"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="16dp"
         android:layout_marginStart="20dp"

@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f8f8ff"
     android:orientation="vertical"
     tools:context=".SplashActivity">
 
 
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lotteAnim"
         app:lottie_scale="0.6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

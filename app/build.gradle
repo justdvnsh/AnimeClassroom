@@ -6,7 +6,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'org.jetbrains.kotlin.android.extensions'
     id 'androidx.navigation.safeargs.kotlin'
-
 }
 
 kapt {
@@ -25,7 +24,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -123,13 +121,7 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
 
     implementation "com.ms-square:expandableTextView:$expandableTextView"
-
 //
 //    // Lottie
-
-    def room_version = "2.3.0"
-
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
 
 }

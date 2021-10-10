@@ -1,7 +1,6 @@
 package divyansh.tech.animeclassroom.favorites.screens
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,14 +33,6 @@ class DynamicTabFragment : Fragment() {
     ): View? {
         _dynamicTabFragment= FragmentDynamicTabBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.i("CATEGORY", arguments?.getString(CATEGORY).toString())
-        if (arguments?.getString(CATEGORY).toString() == "Animes") {
-            binding.text.text = "ANIMES IS HERE"
-        } else binding.text.text = "MAGAS IS HERE"
     }
 
 }

@@ -6,14 +6,6 @@
         <variable
             name="anime"
             type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />
-        <variable
-            name="favoriteCallback"
-            type="divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback"
-            />
-        <variable
-            name="animeUrl"
-            type="String"
-            />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
@@ -65,23 +57,11 @@
             android:gravity="start"
             android:text="@{anime.name}"
             app:layout_constraintTop_toTopOf="@+id/topGuideline"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
             app:layout_constraintBottom_toBottomOf="@id/back"
             app:layout_constraintStart_toEndOf="@id/back"
-            app:layout_constraintEnd_toStartOf="@id/favorite"
             tools:text="BAKUSOU KYOUDAI LET'S GO WGP" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/favorite"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:layout_constraintTop_toTopOf="@+id/topGuideline"
-            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
-            app:layout_constraintStart_toEndOf="@id/animeInfoTitle"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_gravity="center"
-            android:onClick="@{() -> favoriteCallback.onFavoriteClicked(anime, animeUrl)}"
-            android:src="@drawable/ic_unfavorite" />
 
         <include
             layout="@layout/guideline_views"

@@ -44,6 +44,7 @@
             app:visibilityMode="ignore"/>
 
         <Constraint
+            android:id="@+id/animeInfoSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -53,7 +54,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/animeInfoRoot"
             />
-        <Constraint>
+        <Constraint android:id="@+id/loading">
             <PropertySet
                 app:applyMotionScene="false"
                 app:visibilityMode="ignore" />
@@ -96,6 +97,7 @@
 
 
         <Constraint
+            android:id="@+id/animeInfoSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"

@@ -28,7 +28,6 @@ buildscript {
         epoxyVersion="4.5.0"
         safeArgs="2.3.5"
         expandableTextView="0.1.4"
-        realm="10.8.0"
     }
     repositories {
         google()
@@ -39,7 +38,6 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$safeArgs"
-
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
