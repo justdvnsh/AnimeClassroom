@@ -114,7 +114,7 @@ object Parser {
     * @param response: Response from the anime page
     * @returns ResultWrapper<*>
     * */
-    suspend fun parseAnimeDetails(response: String): ResultWrapper<*> {
+    suspend fun parseAnimeDetails(response: String, isSaved: Boolean): ResultWrapper<*> {
         Log.i("Anime Details -> ", response)
         return try {
             val jsoup = Jsoup.parse(response)
@@ -149,7 +149,8 @@ object Parser {
                 status = formatInfoValues(status),
                 genre = genre,
                 plotSummary = plotSummary,
-                endEpisode = endEpisode.toInt()
+                endEpisode = endEpisode.toInt(),
+                isSaved = isSaved
             )
 
             return ResultWrapper.Success(model)

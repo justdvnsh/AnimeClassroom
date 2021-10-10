@@ -28,7 +28,8 @@ data class AnimeDetailModel(
     var genre: List<GenreModel>,
     var plotSummary: String,
     var status: String,
-    var type: String
+    var type: String,
+    var isSaved: Boolean = false
 )
 
 @Entity(tableName = "animes")
