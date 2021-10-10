@@ -1,14 +1,25 @@
 package divyansh.tech.animeclassroom
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.animeclassroom.common.Constants
+import divyansh.tech.animeclassroom.common.setUIMode
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
-   override fun onCreate(savedInstanceState: Bundle?) {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initTheme()
         setContentView(R.layout.activity_splash)
 
         window.setFlags(
@@ -17,9 +28,14 @@ class SplashActivity : AppCompatActivity() {
         )
 
         Handler().postDelayed({
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        },3000)
+        }, 3000)
+    }
+
+    private fun initTheme() {
+        val uiMode = sharedPreferences.getInt(Constants.THEME, Constants.UI_MODE.SYSTEM_MODE.value)
+        setUIMode(uiMode)
     }
 }

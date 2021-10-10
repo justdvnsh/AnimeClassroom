@@ -37,7 +37,7 @@
     <string name="no_result_for_searched_query">No results for searched query</string>
 
     <string name="change_theme">Change Theme</string>
-    <string-array name="ui_mode">
+    <string-array name="ui_modes">
         <item>Light Mode</item>
         <item>Night Mode</item>
         <item>System</item>

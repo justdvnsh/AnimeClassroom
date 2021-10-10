@@ -1,12 +1,9 @@
 package divyansh.tech.animeclassroom
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.PopupMenu
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -17,7 +14,6 @@ import divyansh.tech.animeclassroom.manga.MangaFragment
 import divyansh.tech.animeclassroom.settings.SettingsFragment
 import divyansh.tech.animeclassroom.shop.ShopFragment
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
