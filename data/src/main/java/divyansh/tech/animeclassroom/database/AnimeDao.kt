@@ -17,4 +17,7 @@ interface AnimeDao {
 
     @Delete
     suspend fun deleteAnime(anime: OfflineAnimeModel)
+
+    @Query("SELECT EXISTS(SELECT 1 FROM animes WHERE animeUrl = :animeUrl LIMIT 1)")
+    suspend fun isAnimeWithUrlSaved(animeUrl: String): Boolean
 }
