@@ -20,12 +20,6 @@
         />
 
     <item
-        android:id="@+id/shopFragment"
-        android:title="@string/shop"
-        android:icon="@drawable/ic_baseline_shopping_cart_24"
-        />
-
-    <item
         android:id="@+id/settingsFragment"
         android:title="@string/settings"
         android:icon="@drawable/ic_baseline_settings_24"

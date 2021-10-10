@@ -76,5 +76,15 @@
     <fragment
         android:id="@+id/mangaPlayerFragment"
         android:name="divyansh.tech.animeclassroom.manga.screens.mangaPlayer.MangaPlayerFragment"
-        android:label="MangaPlayerFragment" />
+        android:label="MangaPlayerFragment" >
+        <argument
+            android:name="chapterName"
+            app:argType="string" />
+        <argument
+            android:name="chapterUrl"
+            app:argType="string" />
+        <argument
+            android:name="mangaName"
+            app:argType="string" />
+    </fragment>
 </navigation>

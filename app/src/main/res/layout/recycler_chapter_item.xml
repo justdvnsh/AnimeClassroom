@@ -5,6 +5,14 @@
             name="chapter"
             type="divyansh.tech.animeclassroom.mangaModels.Chapters"
             />
+        <variable
+            name="mangaName"
+            type="String"
+            />
+        <variable
+            name="chapterClick"
+            type="divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks"
+            />
     </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -19,6 +27,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:focusable="true"
         android:layout_margin="10dp"
+        android:onClick="@{() -> chapterClick.onChapterClick(chapter, mangaName)}"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

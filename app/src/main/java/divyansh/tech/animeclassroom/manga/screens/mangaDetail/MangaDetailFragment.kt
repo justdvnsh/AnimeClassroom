@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.Event
 import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.databinding.FragmentMangaDetailsBinding
+import divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.epoxy.EpoxyMangaDetailController
 
 @AndroidEntryPoint
@@ -27,7 +28,7 @@ class MangaDetailFragment: Fragment() {
     private val args by navArgs<MangaDetailFragmentArgs>()
 
     private val controller by lazy {
-        EpoxyMangaDetailController()
+        EpoxyMangaDetailController(MangaDetailCallbacks(viewModel))
     }
 
     override fun onCreateView(
