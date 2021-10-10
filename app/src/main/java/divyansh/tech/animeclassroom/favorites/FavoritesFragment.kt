@@ -62,7 +62,7 @@ class FavoritesFragment: Fragment() {
         if (mediator != null)
             mediator!!.detach()
         pagerAdapter.removeAllFragments()
-        pagerAdapter.addFragments(tabNames)
+        pagerAdapter.addFragments()
         binding.viewPager2.offscreenPageLimit = pagerAdapter.itemCount
 
         val tabs = mutableListOf<String>().apply {
