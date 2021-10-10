@@ -9,29 +9,14 @@
     <string name="retry">retry</string>
     <string name="quality_auto" translatable="false">Auto</string>
     <string name="speed" translatable="false">1x</string>
-    <string name="released">Released:</string>
-    <string name="type">Type:</string>
-    <string name="status">Status:</string>
     <string name="next_episode"><u>Next Episode</u>&gt;</string>
     <string name="previous_episode">&lt;<u>Previous Episode</u></string>
     <string name="back_button">Back Button</string>
     <string name="search">Search</string>
-    <string name="something_went_wrong">Something Went Wrong</string>
 
     <string name="no_internet">No Internet Connection</string>
-    <string name="favourite">Favourites</string>
     <string name="status_code_default">Something went Wrong</string>
     <string name="server_error">Server Error</string>
-    <string name="added_to_favourites">Anime added to Favourites</string>
-    <string name="removed_from_favourites">Anime removed from Favourites</string>
-    <string name="see_more"><![CDATA[See more >]]></string>
-    <string name="video_quality">Video Quality</string>
-    <string name="toggle_to_night_mode" translatable="false">Toggle to Night Mode</string>
-    <string name="toggle_to_light_mode" translatable="false">Toggle to Light Mode</string>
-    <string name="anime_model">Anime Model</string>
-    <string name="anime_url">anime_url</string>
-    <string name="episode_url">episodeUrl</string>
-    <string name="user_agent">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36</string>
     <string name="plot_summary">Plot Summary</string>
 
     <string name="no_result_for_searched_query">No results for searched query</string>
@@ -42,5 +27,5 @@
         <item>Night Mode</item>
         <item>System</item>
     </string-array>
-    <string name="empty_favorites_anime_list">Empty Favorite Animes List</string>
+
 </resources>

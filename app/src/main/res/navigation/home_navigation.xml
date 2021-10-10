@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/home_navigation"
-    app:startDestination="@id/homeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/homeFragment"
+    android:id="@+id/home_navigation"
+    android:label="@string/app_name">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -9,10 +11,19 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"
+            />
         <action
             android:id="@+id/action_homeFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
+            app:destination="@id/animeDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <activity
         android:id="@+id/playerActivity"
@@ -25,18 +36,18 @@
     <fragment
         android:id="@+id/mangaFragment"
         android:name="divyansh.tech.animeclassroom.manga.MangaFragment"
-        android:label="MangaFragment" >
-        <action
-            android:id="@+id/action_mangaFragment_to_mangaDetailFragment"
-            app:destination="@id/mangaDetailFragment" />
-    </fragment>
+        android:label="MangaFragment" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragment"
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
+            app:destination="@id/animeDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
@@ -49,46 +60,21 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="divyansh.tech.animeclassroom.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" >
-        <action
-            android:id="@+id/action_favoritesFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
-    </fragment>
+        android:label="FavoritesFragment" />
 
     <action
         android:id="@+id/action_global_playerActivity"
-        app:destination="@id/playerActivity" />
+        app:destination="@id/playerActivity"
+        app:enterAnim="@anim/from_left"
+        app:exitAnim="@anim/to_right"
+        app:popEnterAnim="@anim/from_right"
+        app:popExitAnim="@anim/to_left"       />
     <fragment
         android:id="@+id/animeDetailFragment"
         android:name="divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragment"
         android:label="AnimeDetailFragment" >
         <argument
             android:name="anime_url"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/mangaDetailFragment"
-        android:name="divyansh.tech.animeclassroom.manga.screens.mangaDetail.MangaDetailFragment"
-        android:label="MangaDetailFragment" >
-        <argument
-            android:name="url"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_mangaDetailFragment_to_mangaPlayerFragment"
-            app:destination="@id/mangaPlayerFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/mangaPlayerFragment"
-        android:name="divyansh.tech.animeclassroom.manga.screens.mangaPlayer.MangaPlayerFragment"
-        android:label="MangaPlayerFragment" >
-        <argument
-            android:name="chapterName"
-            app:argType="string" />
-        <argument
-            android:name="chapterUrl"
-            app:argType="string" />
-        <argument
-            android:name="mangaName"
             app:argType="string" />
     </fragment>
 </navigation>

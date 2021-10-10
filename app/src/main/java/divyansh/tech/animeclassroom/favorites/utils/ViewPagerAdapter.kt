@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import divyansh.tech.animeclassroom.favorites.screens.DynamicTabFragment
-import divyansh.tech.animeclassroom.favorites.screens.animes.FavoriteAnimeFragment
 
 
 class ViewPagerAdapter(private val list: MutableList<Fragment> = mutableListOf(),
@@ -23,10 +22,13 @@ class ViewPagerAdapter(private val list: MutableList<Fragment> = mutableListOf()
         return list[position]
     }
 
-    fun addFragments(){
+    fun addFragments(ls:List<String>){
         pageIds.clear()
-        list.add(FavoriteAnimeFragment.getInstance())
-        list.add(DynamicTabFragment.getInstance("Mangas"))
+        ls.forEach {
+                category ->
+            list.add(DynamicTabFragment.getInstance(category))
+        }
+
         pageIds.addAll(list.map { it.hashCode().toLong() })
         notifyDataSetChanged()
     }

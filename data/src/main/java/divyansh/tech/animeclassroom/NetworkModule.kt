@@ -10,7 +10,6 @@ import divyansh.tech.animeclassroom.api.AnimeSearchApi
 import divyansh.tech.animeclassroom.api.EpisodeStreamingApi
 import divyansh.tech.animeclassroom.api.HomeScreenApi
 import divyansh.tech.animeclassroom.mangaApi.MangaHomeApi
-import divyansh.tech.animeclassroom.mangaModels.MangaDetail
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
