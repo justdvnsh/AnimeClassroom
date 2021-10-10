@@ -16,4 +16,20 @@ interface MangaHomeApi {
     suspend fun fetchHomePage(
         @Url url: String
     ) : ResponseBody
+
+    /*
+    * Fecthes manga detail
+    * */
+    @GET
+    suspend fun getMangaDetail(
+        @Url url: String
+    ): ResponseBody
+
+    /*
+    * Fetches manga images for a chapter
+    * */
+    @GET
+    suspend fun getMangaChapter(
+        @Url url: String
+    ): ResponseBody
 }

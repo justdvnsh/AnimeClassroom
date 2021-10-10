@@ -20,8 +20,9 @@ class FavoriteAnimeLocalRepo @Inject constructor(
         dao.insertAnime(model)
     }
 
-    suspend fun getAllAnime() {
+    suspend fun getAllAnime(): List<OfflineAnimeModel> {
         val list = dao.getAllAnimes()
         Log.i("ROOM REPO -> ", list.toString())
+        return list
     }
 }

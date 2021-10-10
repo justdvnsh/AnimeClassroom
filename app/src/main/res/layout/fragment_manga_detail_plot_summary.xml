@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="manga"
+            type="divyansh.tech.animeclassroom.mangaModels.MangaDetail"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <TextView
+            android:id="@+id/typeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="20dp"
+            android:paddingBottom="26dp"
+            android:text="@string/plot_summary"
+            android:textSize="18sp"
+            android:textColor="@color/recycler_mini_header_title"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintTop_toTopOf="@+id/topGuideline"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
+            />
+
+        <TextView
+            android:id="@+id/plotSummary"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/typeName"
+            app:layout_constraintStart_toStartOf="@+id/startGuideline"
+            app:layout_constraintEnd_toEndOf="@+id/endGuideline"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@{manga.summary}"
+            />
+
+        <include
+            layout="@layout/guideline_views"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
