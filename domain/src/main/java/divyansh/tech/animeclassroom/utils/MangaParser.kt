@@ -98,6 +98,25 @@ object MangaParser {
     }
 
     /*
+    * Fetch chapter items
+    * */
+    fun parseChapterItems(response: String): ResultWrapper<ArrayList<String>> {
+        return try {
+            val jsoup = Jsoup.parse(response)
+            val list = ArrayList<String>()
+            val items = jsoup.getElementsByClass("reader-image-wrapper")
+            Log.i("MANGA ITEM -> ", items.toString())
+            for (i in 0 until items.size - 1) {
+                list.add(items[i].select("img").attr("data-src"))
+            }
+            Log.i("MANGA ITEM -> ", list.toString())
+            ResultWrapper.Success(list)
+        } catch (e: Exception) {
+            ResultWrapper.Error("Something went wrong", null)
+        }
+    }
+
+    /*
     * Parse the Featured Titles
     * */
     fun parseFeaturedTitles(response: String): ResultWrapper<*> {

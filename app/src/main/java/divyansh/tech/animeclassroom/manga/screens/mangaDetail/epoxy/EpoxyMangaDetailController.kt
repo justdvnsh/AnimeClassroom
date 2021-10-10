@@ -6,31 +6,34 @@ import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailGenreModel_
 import divyansh.tech.animeclassroom.animeDetail.epoxy.epoxyAnimeDetailPlotSummary
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
+import divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks
 import divyansh.tech.animeclassroom.mangaModels.MangaDetail
 
-class EpoxyMangaDetailController: TypedEpoxyController<MangaDetail>() {
+class EpoxyMangaDetailController(
+    private val callback: MangaDetailCallbacks
+): TypedEpoxyController<MangaDetail>() {
     override fun buildModels(data: MangaDetail?) {
-    data?.let {
+    data?.let {manga ->
             epoxyMangaDetailHeader{
-                id(it.imageUrl)
-                manga(it)
+                id(manga.imageUrl)
+                manga(manga)
                 spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount }
             }
 
             epoxyMangaDetailPlotSummary {
-                id(it.name)
-                mangaDetail(it)
+                id(manga.name)
+                mangaDetail(manga)
                 spanSizeOverride { totalSpanCount, position, itemCount ->  totalSpanCount}
             }
 
             epoxyTitle {
-                id(it.name)
+                id(manga.name)
                 headerTitle("Genres")
             }
 
             val list: ArrayList<EpoxyAnimeDetailGenreModel_> = ArrayList()
 
-            it.genreModel.forEach {
+        manga.genreModel.forEach {
                 list.add(
                     EpoxyAnimeDetailGenreModel_()
                         .id(it.genreUrl)
@@ -39,21 +42,23 @@ class EpoxyMangaDetailController: TypedEpoxyController<MangaDetail>() {
             }
 
             CarouselModel_()
-                .id(it.hashCode())
+                .id(manga.hashCode())
                 .models(list)
                 .padding(Carousel.Padding.dp(20,0,20,0,20))
                 .addTo(this)
 
             epoxyTitle {
-                id(it.name)
+                id(manga.name)
                 headerTitle("Chapters")
                 spanSizeOverride { totalSpanCount, _, _ -> totalSpanCount }
             }
 
-            it.chapters.forEach {
+        manga.chapters.forEach {
                 epoxyMangaDetailChapter {
                     id(it.chapterUrl)
                     chapter(it)
+                    mangaName(manga.name)
+                    chapterClick(callback)
                     spanSizeOverride { totalSpanCount, _, _ ->  totalSpanCount / 2}
                 }
             }
