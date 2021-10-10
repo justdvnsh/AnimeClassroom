@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 class MangaHomeDefaultRepo @Inject constructor(
     private val remoteRepo: MangaHomeRemoteRepo,
-    private val localRepo: MangaHomeLocalRepo
 ){
 
     suspend fun getHomePageData(url: String): Flow<ResultWrapper<*>> {
