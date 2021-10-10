@@ -27,5 +27,5 @@
         <item>Night Mode</item>
         <item>System</item>
     </string-array>
-
+    <string name="empty_favorites_anime_list">Empty Favorite Animes List</string>
 </resources>
