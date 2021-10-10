@@ -17,6 +17,7 @@ import divyansh.tech.animeclassroom.EventObserver
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentMangaBinding
+import divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback
 import divyansh.tech.animeclassroom.manga.epoxy.EpoxyMangaHomeController
 
 @AndroidEntryPoint
@@ -28,7 +29,7 @@ class MangaFragment: Fragment() {
     private val viewModel by viewModels<MangaViewModel>()
 
     private val mangaController by lazy {
-        EpoxyMangaHomeController()
+        EpoxyMangaHomeController(MangaClickCallback(viewModel))
     }
 
     override fun onCreateView(
