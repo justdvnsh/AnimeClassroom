@@ -25,4 +25,6 @@ class FavoriteAnimeLocalRepo @Inject constructor(
         Log.i("ROOM REPO -> ", list.toString())
         return list
     }
+
+    suspend fun isAnimeWithUrlSaved(animeUrl: String) = dao.isAnimeWithUrlSaved(animeUrl)
 }

@@ -21,6 +21,16 @@
 
     <string name="no_result_for_searched_query">No results for searched query</string>
 
+    <string name="settings_about_us"><b>An awesome app to watch and download anime and read manga. No ads ! We promise.</b>\n \nThe project
+        aims to solve a personal problem of watching anime. It helps you watch download anime without any Annoying Ads. It also lets you
+        read and save mangas(comics) into the app itself. It parses the anime\'s online from the web in real-time to provide you with a
+        seamless watching experience.\n
+        Why an anime app ? Here\'s why:\n
+        \n•Netflix contains anime\'s, but there is no denying that the list of anime\'s are very limited on Netflix.
+        \n•You can watch anime online, but you have to suffer with the ads.
+        \n•You can easily download the Anime\'s and also read manga in your device itself.
+    </string>
+
     <string name="change_theme">Change Theme</string>
     <string-array name="ui_modes">
         <item>Light Mode</item>
