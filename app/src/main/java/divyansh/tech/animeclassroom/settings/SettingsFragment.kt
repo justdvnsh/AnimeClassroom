@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.animeclassroom.C
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.Constants
 import divyansh.tech.animeclassroom.common.setUIMode
@@ -46,7 +47,7 @@ class SettingsFragment: Fragment(){
 
     private fun showUIDialog() {
         val uiModes = resources.getStringArray(R.array.ui_modes)
-        val checkedItem = sharedPreference.getInt(Constants.THEME, Constants.UI_MODE.DARK_MODE.value)
+        val checkedItem = sharedPreference.getInt(C.THEME, C.UI_MODE.DARK_MODE.value)
 
         val alertDialogBuilder =  AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Choose ui Mode")
@@ -62,7 +63,7 @@ class SettingsFragment: Fragment(){
 
     private fun changeTheme(checked: Int) {
         with(sharedPreference.edit()){
-            putInt(Constants.THEME, checked)
+            putInt(C.THEME, checked)
             apply()
         }
         setUIMode(checked)

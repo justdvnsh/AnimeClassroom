@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.common.Constants
 import divyansh.tech.animeclassroom.common.setUIMode
 import javax.inject.Inject
 
@@ -35,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun initTheme() {
-        val uiMode = sharedPreferences.getInt(Constants.THEME, Constants.UI_MODE.SYSTEM_MODE.value)
+        val uiMode = sharedPreferences.getInt(C.THEME, C.UI_MODE.SYSTEM_MODE.value)
         setUIMode(uiMode)
     }
 }
