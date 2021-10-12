@@ -36,9 +36,12 @@ class SettingsFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpListeners()
-        about_settings.setOnClickListener {
-            aboutSettings()
-        }
+    }
+
+
+    private fun setUpListeners() {
+        binding.uiMode.setOnClickListener{showUIDialog()}
+        binding.aboutSettings.setOnClickListener { aboutSettings() }
     }
 
     private fun aboutSettings(){
@@ -50,13 +53,9 @@ class SettingsFragment: Fragment(){
         }
     }
 
-    private fun setUpListeners() {
-        binding.uiMode.setOnClickListener{showUIDialog()}
-    }
-
     private fun showUIDialog() {
         val uiModes = resources.getStringArray(R.array.ui_modes)
-        val checkedItem = sharedPreference.getInt(C.THEME, C.UI_MODE.DARK_MODE.value)
+        val checkedItem = sharedPreference.getInt(C.THEME, C.UI_MODE.SYSTEM_MODE.value)
 
         val alertDialogBuilder =  AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle("Choose ui Mode")
