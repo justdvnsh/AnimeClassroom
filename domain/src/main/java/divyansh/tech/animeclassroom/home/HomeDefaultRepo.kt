@@ -29,7 +29,7 @@ class HomeDefaultRepo @Inject constructor(
             if(localData.isNotEmpty()){
                 val response= arrayListOf<AnimeModel>()
                 for (data in localData)
-                    response.add(convertOfflineAnimeModel(data))
+                    response.add(convertToAnimeModel(data))
                 emit(ResultWrapper.Success(response))
             } else {
                 val response = remoteRepo.getPopularAnimes()
@@ -54,7 +54,7 @@ class HomeDefaultRepo @Inject constructor(
             if(localData.isNotEmpty()){
                 val response= arrayListOf<AnimeModel>()
                 for (data in localData)
-                    response.add(convertOfflineAnimeModel(data))
+                    response.add(convertToAnimeModel(data))
                 emit(ResultWrapper.Success(response))
             } else {
                 val response = remoteRepo.getRecentReleases()
@@ -79,7 +79,7 @@ class HomeDefaultRepo @Inject constructor(
             if(localData.isNotEmpty()){
                 val response= arrayListOf<AnimeModel>()
                 for (data in localData)
-                    response.add(convertOfflineAnimeModel(data))
+                    response.add(convertToAnimeModel(data))
                 emit(ResultWrapper.Success(response))
             } else {
                 val response = remoteRepo.getPopularMovies()
@@ -104,7 +104,7 @@ class HomeDefaultRepo @Inject constructor(
             if(localData.isNotEmpty()){
                 val response= arrayListOf<AnimeModel>()
                 for (data in localData)
-                    response.add(convertOfflineAnimeModel(data))
+                    response.add(convertToAnimeModel(data))
                 emit(ResultWrapper.Success(response))
             } else {
                 val response = remoteRepo.getNewSeasons()
@@ -129,7 +129,7 @@ class HomeDefaultRepo @Inject constructor(
         }
     }
 
-    fun convertOfflineAnimeModel(offlineAnimeModel: OfflineAnimeModel):AnimeModel{
+    fun convertToAnimeModel(offlineAnimeModel: OfflineAnimeModel):AnimeModel{
         return AnimeModel(
             name = offlineAnimeModel.name,
             imageUrl = offlineAnimeModel.imageUrl,

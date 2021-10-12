@@ -2,14 +2,13 @@ package divyansh.tech.animeclassroom
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import divyansh.tech.animeclassroom.database.AnimeDatabase
+import divyansh.tech.animeclassroom.database.CacheDatabase
 import javax.inject.Singleton
 
 @Module
@@ -43,4 +42,17 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun providesAnimeDao(db: AnimeDatabase) = db.animeDao()
+
+    @Provides
+    @Singleton
+    fun provideCacheDatabase(@ApplicationContext context: Context)=
+        Room
+            .databaseBuilder(context,CacheDatabase::class.java,"cache-db")
+            .fallbackToDestructiveMigration()
+            .build()
+
+    @Provides
+    @Singleton
+    fun providesCacheDao(db:CacheDatabase) = db.cacheDao()
+
 }
