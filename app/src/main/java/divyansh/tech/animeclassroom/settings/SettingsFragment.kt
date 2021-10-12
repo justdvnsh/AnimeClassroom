@@ -36,9 +36,12 @@ class SettingsFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpListeners()
-        about_settings.setOnClickListener {
-            aboutSettings()
-        }
+    }
+
+
+    private fun setUpListeners() {
+        binding.uiMode.setOnClickListener{showUIDialog()}
+        binding.aboutSettings.setOnClickListener { aboutSettings() }
     }
 
     private fun aboutSettings(){
@@ -48,10 +51,6 @@ class SettingsFragment: Fragment(){
             setMessage(R.string.settings_about_us)
             show()
         }
-    }
-
-    private fun setUpListeners() {
-        binding.uiMode.setOnClickListener{showUIDialog()}
     }
 
     private fun showUIDialog() {
