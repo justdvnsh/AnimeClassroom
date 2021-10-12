@@ -1,10 +1,7 @@
 package divyansh.tech.animeclassroom.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
 
 @Dao
@@ -12,8 +9,11 @@ interface AnimeDao {
     @Query("SELECT * FROM animes")
     suspend fun getAllAnimes(): List<OfflineAnimeModel>
 
-    @Insert
-    suspend fun insertAnime(anime: OfflineAnimeModel)
+    @Query("SELECT * FROM animes WHERE category=:category")
+    fun getAnimeOfCategory(category:String): List<OfflineAnimeModel>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAnime(anime: OfflineAnimeModel)
 
     @Delete
     suspend fun deleteAnime(anime: OfflineAnimeModel)
