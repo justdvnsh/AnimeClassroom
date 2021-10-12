@@ -1,18 +1,15 @@
 package divyansh.tech.animeclassroom.settings
 
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.C
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.common.Constants
 import divyansh.tech.animeclassroom.common.setUIMode
 import divyansh.tech.animeclassroom.databinding.FragmentSettingsBinding
 import kotlinx.android.synthetic.main.fragment_settings.*
