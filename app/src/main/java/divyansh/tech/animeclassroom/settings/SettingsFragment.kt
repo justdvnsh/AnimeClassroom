@@ -31,6 +31,18 @@ class SettingsFragment: Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpListeners()
+        about_settings.setOnClickListener {
+            aboutSettings()
+        }
+    }
+
+    private fun aboutSettings(){
+        val alertDialogBox = AlertDialog.Builder(requireContext())
+        with(alertDialogBox){
+            setTitle("About The Project")
+            setMessage(R.string.settings_about_us)
+            show()
+        }
     }
 
     private fun setUpListeners() {
