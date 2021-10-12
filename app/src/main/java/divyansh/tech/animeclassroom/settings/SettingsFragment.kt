@@ -41,6 +41,12 @@ class SettingsFragment: Fragment(){
             val intent: Intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }
+
+        talkToUs_settings.setOnClickListener {
+            val uri: Uri = Uri.parse("https://join.slack.com/t/animeclassroom/shared_invite/zt-wut0t5mp-Y4kF6OGyxLBpyNM0eU6psw")
+            val intent: Intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 
     private fun aboutSettings(){
