@@ -2,6 +2,7 @@ package divyansh.tech.animeclassroom.home
 
 import divyansh.tech.animeclassroom.api.HomeScreenApi
 import divyansh.tech.animeclassroom.database.AnimeDao
+import divyansh.tech.animeclassroom.database.CacheDao
 import divyansh.tech.animeclassroom.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
@@ -9,7 +10,7 @@ import javax.inject.Inject
 
 class HomeLocalRepo @Inject constructor(
     private val homeScreenApi: HomeScreenApi,
-    private val dao: AnimeDao
+    private val dao: CacheDao
 ) {
 
     suspend fun saveAnimeDataOffline(anime: AnimeModel,category:String) {
