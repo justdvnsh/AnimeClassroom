@@ -32,7 +32,7 @@
     </string>
 
     <string name="change_theme">Change Theme</string>
-    <string-array name="ui_mode">
+    <string-array name="ui_modes">
         <item>Light Mode</item>
         <item>Night Mode</item>
         <item>System</item>
