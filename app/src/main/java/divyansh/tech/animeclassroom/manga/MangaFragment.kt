@@ -19,6 +19,7 @@ import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentMangaBinding
 import divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback
 import divyansh.tech.animeclassroom.manga.epoxy.EpoxyMangaHomeController
+import divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragmentDirections
 
 @AndroidEntryPoint
 class MangaFragment: Fragment() {
@@ -43,8 +44,17 @@ class MangaFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
         setupObservers()
         setupRecyclerView()
+    }
+
+    private fun setupViews() {
+        binding.mangaToolbar.searchManga.setOnClickListener {
+            viewModel.changeNavigation(
+                MangaFragmentDirections.actionMangaFragmentToSearchFragment()
+            )
+        }
     }
 
     private fun setupRecyclerView() {

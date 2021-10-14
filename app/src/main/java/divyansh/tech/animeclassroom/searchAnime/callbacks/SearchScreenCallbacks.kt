@@ -30,7 +30,9 @@ class SearchScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickC
     }
 
     override fun onMangaClicked(mangaUrl: String) {
-
+        viewModel.changeNavigation(
+            SearchAnimeFragmentDirections.actionSearchFragmentToMangaDetailFragment(mangaUrl)
+        )
     }
 
 }

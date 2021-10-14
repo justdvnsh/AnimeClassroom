@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.api
 
+import okhttp3.Response
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,5 +17,10 @@ interface AnimeSearchApi {
     @GET("/search.html")
     suspend fun searchAnime(
             @Query("keyword") keyword: String
+    ): ResponseBody
+
+    @GET
+    suspend fun searchManga(
+        @Url url: String
     ): ResponseBody
 }

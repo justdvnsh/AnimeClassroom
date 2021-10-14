@@ -73,7 +73,9 @@ class SearchAnimeFragment: Fragment() {
     private fun setupRecyclerView() {
         binding.searchRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
+            (layoutManager as GridLayoutManager).spanSizeLookup = searchController.spanSizeLookup
             adapter = searchController.adapter
+            searchController.spanCount = 3
         }
     }
 

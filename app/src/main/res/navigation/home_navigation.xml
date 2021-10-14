@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_mangaFragment_to_mangaDetailFragment"
             app:destination="@id/mangaDetailFragment" />
+        <action
+            android:id="@+id/action_mangaFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -55,6 +58,9 @@
             app:exitAnim="@anim/to_right"
             app:popEnterAnim="@anim/from_right"
             app:popExitAnim="@anim/to_left"/>
+        <action
+            android:id="@+id/action_searchFragment_to_mangaDetailFragment"
+            app:destination="@id/mangaDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
