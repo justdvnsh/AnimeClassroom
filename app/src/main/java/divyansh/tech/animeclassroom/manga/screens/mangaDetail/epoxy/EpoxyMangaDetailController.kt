@@ -38,6 +38,7 @@ class EpoxyMangaDetailController(
                     EpoxyAnimeDetailGenreModel_()
                         .id(it.genreUrl)
                         .genre(it)
+                        .callback(callback)
                 )
             }
 

@@ -129,4 +129,25 @@ object MangaParser {
             ResultWrapper.Error("Something went wrong", null)
         }
     }
+
+    /*
+    * Parse genre manga
+    * */
+    fun getMangaSearch(response: String): ResultWrapper<ArrayList<Manga>> {
+        return try {
+            val list = ArrayList<Manga>()
+            val jsoup = Jsoup.parse(response)
+            val elements = jsoup.getElementById("content").select("div").first().select("a")
+            for (i in 0 until elements.size - 1 step 2) {
+                list.add(Manga(
+                    imageUrl = elements[i].select("img").attr("data-src"),
+                    name = elements[i+1].text(),
+                    mangaUrl = elements[i+1].attr("href")
+                ))
+            }
+            ResultWrapper.Success(list)
+        } catch (e: Exception) {
+            ResultWrapper.Error("Something went wrong", null)
+        }
+    }
 }

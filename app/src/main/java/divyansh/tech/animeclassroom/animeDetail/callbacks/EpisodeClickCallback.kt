@@ -17,7 +17,11 @@ class EpisodeClickCallback(
     }
 
     override fun onGenreClicked(genreUrl: String) {
-        // do nothing
+        val action = AnimeDetailFragmentDirections.actionAnimeDetailFragmentToGenreFragment(genreUrl)
+        viewModel.changeNavigation(action)
+    }
+
+    override fun onMangaClicked(mangaUrl: String) {
     }
 
 }

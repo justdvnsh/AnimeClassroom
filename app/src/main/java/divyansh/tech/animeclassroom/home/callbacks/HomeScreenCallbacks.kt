@@ -27,5 +27,9 @@ class HomeScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickCal
         viewModel.changeNavigation(action)
     }
 
-    override fun onGenreClicked(genreUrl: String) {}
+    override fun onGenreClicked(genreUrl: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToGenreFragment(genreUrl)
+        viewModel.changeNavigation(action)
+    }
+    override fun onMangaClicked(mangaUrl: String) {}
 }

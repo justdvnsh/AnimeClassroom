@@ -6,6 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.databinding.BR
 import divyansh.tech.animeclassroom.R
+import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback
 import divyansh.tech.animeclassroom.mangaModels.Manga
 
@@ -15,7 +16,7 @@ abstract class EpoxyMangaModel: DataBindingEpoxyModel() {
     lateinit var manga: Manga
 
     @EpoxyAttribute
-    lateinit var clickCallback: MangaClickCallback
+    lateinit var clickCallback: AnimeClickCallback
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.manga, manga)

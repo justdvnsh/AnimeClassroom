@@ -3,6 +3,8 @@ package divyansh.tech.animeclassroom.home.epoxy
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
+import com.airbnb.epoxy.group
+import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.utils.HomeTypes
@@ -89,18 +91,23 @@ class EpoxyHomeController(
 
             data.forEach {
                 list.add(
-                        EpoxyGenreModels_()
-                                .id((it as GenreModel).genreUrl)
-                                .genre(it)
-                                .callback(callback)
+                    EpoxyGenreModels_()
+                            .id((it as GenreModel).genreUrl)
+                            .genre(it)
+                            .callback(callback)
                 )
             }
 
-            CarouselModel_()
-                    .id(title)
-                    .models(list)
-                    .padding(Carousel.Padding.dp(20,0,20,0,20))
-                    .addTo(this)
+            group {
+                id("character_group")
+                layout(R.layout.recycler_category_background)
+                add(
+                    CategoryBackgroundModel_()
+                        .id(list.hashCode())
+                        .models(list)
+                        .padding(Carousel.Padding.dp(16, 18, 16, 0, 8))
+                )
+            }
         }
     }
 }

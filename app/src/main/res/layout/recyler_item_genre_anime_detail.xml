@@ -5,10 +5,16 @@
         <variable
             name="genre"
             type="divyansh.tech.animeclassroom.models.home.GenreModel" />
+        <variable
+            name="callback"
+            type="divyansh.tech.animeclassroom.common.AnimeClickCallback"
+            />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onGenreClicked(genre.genreTitle)}"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvGenre"

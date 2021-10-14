@@ -6,7 +6,7 @@
             />
         <variable
             name="mangaCallback"
-            type="divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback"
+            type="divyansh.tech.animeclassroom.common.AnimeClickCallback"
             />
     </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="10dp"
-        android:onClick="@{() -> mangaCallback.onMangaClick(manga)}"
+        android:onClick="@{() -> mangaCallback.onMangaClicked(manga.mangaUrl)}"
         >
 
         <androidx.cardview.widget.CardView

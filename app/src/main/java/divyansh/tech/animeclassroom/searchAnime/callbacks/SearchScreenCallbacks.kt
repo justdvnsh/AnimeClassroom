@@ -29,4 +29,8 @@ class SearchScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickC
     override fun onGenreClicked(genreUrl: String) {
     }
 
+    override fun onMangaClicked(mangaUrl: String) {
+
+    }
+
 }

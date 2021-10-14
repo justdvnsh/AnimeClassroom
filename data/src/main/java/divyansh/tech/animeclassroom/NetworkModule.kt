@@ -5,10 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import divyansh.tech.animeclassroom.C.BASE_URL
-import divyansh.tech.animeclassroom.api.AnimeDetailScreenApi
-import divyansh.tech.animeclassroom.api.AnimeSearchApi
-import divyansh.tech.animeclassroom.api.EpisodeStreamingApi
-import divyansh.tech.animeclassroom.api.HomeScreenApi
+import divyansh.tech.animeclassroom.api.*
 import divyansh.tech.animeclassroom.mangaApi.MangaHomeApi
 import divyansh.tech.animeclassroom.mangaModels.MangaDetail
 import retrofit2.Retrofit
@@ -87,4 +84,15 @@ class NetworkModule {
     fun providesMangaHomeApi(
         retrofit: Retrofit
     ): MangaHomeApi = retrofit.create(MangaHomeApi::class.java)
+
+    /*
+    * Provides GenreApi
+    * @param retrofit: Retrofit
+    * @returns -> GenreApi
+    * */
+    @Provides
+    @Singleton
+    fun providesGenreApi(
+        retrofit: Retrofit
+    ): GenreSearchApi = retrofit.create(GenreSearchApi::class.java)
 }

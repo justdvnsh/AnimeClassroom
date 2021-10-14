@@ -22,10 +22,10 @@ object Parser {
     * @param response: Response Body from the popular.html page
     * @returns ResultWrapper<*>
     *  */
-    fun parsePopularAnimeJson(response: String): ResultWrapper<*> {
+    fun parsePopularAnimeJson(response: String): ResultWrapper<ArrayList<AnimeModel>> {
         Log.i("Popular Anime -> ", response)
         return try {
-            val list: MutableList<AnimeModel> = mutableListOf()
+            val list: ArrayList<AnimeModel> = ArrayList()
             val jsoup = Jsoup.parse(response)
             val popularAnimes = jsoup?.getElementsByClass("last_episodes")?.first()?.select("ul")?.first()?.select("li")
             popularAnimes?.forEach {
@@ -43,7 +43,7 @@ object Parser {
                 list.add(animeModel)
             }
 
-            ResultWrapper.Success(list.toList())
+            ResultWrapper.Success(list)
         } catch (e: Exception) {
             ResultWrapper.Error(message = e.localizedMessage, data = null)
         }

@@ -45,6 +45,7 @@ class EpoxyAnimeDetailController(
                     EpoxyAnimeDetailGenreModel_()
                         .id(it.genreUrl)
                         .genre(it)
+                        .callback(clickCallback)
                 )
             }
 
