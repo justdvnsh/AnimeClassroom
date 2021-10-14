@@ -1,6 +1,8 @@
 package divyansh.tech.animeclassroom.settings
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +44,13 @@ class SettingsFragment: Fragment(){
     private fun setUpListeners() {
         binding.uiMode.setOnClickListener{showUIDialog()}
         binding.aboutSettings.setOnClickListener { aboutSettings() }
+        binding.supportUsSettings.setOnClickListener { toSupportUs() }
+    }
+
+    private fun toSupportUs() {
+        val uri: Uri = Uri.parse("https://github.com/justdvnsh/AnimeClassroom")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 
     private fun aboutSettings(){
