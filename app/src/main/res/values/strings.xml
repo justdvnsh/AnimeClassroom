@@ -38,6 +38,8 @@
         <item>System</item>
     </string-array>
     <string name="empty_favorites_anime_list">Empty Favorite Animes List</string>
+    <string name="empty_favorites_manga_list">Empty Favorite Manga List</string>
     <string name="support_us">Support Us</string>
-    <string name="talk_to_us">Talk To Us</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
