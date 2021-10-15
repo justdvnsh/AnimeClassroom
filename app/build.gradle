@@ -70,6 +70,7 @@ dependencies {
     implementation project(path: ':testing')
     implementation project(path: ':domain')
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // test dependencies
     testImplementation "junit:junit:$junit"

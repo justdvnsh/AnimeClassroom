@@ -6,8 +6,7 @@
             type="divyansh.tech.animeclassroom.models.home.OfflineAnimeModel" />
         <variable
             name = "animeCallback"
-            type = "divyansh.tech.animeclassroom.common.AnimeClickCallback"
-            />
+            type = "divyansh.tech.animeclassroom.common.AnimeClickCallback" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
