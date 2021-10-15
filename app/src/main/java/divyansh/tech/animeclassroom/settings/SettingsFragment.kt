@@ -45,6 +45,13 @@ class SettingsFragment: Fragment(){
         binding.uiMode.setOnClickListener{showUIDialog()}
         binding.aboutSettings.setOnClickListener { aboutSettings() }
         binding.supportUsSettings.setOnClickListener { toSupportUs() }
+        binding.talkToUsSettings.setOnClickListener { talkToUsButton() }
+    }
+
+    private fun talkToUsButton() {
+        val uri: Uri = Uri.parse("https://join.slack.com/t/animeclassroom/shared_invite/zt-wut0t5mp-Y4kF6OGyxLBpyNM0eU6psw")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        startActivity(intent)
     }
 
     private fun toSupportUs() {
