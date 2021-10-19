@@ -3,28 +3,24 @@ package kitefoundation.tech.domain.utils
 import divyansh.tech.animeclassroom.ResultWrapper.Success
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
+import divyansh.tech.animeclassroom.utils.Parser.parsePopularAnimeJson
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Before
+import org.junit.Assert.*
+import org.junit.Ignore
 import org.junit.Test
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.Exception
+import java.util.*
 
 class ParserTest {
 
-    var html: String? = null
-
-    @Before
-    fun setUp() {
-        html = FileUtil.readFileFromResources("response.html")
-    }
-
     @Test
     fun parseAnimeDetailsTest(): Unit = runBlocking {
-        val response = html?.let { parseAnimeDetails(it, true) }
+        val html = FileUtil.readFileFromResources("animeDerails.html")
+        val response = html.let { parseAnimeDetails(it, true) }
 
         assertEquals(
             ((response as Success).data as AnimeDetailModel).imageUrl,
@@ -42,9 +38,39 @@ class ParserTest {
     }
 
     @Test(expected = Exception::class)
-    fun parseAnimeDetailsException(): Unit = runBlocking {
-        html = ""
-        html?.let { parseAnimeDetails(it, true) }
+    fun parseAnimeDetailsExceptionTest(): Unit = runBlocking {
+        val html = ""
+        html.let { parseAnimeDetails(it, true) }
+    }
+
+    @Test
+    fun parsePopularAnimeJsonTest() {
+        val html = FileUtil.readFileFromResources("popularAnime.html")
+        val response = html.let { parsePopularAnimeJson(it) }
+
+        assertEquals(response.data?.size, 2)
+        assertEquals(response.data?.first()?.name, "Jujutsu Kaisen (TV)")
+        assertEquals(response.data?.first()?.releaseDate, "2020")
+
+        assertEquals(response.data?.last()?.name, "Jujutsu Kaisen (TV) (Dub)")
+        assertEquals(response.data?.last()?.releaseDate, "2020")
+    }
+
+    @Test
+    fun parsePopularAnimeJsonEmptyTest() {
+        val html = FileUtil.readFileFromResources("animeDerails.html")
+        val response = html.let { parsePopularAnimeJson(it) }
+
+        assertEquals(response.data?.size, 0)
+    }
+
+    @Test
+    fun parsePopularAnimeJsonExceptionTest() {
+        val html = FileUtil.readFileFromResources("popularAnimeErro.html")
+        val response = html.let { parsePopularAnimeJson(it) }
+
+        assertNull(response.data)
+        assertEquals(response.message, "Index 0 out of bounds for length 0")
     }
 
     object FileUtil {
