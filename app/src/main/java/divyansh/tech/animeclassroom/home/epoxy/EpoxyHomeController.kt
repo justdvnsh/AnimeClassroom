@@ -72,6 +72,7 @@ class EpoxyHomeController(
                 )
             }
 
+
             CarouselModel_()
                     .id(title)
                     .models(list)

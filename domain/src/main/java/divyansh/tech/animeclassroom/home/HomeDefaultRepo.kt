@@ -37,7 +37,6 @@ class HomeDefaultRepo @Inject constructor(
                     localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_ANIME.name)
                 emit(response)
             }
-
         }
     }
 
