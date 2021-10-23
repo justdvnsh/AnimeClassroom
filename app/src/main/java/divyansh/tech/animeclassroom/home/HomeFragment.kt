@@ -37,6 +37,8 @@ class HomeFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _homeFragmentBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -64,11 +66,7 @@ class HomeFragment: Fragment() {
         viewModel.animeList.observe(
             viewLifecycleOwner,
             Observer {
-                when (it) {
-                    is ResultWrapper.Success -> homeController.setData(it.data?.sortedBy { it.type })
-                    is ResultWrapper.Error -> Log.i("HOME", it.message.toString())
-                    is ResultWrapper.Loading -> {}
-                }
+                homeController.setData(it.sortedBy { it.type })
             }
         )
 

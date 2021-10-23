@@ -25,19 +25,14 @@ class HomeDefaultRepo @Inject constructor(
         return flow {
 
             val localData=localRepo.getAllPopularAnime()
-
+            val responseLocal= arrayListOf<AnimeModel>()
             if(localData.isNotEmpty()){
-                val response= arrayListOf<AnimeModel>()
-                for (data in localData)
-                    response.add(convertToAnimeModel(data))
-                emit(ResultWrapper.Success(response))
-            } else {
-                val response = remoteRepo.getPopularAnimes()
-                for(anime in (response.data as ArrayList<AnimeModel>))
-                    localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_ANIME.name)
-                emit(response)
+                for (data in localData) responseLocal.add(convertToAnimeModel(data))
             }
-
+            val response = remoteRepo.getPopularAnimes()
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_ANIME.name)
+            emit(ResultWrapper.Success(responseLocal))
         }
     }
 
@@ -50,20 +45,15 @@ class HomeDefaultRepo @Inject constructor(
         return flow {
 
             val localData=localRepo.getAllRecentReleases()
-
+            val responseLocal= arrayListOf<AnimeModel>()
             if(localData.isNotEmpty()){
-                val response= arrayListOf<AnimeModel>()
-                for (data in localData)
-                    response.add(convertToAnimeModel(data))
-                emit(ResultWrapper.Success(response))
-            } else {
-                val response = remoteRepo.getRecentReleases()
-
-                for(anime in (response.data as ArrayList<AnimeModel>))
-                    localRepo.saveAnimeDataOffline(anime, HomeTypes.RECENT_RELEASE.name)
-                emit(response)
+                for (data in localData) responseLocal.add(convertToAnimeModel(data))
             }
+            val response = remoteRepo.getRecentReleases()
 
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, HomeTypes.RECENT_RELEASE.name)
+            emit(ResultWrapper.Success(responseLocal))
         }
     }
 
@@ -75,19 +65,14 @@ class HomeDefaultRepo @Inject constructor(
         return flow {
 
             val localData=localRepo.getAllPopularMovies()
-
+            val responseLocal= arrayListOf<AnimeModel>()
             if(localData.isNotEmpty()){
-                val response= arrayListOf<AnimeModel>()
-                for (data in localData)
-                    response.add(convertToAnimeModel(data))
-                emit(ResultWrapper.Success(response))
-            } else {
-                val response = remoteRepo.getPopularMovies()
-
-                for(anime in (response.data as ArrayList<AnimeModel>))
-                    localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_MOVIES.name)
-                emit(response)
+                for (data in localData) responseLocal.add(convertToAnimeModel(data))
             }
+            val response = remoteRepo.getPopularMovies()
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_MOVIES.name)
+            emit(ResultWrapper.Success(responseLocal))
 
         }
     }
@@ -100,19 +85,14 @@ class HomeDefaultRepo @Inject constructor(
         return flow {
 
             val localData=localRepo.getAllNewSeasons()
-
+            val responseLocal= arrayListOf<AnimeModel>()
             if(localData.isNotEmpty()){
-                val response= arrayListOf<AnimeModel>()
-                for (data in localData)
-                    response.add(convertToAnimeModel(data))
-                emit(ResultWrapper.Success(response))
-            } else {
-                val response = remoteRepo.getNewSeasons()
-
-                for(anime in (response.data as ArrayList<AnimeModel>))
-                    localRepo.saveAnimeDataOffline(anime, HomeTypes.NEW_SEASON.name)
-                emit(response)
+                for (data in localData) responseLocal.add(convertToAnimeModel(data))
             }
+            val response = remoteRepo.getNewSeasons()
+            for(anime in (response.data as ArrayList<AnimeModel>))
+                localRepo.saveAnimeDataOffline(anime, HomeTypes.NEW_SEASON.name)
+            emit(ResultWrapper.Success(responseLocal))
 
         }
     }
