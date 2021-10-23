@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data/>
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="divyansh.tech.animeclassroom.home.HomeViewModel"
+            />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/motion_scene"
@@ -41,9 +46,8 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@color/app_background"
-            android:layout_height="50dp"
+            android:layout_height="1dp"
             android:elevation="1dp"
-            android:layout_marginTop="300dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header"/>
@@ -59,5 +63,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header"/>
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+        <include
+            android:id="@+id/loadingErrorLayout"
+            layout="@layout/common_loading_error_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:viewModel="@{viewModel}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

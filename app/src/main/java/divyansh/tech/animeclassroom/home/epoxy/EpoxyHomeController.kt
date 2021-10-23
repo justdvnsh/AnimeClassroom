@@ -10,6 +10,7 @@ import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.utils.HomeTypes
 import divyansh.tech.animeclassroom.models.home.AnimeModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
+import kotlin.random.Random
 
 class EpoxyHomeController(
         private val callback: AnimeClickCallback
