@@ -7,7 +7,6 @@ import divyansh.tech.animeclassroom.models.home.GenreModel
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseEpisodeDetails
-import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseGenresAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parsePopularAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parseRecentReleaseJson
