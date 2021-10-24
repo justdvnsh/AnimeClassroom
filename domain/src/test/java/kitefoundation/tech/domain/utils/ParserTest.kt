@@ -7,6 +7,7 @@ import divyansh.tech.animeclassroom.models.home.GenreModel
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseEpisodeDetails
+import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseGenresAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parsePopularAnimeJson
 import divyansh.tech.animeclassroom.utils.Parser.parseRecentReleaseJson
@@ -160,7 +161,8 @@ class ParserTest {
     }
 
     @Test
-    fun parseGenresAnimeJsonTest(): Unit = runBlocking {
+
+    fun parseGenresAnimeJsonTest(): Unit = runBlocking  {
         val html = FileUtil.readFileFromResources("popularAnime.html")
         val response = html.let { parseGenresAnimeJson(it) }
 
@@ -170,6 +172,7 @@ class ParserTest {
             ((response.data as ArrayList<*>).first() as GenreModel).genreUrl,
             "/genre/action"
         )
+        assertEquals(((response.data as ArrayList<*>).first() as GenreModel).genreUrl, "/genre/action")
         assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreTitle, "Yuri")
         assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreUrl, "/genre/yuri")
     }
