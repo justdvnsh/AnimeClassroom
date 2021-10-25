@@ -147,6 +147,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                         binding.exoPlayerView.exo_pause.setImageResource(0)
                     }
                     STATE_READY -> {
+                        setEnabledStatusOfPreviousAndNextEpisodesButtons(true)
                         exoPlayerView.videoSurfaceView.visibility = View.VISIBLE
                         exoplayerErrorLayoutChange(visible = false)
                         binding.exoPlayerView.exo_play.setImageResource(R.drawable.ic_media_play)
@@ -214,10 +215,18 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             Log.i("Player-Frag", it.data.toString())
                             it.data?.let { it1 ->
                                 initializePlayer(it1)
-                                if (it1.nextEpisodeUrl == null || it1.nextEpisodeUrl.equals("null"))
-                                    binding.exoPlayerView.nextEpisode.visibility = View.GONE
-                                if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null"))
-                                    binding.exoPlayerView.previousEpisode.visibility = View.GONE
+                                val nextEpisodeButtonVisibility = if (it1.nextEpisodeUrl == null || it1.nextEpisodeUrl.equals("null")) {
+                                    View.GONE
+                                } else {
+                                    View.VISIBLE
+                                }
+                                binding.exoPlayerView.nextEpisode.visibility = nextEpisodeButtonVisibility
+                                val previousEpisodeButtonVisibility = if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null")) {
+                                    View.GONE
+                                } else {
+                                    View.VISIBLE
+                                }
+                                binding.exoPlayerView.previousEpisode.visibility = previousEpisodeButtonVisibility
                                 episodeName.text = it1.animeName
                                 nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->
                                     onEpisodeClicked(
@@ -230,6 +239,9 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                                     )
                                 } }
                             }
+                        }
+                        is ResultWrapper.Loading -> {
+                            setEnabledStatusOfPreviousAndNextEpisodesButtons(false)
                         }
                         else -> {
                             Log.i("Player-Frag", it.toString())
@@ -302,6 +314,11 @@ class PlayerFragment: Fragment(), PlayerControlListener {
             .setContentType(C.CONTENT_TYPE_MOVIE)
             .build()
         exoPlayer.setAudioAttributes(audioAttributes, true)
+    }
+
+    private fun setEnabledStatusOfPreviousAndNextEpisodesButtons(isEnabled: Boolean) {
+        nextEpisode.isEnabled = isEnabled
+        previousEpisode.isEnabled = isEnabled
     }
 
     private fun speedControl(){
