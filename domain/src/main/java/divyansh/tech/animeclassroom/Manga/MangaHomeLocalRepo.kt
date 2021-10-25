@@ -26,5 +26,9 @@ class MangaHomeLocalRepo @Inject constructor(
         return dao.getAllManga()
     }
 
+    suspend fun deleteManga(manga: OfflineMangaModel){
+        dao.deleteManga(manga)
+    }
+
     //TODO: Implement getFeaturedTitle()
 }

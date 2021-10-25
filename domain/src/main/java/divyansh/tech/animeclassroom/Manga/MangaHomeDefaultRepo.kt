@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.Manga
 
+import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.mangaModels.Manga
 import divyansh.tech.animeclassroom.mangaModels.OfflineMangaModel
@@ -14,8 +15,14 @@ class MangaHomeDefaultRepo @Inject constructor(
 
     suspend fun getHomePageData(url: String): Flow<ResultWrapper<*>> {
         return flow {
-            val localData = localRepo.getAllManga()
+            val remoteResponse = remoteRepo.getHomePage(url)
+            if(remoteResponse is ResultWrapper.Success){
+                for(manga in remoteResponse.data as ArrayList<Manga>){
+                    localRepo.saveMangaDataOffline(manga)
+                }
+            }
 
+            val localData = localRepo.getAllManga()
             if(localData.isNotEmpty()){
                 val response = arrayListOf<Manga>()
                 for(data in localData){
@@ -23,14 +30,8 @@ class MangaHomeDefaultRepo @Inject constructor(
                 }
                 emit(ResultWrapper.Success(response))
             }else{
-                val response = remoteRepo.getHomePage(url)
-                for(manga in response.data as ArrayList<Manga>){
-                    localRepo.saveMangaDataOffline(manga)
-                }
-                emit(response)
+                emit(ResultWrapper.Error("Manga List is Empty"))
             }
-            val response = remoteRepo.getHomePage(url)
-            emit(response)
         }
     }
 
@@ -38,7 +39,7 @@ class MangaHomeDefaultRepo @Inject constructor(
         return Manga(
             name = data.name,
             mangaUrl = data.mangaUrl,
-            imageUrl = data.mangaUrl,
+            imageUrl = data.imageUrl,
             chapterNum = data.chapterNum,
             chapterUrl = data.chapterUrl)
     }
