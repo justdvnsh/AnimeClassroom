@@ -32,6 +32,7 @@ class PlayerViewModel @Inject constructor(
     val clickControlLiveData: LiveData<PlayerClick> get() = _clickControlLiveData
 
     fun getStreamingUrl(episodeUrl: String) = viewModelScope.launch(Dispatchers.IO) {
+        _streamingUrlLiveData.postValue(ResultWrapper.Loading())
         val url = if (!episodeUrl.startsWith(BASE_URL)) BASE_URL + episodeUrl else episodeUrl
         Log.i("Player", url)
         val response = playerRepo.getEpisodeDetails(url)
