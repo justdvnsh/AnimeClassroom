@@ -73,13 +73,15 @@ class SettingsFragment: Fragment(){
         val uiModes = resources.getStringArray(R.array.ui_modes)
         val checkedItem = sharedPreference.getInt(C.THEME, C.UI_MODE.SYSTEM_MODE.value)
 
-        val alertDialogBuilder =  AlertDialog.Builder(requireContext())
-        alertDialogBuilder.setTitle("Choose ui Mode")
-        alertDialogBuilder.setSingleChoiceItems(uiModes, checkedItem){ dialog, checked ->
-            changeTheme(checked)
-            dialog.dismiss()
+        val alertDialogBuilder =  AlertDialog.Builder(requireContext()).apply {
+            setTitle("Choose ui Mode")
+            setSingleChoiceItems(uiModes, checkedItem) { dialog, checked ->
+                changeTheme(checked)
+                dialog.dismiss()
+            }
         }
-        val alertDialog = alertDialogBuilder.create().apply {
+
+        val alertDialog = alertDialogBuilder.create().apply{
             setCancelable(true)
             show()
         }
