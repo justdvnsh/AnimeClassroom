@@ -35,7 +35,11 @@ class GenreViewModel @Inject constructor(
                         mangas = response.data as ArrayList<Manga>,
                         animes = responseAnime.data as ArrayList<AnimeModel>
                     ))
-                } else _genreSearchLiveData.postValue(null)
+                } else _genreSearchLiveData.postValue(
+                    SearchScreenDataModel(
+                    mangas = response.data as ArrayList<Manga>,
+                        animes = arrayListOf()
+                ))
             } else _genreSearchLiveData.postValue(null)
         }
     }
