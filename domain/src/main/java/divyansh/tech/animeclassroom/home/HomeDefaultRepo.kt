@@ -29,6 +29,7 @@ class HomeDefaultRepo @Inject constructor(
             if(localData.isNotEmpty()){
                 for (data in localData) responseLocal.add(convertToAnimeModel(data))
             }
+
             val response = remoteRepo.getPopularAnimes()
             for(anime in (response.data as ArrayList<AnimeModel>))
                 localRepo.saveAnimeDataOffline(anime, HomeTypes.POPULAR_ANIME.name)

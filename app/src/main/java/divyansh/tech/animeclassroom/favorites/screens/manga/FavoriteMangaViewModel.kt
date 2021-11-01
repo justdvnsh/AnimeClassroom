@@ -13,11 +13,11 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//TODO: Implement MangaHomeLocalRepo and Replace Manga Model with OfflineManga Model
+//TODO: Implement FavoriteMangaLocalRepo and replace MangaHomeLocalRepo
 
 @HiltViewModel
 class FavoriteMangaViewModel @Inject constructor(
-    favouriteMangaHomeLocalRepo: MangaHomeLocalRepo,
+    favouriteMangaLocalRepo: MangaHomeLocalRepo,
     @DispatcherModule.IODispatcher coroutineDispatcher: CoroutineDispatcher
 ): CommonViewModel(){
 

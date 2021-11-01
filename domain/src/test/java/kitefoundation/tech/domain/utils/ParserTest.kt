@@ -3,8 +3,8 @@ package kitefoundation.tech.domain.utils
 import divyansh.tech.animeclassroom.ResultWrapper.Success
 import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
 import divyansh.tech.animeclassroom.models.home.AnimeModel
-import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.models.home.GenreModel
+import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.utils.Parser.parseAnimeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseEpisodeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseGenresAnimeJson
@@ -160,12 +160,17 @@ class ParserTest {
     }
 
     @Test
+
     fun parseGenresAnimeJsonTest(): Unit = runBlocking  {
         val html = FileUtil.readFileFromResources("popularAnime.html")
         val response = html.let { parseGenresAnimeJson(it) }
 
         assertEquals((response.data as ArrayList<*>).size, 48)
         assertEquals(((response.data as ArrayList<*>).first() as GenreModel).genreTitle, "Action")
+        assertEquals(
+            ((response.data as ArrayList<*>).first() as GenreModel).genreUrl,
+            "/genre/action"
+        )
         assertEquals(((response.data as ArrayList<*>).first() as GenreModel).genreUrl, "/genre/action")
         assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreTitle, "Yuri")
         assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreUrl, "/genre/yuri")
