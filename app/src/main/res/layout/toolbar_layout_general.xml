@@ -30,6 +30,7 @@
             android:layout_marginStart="@dimen/spacing_very_small"
             style="@style/toolbarStyle"
             tools:text="Manga"
+            android:maxLines="1"
             />
 
         <include

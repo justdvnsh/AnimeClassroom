@@ -5,7 +5,7 @@ package divyansh.tech.animeclassroom
 * */
 object C {
 
-    const val BASE_URL = "https://gogoanime.pe/"
+    const val BASE_URL = "https://gogoanime.cm/"
     const val MANGA_URL = "https://mangadex.tv/"
 
     const val THEME = "ui_mode"

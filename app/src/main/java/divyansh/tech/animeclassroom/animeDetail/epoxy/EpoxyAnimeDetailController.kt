@@ -3,8 +3,11 @@ package divyansh.tech.animeclassroom.animeDetail.epoxy
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.Typed2EpoxyController
+import com.airbnb.epoxy.group
+import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
+import divyansh.tech.animeclassroom.home.epoxy.CategoryBackgroundModel_
 import divyansh.tech.animeclassroom.home.epoxy.EpoxyGenreModels_
 import divyansh.tech.animeclassroom.home.epoxy.epoxyGenreModels
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
@@ -58,25 +61,34 @@ class EpoxyAnimeDetailController(
             epoxyTitle {
                 id(it.name)
                 headerTitle("Episodes")
+                spanSizeOverride { totalSpanCount, _, _ -> totalSpanCount }
             }
 
             data2?.let {
-                val episodelist: ArrayList<EpoxyAnimeDetailEpisodeModel_> = ArrayList()
+//                val episodelist: ArrayList<EpoxyAnimeDetailEpisodeModel_> = ArrayList()
 
                 it.forEach {
-                    episodelist.add(
-                        EpoxyAnimeDetailEpisodeModel_()
-                            .id(it.episodeUrl)
-                            .episode(it)
-                            .clickCallback(clickCallback)
-                    )
+//                    EpoxyAnimeDetailEpisodeModel_()
+//                        .id(it.episodeUrl)
+//                        .episode(it)
+//                        .clickCallback(clickCallback)
+                    epoxyAnimeDetailEpisode {
+                        id(it.episodeUrl)
+                        episode(it)
+                        clickCallback(clickCallback)
+                    }
                 }
 
-                CarouselModel_()
-                    .id(it.hashCode())
-                    .models(episodelist)
-                    .padding(Carousel.Padding.dp(20,0,20,0,20))
-                    .addTo(this)
+//                group {
+//                    id("episode_group")
+//                    layout(R.layout.recycler_category_background)
+//                    add(
+//                        CategoryBackgroundModel_()
+//                            .id(list.hashCode())
+//                            .models(episodelist)
+//                            .padding(Carousel.Padding.dp(16, 18, 16, 0, 8))
+//                    )
+//                }
             }
         }
     }
