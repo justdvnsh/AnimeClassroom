@@ -193,7 +193,10 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                 HlsDataSourceFactory {
                     val dataSource: HttpDataSource =
                         DefaultHttpDataSource("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36")
-                    dataSource.setRequestProperty("Referer", "https://goload.one")
+                    dataSource.setRequestProperty("origin", "https://gogoplay1.com")
+                    dataSource.setRequestProperty(
+                        "Referer", "https://gogoplay1.com/streaming.php?id=MTc0OTQ1&title=Boruto%3A+Naruto+Next+Generations+Episode+225"
+                    )
                     dataSource
                 })
                 .setAllowChunklessPreparation(true)
