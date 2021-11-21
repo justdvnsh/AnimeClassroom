@@ -52,11 +52,43 @@
 </details>
 
 
+## Screenshots
+
+[<img src="./docs/screenshots/splash.png" width=160>](./docs/screenshots/splash.png)
+[<img src="./docs/screenshots/home-dark.png" width=160>](./docs/screenshots/home-dark.png)
+[<img src="./docs/screenshots/home-dark2.png" width=160>](./docs/screenshots/home-dark2.png)
+[<img src="./docs/screenshots/home-dark3.png" width=160>](./docs/screenshots/home-dark3.png)
+[<img src="./docs/screenshots/home-light.png" width=160>](./docs/screenshots/home-light.png)
+[<img src="./docs/screenshots/animeDetailPage.png" width=160>](./docs/screenshots/animeDetailPage.png)
+[<img src="./docs/screenshots/anime-episode-list.png" width=160>](./docs/screenshots/anime-episode-list.png)
+[<img src="./docs/screenshots/comedy-genre.png" width=160>](./docs/screenshots/comedy-genre.png)
+[<img src="./docs/screenshots/comedy-genre2.png" width=160>](./docs/screenshots/comedy-genre2.png)
+[<img src="./docs/screenshots/adventure-genre.png" width=160>](./docs/screenshots/adventure-genre.png)
+[<img src="./docs/screenshots/search-baki1.png" width=160>](./docs/screenshots/search-baki1.png)
+[<img src="./docs/screenshots/search-baki3.png" width=160>](./docs/screenshots/search-baki3.png)
+[<img src="./docs/screenshots/search-naruto1.png" width=405>](./docs/screenshots/search-naruto1.png)
+[<img src="./docs/screenshots/search-naruto3.png" width=405>](./docs/screenshots/search-naruto3.png)
+[<img src="./docs/screenshots/favorite-screen.png" width=405>](./docs/screenshots/favorite-screen.png)
+[<img src="./docs/screenshots/video-player-loading.png" width=405>](./docs/screenshots/video-player-loading.png)
+[<img src="./docs/screenshots/player1.png" width=405>](./docs/screenshots/player1.png)
+[<img src="./docs/screenshots/player2.png" width=405>](./docs/screenshots/player2.png)
+[<img src="./docs/screenshots/player3.png" width=405>](./docs/screenshots/player3.png)
+[<img src="./docs/screenshots/player4.png" width=405>](./docs/screenshots/player4.png)
+[<img src="./docs/screenshots/player5.png" width=405>](./docs/screenshots/player5.png)
+[<img src="./docs/screenshots/player6.png" width=405>](./docs/screenshots/player6.png)
+[<img src="./docs/screenshots/player7.png" width=405>](./docs/screenshots/player7.png)
+[<img src="./docs/screenshots/player-speed-selection.png" width=405>](./docs/screenshots/player7.png)
+[<img src="./docs/screenshots/manga-home.png" width=405>](./docs/screenshots/manga-home.png)
+[<img src="./docs/screenshots/manga-detail.png" width=405>](./docs/screenshots/manga-detail.png)
+[<img src="./docs/screenshots/manga-chapter-list.png" width=405>](./docs/screenshots/manga-chapter-list.png)
+[<img src="./docs/screenshots/manga-reader1.png" width=405>](./docs/screenshots/manga-reader1.png)
+[<img src="./docs/screenshots/manga-reader2.png" width=405>](./docs/screenshots/manga-reader2.png)
+[<img src="./docs/screenshots/manga-reader3.png" width=405>](./docs/screenshots/manga-reader3.png)
+[<img src="./docs/screenshots/settings.png" width=405>](./docs/screenshots/settings.png)
+[<img src="./docs/screenshots/theme-change.png" width=405>](./docs/screenshots/theme-change.png)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 The project aims to solve a personal problem of watching anime. It helps you watch/download anime without any Annoying Ads. It also lets you read and save mangas(comics) into the app itself. It parses the animes online from the web in real-time to provide you with a seamless watching experience. 
 
