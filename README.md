@@ -97,6 +97,8 @@ Why an anime app ? Here's why:
  * You can watch anime online, but you have to suffer with the ads.
  * You can easily download the Animes and also read manga in your device itself. 
 
+__DOWNLOAD THE APP Goto [https://github.com/justdvnsh/AnimeClassroom/releases](https://github.com/justdvnsh/AnimeClassroom/releases) and find the apk in assets__
+
 __WARNING! : THIS PROJECT IS STILL IN HEAVY DEVELOPMENT, THEREFORE YOU MAY ENCOUNTER BUGS. You can OPEN the ISSUE on GITHUB REPOSITORY.__
 
 __NEW ISSUES WILL BE ADDED REGULARLY__ 
