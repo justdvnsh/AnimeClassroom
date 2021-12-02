@@ -18,7 +18,7 @@
   <h3 align="center">AnimeClassroom</h3>
 
   <p align="center">
-    An awesome app to watch and download anime and read manga. No ads ! I promise.
+    An awesome app to watch and download anime & Classic Cartoons and read manga & comics. No ads ! I promise.
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -86,16 +86,23 @@
 [<img src="./docs/screenshots/manga-reader3.png" width=160>](./docs/screenshots/manga-reader3.png)
 [<img src="./docs/screenshots/settings.png" width=160>](./docs/screenshots/settings.png)
 [<img src="./docs/screenshots/theme-change.png" width=160>](./docs/screenshots/theme-change.png)
+[<img src="./docs/screenshots/cartoons_screen.png" width=160>](./docs/screenshots/cartoons_screen.png)
+[<img src="./docs/screenshots/cartoons_screen2.png" width=160>](./docs/screenshots/cartoons_screen2.png)
+[<img src="./docs/screenshots/cartoons_screen3.png" width=160>](./docs/screenshots/cartoons_screen3.png)
+[<img src="./docs/screenshots/cartoons_episode_list.png" width=160>](./docs/screenshots/cartoons_episode_list.png)
+[<img src="./docs/screenshots/player_cartoon.png" width=160>](./docs/screenshots/player_cartoon.png)
+[<img src="./docs/screenshots/player_cartoon2.png" width=160>](./docs/screenshots/player_cartoon2.png)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The project aims to solve a personal problem of watching anime. It helps you watch/download anime without any Annoying Ads. It also lets you read and save mangas(comics) into the app itself. It parses the animes online from the web in real-time to provide you with a seamless watching experience. 
+The project aims to solve a personal problem of watching anime and classic cartoons. It helps you watch/download anime/cartoons without any Annoying Ads. It also lets you read and save mangas and comics into the app itself. It parses the animes and cartoons online from the web in real-time to provide you with a seamless watching experience.
 
 Why an anime app ? Here's why:
  * Netflix contains anime's, but there is no denying that the list of anime's are very limited on Netflix.
  * You can watch anime online, but you have to suffer with the ads.
- * You can easily download the Animes and also read manga in your device itself. 
+ * You can easily download the Animes and also read manga in your device itself.
+ * Now the cartoons made for kids are quite horrible. 2000's cartoons were the pinnacle of cartoons. Thus, Here you can watch those cartoons for free without ads. Relive the memory.
 
 __DOWNLOAD THE APP Goto [https://github.com/justdvnsh/AnimeClassroom/releases](https://github.com/justdvnsh/AnimeClassroom/releases) and find the apk in assets__
 
