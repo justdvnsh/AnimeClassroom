@@ -10,8 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-import androidx.activity.viewModels
-import androidx.appcompat.widget.AlertDialogLayout
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
@@ -23,6 +21,7 @@ import com.google.android.exoplayer2.Player.*
 import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
@@ -176,7 +175,14 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     }
 
     private fun play(data: PlayerScreenModel) {
-        exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
+        if (data.streamingUrl.contains("m3u8")) exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
+        else {
+            if (data.streamingUrl.contains("https"))
+                exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
+            else
+                exoPlayer.prepare(buildMediaSource(data.streamingUrl.replace("http", "https").toUri()))
+
+        }
         exoPlayer.playWhenReady = true
         audioFocus()
     }
@@ -185,11 +191,12 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
 
         val lastPath = uri.lastPathSegment
+        Log.i("PLAYER -> ", lastPath.toString())
         val defaultDataSourceFactory =
             DefaultHttpDataSourceFactory("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36")
 
-        if (lastPath!!.contains("m3u8")) {
-            return HlsMediaSource.Factory(
+        return if (lastPath!!.contains("m3u8")) {
+            HlsMediaSource.Factory(
                 HlsDataSourceFactory {
                     val dataSource: HttpDataSource =
                         DefaultHttpDataSource("Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36")
@@ -203,10 +210,9 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                 .createMediaSource(uri)
         } else {
 //            val dashChunkSourceFactory = DefaultDashChunkSource.Factory(defaultDataSourceFactory)
-            return ExtractorMediaSource.Factory(defaultDataSourceFactory)
+            ProgressiveMediaSource.Factory(defaultDataSourceFactory)
                 .createMediaSource(uri)
         }
-
     }
 
     private fun setupObservers() {
@@ -351,6 +357,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
     override fun onEpisodeClicked(episodeUrl: String) {
         exoPlayer.playWhenReady = false
-        (requireActivity() as PlayerActivity).updateEpisode(episodeUrl)
+        (requireActivity() as PlayerActivity).updateEpisode(episodeUrl, 0)
     }
 }

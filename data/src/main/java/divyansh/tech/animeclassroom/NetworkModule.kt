@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import divyansh.tech.animeclassroom.C.BASE_URL
 import divyansh.tech.animeclassroom.api.*
+import divyansh.tech.animeclassroom.cartoonApi.CartoonAPI
 import divyansh.tech.animeclassroom.mangaApi.MangaHomeApi
 import divyansh.tech.animeclassroom.mangaModels.MangaDetail
 import retrofit2.Retrofit
@@ -95,4 +96,15 @@ class NetworkModule {
     fun providesGenreApi(
         retrofit: Retrofit
     ): GenreSearchApi = retrofit.create(GenreSearchApi::class.java)
+
+    /*
+    * Provides CartoonAPI
+    * @param retorfit: Retrofit
+    * @returns -> CartoonAPI
+    * */
+    @Provides
+    @Singleton
+    fun providesCartoonApi(
+        retrofit: Retrofit
+    ): CartoonAPI = retrofit.create(CartoonAPI::class.java)
 }

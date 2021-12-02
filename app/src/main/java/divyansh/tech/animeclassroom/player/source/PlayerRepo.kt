@@ -1,8 +1,9 @@
-package divyansh.tech.animeclassroom.player
+package divyansh.tech.animeclassroom.player.source
 
 import android.util.Log
 import divyansh.tech.animeclassroom.ResultWrapper
 import divyansh.tech.animeclassroom.api.EpisodeStreamingApi
+import divyansh.tech.animeclassroom.cartoon.CartoonRemoteRepo
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.utils.Parser.parseEpisodeDetails
 import divyansh.tech.animeclassroom.utils.Parser.parseStreamingUrl
@@ -11,7 +12,8 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PlayerRepo @Inject constructor(
-    private val episodeStreamingApi: EpisodeStreamingApi
+    private val episodeStreamingApi: EpisodeStreamingApi,
+    private val cartoonRemoteRepo: CartoonRemoteRepo
 ){
 
     suspend fun getEpisodeDetails(episodeUrl: String): Flow<ResultWrapper<*>> {
@@ -32,9 +34,9 @@ class PlayerRepo @Inject constructor(
         }
     }
 
-//    suspend fun getStreamingUrl(): ResultWrapper<*> {
-//        val response = parseStreamingUrl(
-//            episodeStreamingApi.getStreamingUrl(episodeUrl).string()
-//        )
-//    }
+    suspend fun getCartoonStreamingUrl(url: String): Flow<ResultWrapper<PlayerScreenModel>> {
+        return flow {
+            emit(cartoonRemoteRepo.getStreamingUrl(url))
+        }
+    }
 }

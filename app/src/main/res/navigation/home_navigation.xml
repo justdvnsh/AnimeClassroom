@@ -35,6 +35,9 @@
         <argument
             android:name="episodeUrl"
             app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
     </activity>
     <fragment
         android:id="@+id/mangaFragment"
@@ -140,6 +143,25 @@
             app:destination="@id/mangaDetailFragment" />
         <argument
             android:name="genre"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartoonFragment"
+        android:name="divyansh.tech.animeclassroom.cartoons.CartoonFragment"
+        android:label="CartoonFragment" >
+        <action
+            android:id="@+id/action_cartoonFragment_to_cartoonEpisodeFragment"
+            app:destination="@id/cartoonEpisodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartoonEpisodeFragment"
+        android:name="divyansh.tech.animeclassroom.cartoons.screens.CartoonEpisodeFragment"
+        android:label="CartoonEpisodeFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="cartoonUrl"
             app:argType="string" />
     </fragment>
 </navigation>

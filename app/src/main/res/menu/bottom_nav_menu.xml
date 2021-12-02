@@ -8,15 +8,21 @@
         />
 
     <item
-        android:id="@+id/favoritesFragment"
-        android:title="@string/favorites"
-        android:icon="@drawable/ic_favorite_vector"
+        android:id="@+id/cartoonFragment"
+        android:title="@string/cartoons"
+        android:icon="@drawable/ic_tv"
         />
 
     <item
         android:id="@+id/mangaFragment"
         android:title="@string/manga"
         android:icon="@drawable/ic_manga_vector"
+        />
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:title="@string/favorites"
+        android:icon="@drawable/ic_favorite_vector"
         />
 
     <item

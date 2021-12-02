@@ -40,7 +40,7 @@ class   MainActivity : AppCompatActivity() {
                 R.id.mangaFragment -> bottomNavigation.visibility = View.VISIBLE
                 R.id.shopFragment -> bottomNavigation.visibility = View.VISIBLE
                 R.id.settingsFragment -> bottomNavigation.visibility = View.VISIBLE
-//                R.id.animeDetailFragment -> bottomNavigation.visibility = View.VISIBLE
+                R.id.cartoonFragment -> bottomNavigation.visibility = View.VISIBLE
                 else -> bottomNavigation.visibility = View.GONE
             }
         }

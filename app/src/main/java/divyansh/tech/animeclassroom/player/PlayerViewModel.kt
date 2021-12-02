@@ -9,11 +9,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.C
 import divyansh.tech.animeclassroom.C.BASE_URL
 import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.cartoons.screens.CartoonEpisodeFragmentDirections
 import divyansh.tech.animeclassroom.common.CommonViewModel
+import divyansh.tech.animeclassroom.di.DispatcherModule
 import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.player.source.PlayerRepo
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.Serializable
 import javax.inject.Inject
 
 @HiltViewModel
@@ -51,11 +57,29 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
+    fun getCartoonStreamingUrl(url: String) = viewModelScope.launch(Dispatchers.IO) {
+        val response = playerRepo.getCartoonStreamingUrl(url)
+        response.collect {
+            when (it) {
+                is ResultWrapper.Success -> _streamingUrlLiveData.postValue(ResultWrapper.Success(it.data as PlayerScreenModel))
+                is ResultWrapper.Error -> {
+                    Log.i("Player-Response", it.data.toString())
+                    _streamingUrlLiveData.postValue(ResultWrapper.Error(message = it.message!!, data = null))
+                }
+                else -> {}
+            }
+        }
+    }
+
     fun updateButtonClick(clickType: PlayerClick) {
         _clickControlLiveData.value = clickType
     }
 
     enum class PlayerClick {
         BACK, FULLSCREEN_TOGGLE, SPEED_CONTROL, QUALITY_CONTROL;
+    }
+
+    enum class PlayerTypes {
+        ANIME, CARTOON
     }
 }

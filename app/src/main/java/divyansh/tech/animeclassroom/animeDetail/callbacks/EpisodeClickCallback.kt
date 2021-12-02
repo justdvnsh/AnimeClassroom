@@ -3,6 +3,7 @@ package divyansh.tech.animeclassroom.animeDetail.callbacks
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentDirections
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailViewModel
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
+import divyansh.tech.animeclassroom.player.PlayerViewModel
 
 class EpisodeClickCallback(
     private val viewModel: AnimeDetailViewModel
@@ -12,7 +13,7 @@ class EpisodeClickCallback(
     }
 
     override fun onEpisodeClicked(episodeUrl: String) {
-        val action = AnimeDetailFragmentDirections.actionGlobalPlayerActivity(episodeUrl)
+        val action = AnimeDetailFragmentDirections.actionGlobalPlayerActivity(episodeUrl, 0)
         viewModel.changeNavigation(action)
     }
 

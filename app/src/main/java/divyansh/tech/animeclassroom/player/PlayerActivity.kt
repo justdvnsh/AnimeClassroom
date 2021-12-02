@@ -1,23 +1,18 @@
 package divyansh.tech.animeclassroom.player
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.viewModels
-import androidx.navigation.NavArgs
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
-import com.google.android.exoplayer2.Player
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentArgs
 
 @AndroidEntryPoint
 class PlayerActivity : AppCompatActivity() {
 
-    val episodeUrl: PlayerActivityArgs by navArgs()
+    val args: PlayerActivityArgs by navArgs()
     private val viewModel by viewModels<PlayerViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +23,12 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        updateEpisode(episodeUrl.episodeUrl)
+        updateEpisode(args.episodeUrl, args.type)
     }
 
-    fun updateEpisode(url: String) {
-        viewModel.getStreamingUrl(url)
+    fun updateEpisode(url: String, type: Int) {
+        if (type == 0) viewModel.getStreamingUrl(url)
+        if (type == 1) viewModel.getCartoonStreamingUrl(url)
     }
 
     private fun setupStatusBar() {
