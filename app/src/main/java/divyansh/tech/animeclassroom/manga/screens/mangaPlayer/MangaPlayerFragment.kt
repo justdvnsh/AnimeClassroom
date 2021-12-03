@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
+import divyansh.tech.animeclassroom.common.utils.EventObserver
 import divyansh.tech.animeclassroom.databinding.FragmentMangaPlayerBinding
 import divyansh.tech.animeclassroom.manga.screens.mangaPlayer.epoxy.EpoxyMangaPlayerController
 

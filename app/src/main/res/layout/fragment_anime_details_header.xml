@@ -5,7 +5,7 @@
     <data>
         <variable
             name="anime"
-            type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />
+            type="divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel" />
         <variable
             name="favoriteCallback"
             type="divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback"

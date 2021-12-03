@@ -5,11 +5,9 @@ import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.common.SearchScreenDataModel
-import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.epoxy.epoxyAnimeModels
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
 import divyansh.tech.animeclassroom.manga.epoxy.EpoxyMangaModel_
-import divyansh.tech.animeclassroom.models.home.AnimeModel
 
 class EpoxySearchController(
         private val callback: AnimeClickCallback

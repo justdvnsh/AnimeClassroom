@@ -1,6 +1,6 @@
 package divyansh.tech.animeclassroom.home.dataModels
 
-import divyansh.tech.animeclassroom.utils.HomeTypes
+import divyansh.tech.animeclassroom.common.utils.HomeTypes
 
 data class HomeMainModel(
     var type: HomeTypes,

@@ -2,7 +2,7 @@
     <data>
         <variable
             name="cartoon"
-            type="divyansh.tech.animeclassroom.cartoonModels.Cartoons"
+            type="divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons"
             />
         <variable
             name="cartoonEpisodeClickCallback"

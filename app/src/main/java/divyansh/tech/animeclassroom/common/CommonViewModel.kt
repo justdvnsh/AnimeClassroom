@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import divyansh.tech.animeclassroom.Event
+import divyansh.tech.animeclassroom.common.utils.Event
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.models.home.AnimeModel
-import divyansh.tech.animeclassroom.models.home.GenreModel
-import retrofit2.HttpException
-import java.net.HttpURLConnection
 import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

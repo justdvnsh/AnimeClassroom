@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.EventObserver
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentFavoriteAnimeBinding
 import divyansh.tech.animeclassroom.favorites.screens.animes.epoxy.EpoxyFavoriteAnimeController
 

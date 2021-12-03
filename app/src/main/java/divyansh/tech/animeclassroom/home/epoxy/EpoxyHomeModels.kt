@@ -10,9 +10,8 @@ import com.airbnb.epoxy.*
 import divyansh.tech.animeclassroom.BR
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
-import divyansh.tech.animeclassroom.models.home.AnimeModel
-import divyansh.tech.animeclassroom.models.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.home.GenreModel
 
 /*
 * Title Class For Header Titles

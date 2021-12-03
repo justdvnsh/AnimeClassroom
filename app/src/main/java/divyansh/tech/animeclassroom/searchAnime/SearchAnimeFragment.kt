@@ -18,10 +18,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.EventObserver
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentSearchBinding
-import divyansh.tech.animeclassroom.home.callbacks.HomeScreenCallbacks
 import divyansh.tech.animeclassroom.home.callbacks.SearchScreenCallbacks
 import divyansh.tech.animeclassroom.searchAnime.epoxy.EpoxySearchController
 

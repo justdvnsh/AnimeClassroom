@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.animeDetail.callbacks
 
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailViewModel
-import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
 
 class FavoriteClickCallback(
     private val viewModel: AnimeDetailViewModel

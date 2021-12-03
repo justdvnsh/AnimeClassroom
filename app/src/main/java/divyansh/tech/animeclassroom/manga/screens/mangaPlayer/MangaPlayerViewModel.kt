@@ -4,10 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.mangaPlayer.MangaPlayerDefaultRepo
+import divyansh.tech.animeclassroom.manga.screens.mangaPlayer.source.MangaPlayerDefaultRepo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

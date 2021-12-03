@@ -3,17 +3,11 @@ package divyansh.tech.animeclassroom.animeDetail.epoxy
 import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.Typed2EpoxyController
-import com.airbnb.epoxy.group
-import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
-import divyansh.tech.animeclassroom.home.epoxy.CategoryBackgroundModel_
-import divyansh.tech.animeclassroom.home.epoxy.EpoxyGenreModels_
-import divyansh.tech.animeclassroom.home.epoxy.epoxyGenreModels
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
-import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.models.home.EpisodeModel
-import divyansh.tech.animeclassroom.models.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
 
 class EpoxyAnimeDetailController(
     private val clickCallback: EpisodeClickCallback,

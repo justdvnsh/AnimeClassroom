@@ -3,7 +3,7 @@
     <data>
         <variable
             name="anime"
-            type="divyansh.tech.animeclassroom.models.home.AnimeModel"
+            type="divyansh.tech.animeclassroom.common.data.home.AnimeModel"
             />
         <variable
             name="callback"

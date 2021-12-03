@@ -3,15 +3,14 @@ package divyansh.tech.animeclassroom.genres
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.common.SearchScreenDataModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.genreSearch.GenreSearchDefaultRepo
-import divyansh.tech.animeclassroom.mangaModels.Manga
-import divyansh.tech.animeclassroom.models.home.AnimeModel
+import divyansh.tech.animeclassroom.genres.source.GenreSearchDefaultRepo
+import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
+import divyansh.tech.animeclassroom.common.data.home.AnimeModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

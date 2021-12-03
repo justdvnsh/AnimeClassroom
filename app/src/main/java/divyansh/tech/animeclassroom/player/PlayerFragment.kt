@@ -19,7 +19,6 @@ import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.Player.*
 import com.google.android.exoplayer2.audio.AudioAttributes
-import com.google.android.exoplayer2.source.ExtractorMediaSource
 import com.google.android.exoplayer2.source.MediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
@@ -31,9 +30,9 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
-import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*

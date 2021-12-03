@@ -8,6 +8,7 @@ import android.os.Handler
 import android.view.WindowManager
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.common.setUIMode
+import divyansh.tech.animeclassroom.common.utils.C
 import javax.inject.Inject
 
 @AndroidEntryPoint

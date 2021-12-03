@@ -7,10 +7,9 @@ import com.airbnb.epoxy.group
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.home.dataModels.*
-import divyansh.tech.animeclassroom.utils.HomeTypes
-import divyansh.tech.animeclassroom.models.home.AnimeModel
-import divyansh.tech.animeclassroom.models.home.GenreModel
-import kotlin.random.Random
+import divyansh.tech.animeclassroom.common.utils.HomeTypes
+import divyansh.tech.animeclassroom.common.data.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.home.GenreModel
 
 class EpoxyHomeController(
         private val callback: AnimeClickCallback

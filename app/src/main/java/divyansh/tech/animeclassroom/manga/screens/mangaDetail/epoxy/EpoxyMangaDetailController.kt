@@ -4,10 +4,9 @@ import com.airbnb.epoxy.Carousel
 import com.airbnb.epoxy.CarouselModel_
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailGenreModel_
-import divyansh.tech.animeclassroom.animeDetail.epoxy.epoxyAnimeDetailPlotSummary
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks
-import divyansh.tech.animeclassroom.mangaModels.MangaDetail
+import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
 
 class EpoxyMangaDetailController(
     private val callback: MangaDetailCallbacks

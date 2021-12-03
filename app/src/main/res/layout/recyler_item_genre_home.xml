@@ -4,7 +4,7 @@
     <data>
         <variable
             name="genre"
-            type="divyansh.tech.animeclassroom.models.home.GenreModel" />
+            type="divyansh.tech.animeclassroom.common.data.home.GenreModel" />
         <variable
             name="callback"
             type="divyansh.tech.animeclassroom.common.AnimeClickCallback" />

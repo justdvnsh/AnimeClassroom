@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.C
+import divyansh.tech.animeclassroom.common.utils.C
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.setUIMode
 import divyansh.tech.animeclassroom.databinding.FragmentSettingsBinding
-import kotlinx.android.synthetic.main.fragment_settings.*
 import javax.inject.Inject
 
 @AndroidEntryPoint

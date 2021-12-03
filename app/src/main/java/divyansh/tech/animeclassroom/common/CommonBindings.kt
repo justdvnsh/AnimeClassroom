@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
-import divyansh.tech.animeclassroom.C.MANGA_URL
+import divyansh.tech.animeclassroom.common.utils.C.MANGA_URL
 import divyansh.tech.animeclassroom.di.GlideApp
 
 /*

@@ -2,7 +2,7 @@ package divyansh.tech.animeclassroom.favorites.screens.manga.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.mangaModels.Manga
+import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
 
 class EpoxyFavoriteMangaController(
     private val mangaClickCallback: AnimeClickCallback

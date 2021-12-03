@@ -11,11 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.EventObserver
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailController

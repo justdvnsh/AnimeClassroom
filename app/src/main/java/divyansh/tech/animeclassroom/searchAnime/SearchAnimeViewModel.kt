@@ -1,20 +1,16 @@
 package divyansh.tech.animeclassroom.searchAnime
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.ResultWrapper
-import divyansh.tech.animeclassroom.animeSearch.AnimeSearchRepo
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
+import divyansh.tech.animeclassroom.searchAnime.source.AnimeSearchRepo
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.common.SearchScreenDataModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.mangaModels.Manga
-import divyansh.tech.animeclassroom.models.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
+import divyansh.tech.animeclassroom.common.data.home.AnimeModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

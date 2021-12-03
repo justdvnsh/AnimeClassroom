@@ -1,10 +1,9 @@
 package divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks
 
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.manga.screens.mangaDetail.MangaDetailFragment
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.MangaDetailFragmentDirections
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.MangaDetailViewModel
-import divyansh.tech.animeclassroom.mangaModels.Chapters
+import divyansh.tech.animeclassroom.common.data.mangaModels.Chapters
 
 class MangaDetailCallbacks(
     private val mangaDetailViewModel: MangaDetailViewModel

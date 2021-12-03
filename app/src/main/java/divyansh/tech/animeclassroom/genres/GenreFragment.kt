@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
+import divyansh.tech.animeclassroom.common.utils.EventObserver
 import divyansh.tech.animeclassroom.databinding.FragmentGenresBinding
 import divyansh.tech.animeclassroom.genres.callbacks.GenreClickCallbacks
 import divyansh.tech.animeclassroom.genres.epoxy.GenreController

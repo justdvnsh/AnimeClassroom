@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.favorites.FavoriteAnimeLocalRepo
-import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.favorites.source.FavoriteAnimeLocalRepo
+import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject

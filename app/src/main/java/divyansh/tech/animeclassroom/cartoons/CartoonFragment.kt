@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.EventObserver
+import divyansh.tech.animeclassroom.common.utils.EventObserver
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.cartoons.callbacks.CartoonClickCallback
 import divyansh.tech.animeclassroom.cartoons.epoxy.EpoxyCartoonController

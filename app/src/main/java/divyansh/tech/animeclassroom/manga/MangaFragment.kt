@@ -1,7 +1,6 @@
 package divyansh.tech.animeclassroom.manga
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import divyansh.tech.animeclassroom.Event
-import divyansh.tech.animeclassroom.EventObserver
-import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.EventObserver
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentMangaBinding
 import divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback
 import divyansh.tech.animeclassroom.manga.epoxy.EpoxyMangaHomeController
-import divyansh.tech.animeclassroom.searchAnime.SearchAnimeFragmentDirections
 
 @AndroidEntryPoint
 class MangaFragment: Fragment() {

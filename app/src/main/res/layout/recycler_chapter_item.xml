@@ -3,7 +3,7 @@
     <data>
         <variable
             name="chapter"
-            type="divyansh.tech.animeclassroom.mangaModels.Chapters"
+            type="divyansh.tech.animeclassroom.common.data.mangaModels.Chapters"
             />
         <variable
             name="mangaName"

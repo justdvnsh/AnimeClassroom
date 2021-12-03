@@ -3,23 +3,16 @@ package divyansh.tech.animeclassroom.player
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.C
-import divyansh.tech.animeclassroom.C.BASE_URL
-import divyansh.tech.animeclassroom.ResultWrapper
-import divyansh.tech.animeclassroom.cartoons.screens.CartoonEpisodeFragmentDirections
+import divyansh.tech.animeclassroom.common.utils.C.BASE_URL
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
-import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.models.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
 import divyansh.tech.animeclassroom.player.source.PlayerRepo
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.Serializable
 import javax.inject.Inject
 
 @HiltViewModel

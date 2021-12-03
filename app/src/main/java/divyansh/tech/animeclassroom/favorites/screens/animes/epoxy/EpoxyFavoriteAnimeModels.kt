@@ -7,7 +7,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.BR
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
 
 @EpoxyModelClass(layout = R.layout.recycler_item_favorite_anime)
 abstract class EpoxyFavoriteAnimeModel : DataBindingEpoxyModel() {

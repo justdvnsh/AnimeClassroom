@@ -7,8 +7,7 @@ import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.databinding.BR
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.manga.callbacks.MangaClickCallback
-import divyansh.tech.animeclassroom.mangaModels.Manga
+import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
 
 @EpoxyModelClass(layout = R.layout.recycler_manga_item_view)
 abstract class EpoxyMangaModel: DataBindingEpoxyModel() {

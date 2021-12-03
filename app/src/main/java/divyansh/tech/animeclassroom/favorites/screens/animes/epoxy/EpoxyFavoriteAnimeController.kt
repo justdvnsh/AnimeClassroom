@@ -2,7 +2,7 @@ package divyansh.tech.animeclassroom.favorites.screens.animes.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.models.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
 
 class EpoxyFavoriteAnimeController(
     private val animeClickCallback: AnimeClickCallback

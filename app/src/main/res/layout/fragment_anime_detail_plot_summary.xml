@@ -5,7 +5,7 @@
     <data>
         <variable
             name="anime"
-            type="divyansh.tech.animeclassroom.models.home.AnimeDetailModel" />
+            type="divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"

@@ -1,16 +1,16 @@
 package divyansh.tech.animeclassroom.animeDetail
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import divyansh.tech.animeclassroom.Event
-import divyansh.tech.animeclassroom.ResultWrapper
+import divyansh.tech.animeclassroom.common.utils.Event
+import divyansh.tech.animeclassroom.common.utils.ResultWrapper
+import divyansh.tech.animeclassroom.animeDetail.source.AnimeDetailRepo
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.favorites.FavoriteAnimeDefaultRepo
-import divyansh.tech.animeclassroom.models.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.models.home.EpisodeModel
+import divyansh.tech.animeclassroom.favorites.source.FavoriteAnimeDefaultRepo
+import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
