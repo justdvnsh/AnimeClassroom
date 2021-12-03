@@ -23,22 +23,22 @@ class ParserTest {
 
     @Test
     fun parseAnimeDetailsTest(): Unit = runBlocking {
-        val html = FileUtil.readFileFromResources("animeDerails.html")
+        val html = FileUtil.readFileFromResources("animes.html")
         val response = html.let { parseAnimeDetails(it, true) }
 
         assertEquals(
-            ((response as Success).data as AnimeDetailModel).imageUrl,
-            "https://gogocdn.net/cover/jujutsu-kaisen-tv-dub.png"
+            "https://gogocdn.net/cover/jujutsu-kaisen-tv-dub.png",
+            ((response as Success).data as AnimeDetailModel).imageUrl
         )
         assertEquals(
-            ((response).data as AnimeDetailModel).name,
-            "Jujutsu Kaisen (TV) (Dub)"
+            "Jujutsu Kaisen (TV) (Dub)",
+            ((response).data as AnimeDetailModel).name
         )
-        assertEquals(((response).data as AnimeDetailModel).releaseDate, " 2020")
-        assertEquals(((response).data as AnimeDetailModel).endEpisode, 24)
-        assertEquals(((response).data as AnimeDetailModel).status, " Completed")
-        assertEquals(((response).data as AnimeDetailModel).type, " Fall 2020 Anime")
-        assertEquals(((response).data as AnimeDetailModel).isSaved, true)
+        assertEquals(" 2020", ((response).data as AnimeDetailModel).releaseDate)
+        assertEquals(24, ((response).data as AnimeDetailModel).endEpisode)
+        assertEquals(" Completed", ((response).data as AnimeDetailModel).status)
+        assertEquals(" Fall 2020 Anime", ((response).data as AnimeDetailModel).type)
+        assertEquals(true, ((response).data as AnimeDetailModel).isSaved)
     }
 
     @Test(expected = Exception::class)
@@ -49,29 +49,29 @@ class ParserTest {
 
     @Test
     fun parsePopularAnimeJsonTest() {
-        val html = FileUtil.readFileFromResources("popularAnime.html")
+        val html = FileUtil.readFileFromResources("animes.html")
         val response = html.let { parsePopularAnimeJson(it) }
 
-        assertEquals(response.data?.size, 2)
+        assertEquals(2, response.data?.size)
 
-        assertEquals(response.data?.first()?.name, "Jujutsu Kaisen (TV)")
+        assertEquals("Jujutsu Kaisen (TV)", response.data?.first()?.name)
         assertEquals(
-            response.data?.first()?.imageUrl,
-            "https://gogocdn.net/cover/jujutsu-kaisen-tv.png"
+            "https://gogocdn.net/cover/jujutsu-kaisen-tv.png",
+            response.data?.first()?.imageUrl
         )
-        assertEquals(response.data?.first()?.releaseDate, "2020")
-        assertEquals(response.data?.first()?.animeUrl, "/category/jujutsu-kaisen-tv")
+        assertEquals("2020", response.data?.first()?.releaseDate)
+        assertEquals("/category/jujutsu-kaisen-tv", response.data?.first()?.animeUrl)
         assertNull(response.data?.first()?.episodeUrl)
         assertNull(response.data?.first()?.episodeNumber)
         assertNull(response.data?.first()?.genre)
 
-        assertEquals(response.data?.last()?.name, "Jujutsu Kaisen (TV) (Dub)")
+        assertEquals("Jujutsu Kaisen (TV) (Dub)", response.data?.last()?.name)
         assertEquals(
-            response.data?.last()?.imageUrl,
-            "https://gogocdn.net/cover/jujutsu-kaisen-tv-dub.png"
+            "https://gogocdn.net/cover/jujutsu-kaisen-tv-dub.png",
+            response.data?.last()?.imageUrl
         )
-        assertEquals(response.data?.last()?.releaseDate, "2020")
-        assertEquals(response.data?.last()?.animeUrl, "/category/jujutsu-kaisen-tv-dub")
+        assertEquals("2020", response.data?.last()?.releaseDate)
+        assertEquals("/category/jujutsu-kaisen-tv-dub", response.data?.last()?.animeUrl)
         assertNull(response.data?.last()?.episodeUrl)
         assertNull(response.data?.last()?.episodeNumber)
         assertNull(response.data?.last()?.genre)
@@ -79,7 +79,7 @@ class ParserTest {
 
     @Test
     fun parsePopularAnimeJsonEmptyTest() {
-        val html = FileUtil.readFileFromResources("animeDerails.html")
+        val html = ""
         val response = html.let { parsePopularAnimeJson(it) }
 
         assertEquals(response.data?.size, 0)
@@ -87,57 +87,57 @@ class ParserTest {
 
     @Test
     fun parsePopularAnimeJsonExceptionTest() {
-        val html = FileUtil.readFileFromResources("popularAnimeErro.html")
+        val html = FileUtil.readFileFromResources("animesErro.html")
         val response = html.let { parsePopularAnimeJson(it) }
 
         assertNull(response.data)
-        assertEquals(response.message, "Index 0 out of bounds for length 0")
+        assertEquals("Index 0 out of bounds for length 0", response.message)
     }
 
     @Test
     fun parseRecentReleaseJsonTest(): Unit = runBlocking {
-        val html = FileUtil.readFileFromResources("popularAnime.html")
+        val html = FileUtil.readFileFromResources("animes.html")
         val response = html.let { parseRecentReleaseJson(it) }
 
-        assertEquals((response.data as ArrayList<*>).size, 60)
+        assertEquals(60, (response.data as ArrayList<*>).size)
 
         assertEquals(
-            ((response.data as ArrayList<*>).first() as AnimeModel).name,
-            "Assault Lily: Fruits"
+            "Assault Lily: Fruits",
+            ((response.data as ArrayList<*>).first() as AnimeModel).name
         )
         assertEquals(
-            ((response.data as ArrayList<*>).first() as AnimeModel).imageUrl,
-            "https://gogocdn.net/cover/assault-lily-fruits.png"
+            "https://gogocdn.net/cover/assault-lily-fruits.png",
+            ((response.data as ArrayList<*>).first() as AnimeModel).imageUrl
         )
         assertNull(((response.data as ArrayList<*>).first() as AnimeModel).releaseDate)
         assertNull(((response.data as ArrayList<*>).first() as AnimeModel).animeUrl)
         assertEquals(
-            ((response.data as ArrayList<*>).first() as AnimeModel).episodeUrl,
-            "/assault-lily-fruits-episode-7"
+            "/assault-lily-fruits-episode-7",
+            ((response.data as ArrayList<*>).first() as AnimeModel).episodeUrl
         )
         assertEquals(
-            ((response.data as ArrayList<*>).first() as AnimeModel).episodeNumber,
-            "Episode 7"
+            "Episode 7",
+            ((response.data as ArrayList<*>).first() as AnimeModel).episodeNumber
         )
         assertNull(((response.data as ArrayList<*>).first() as AnimeModel).genre)
 
         assertEquals(
-            ((response.data as ArrayList<*>).last() as AnimeModel).name,
-            "Yu☆Gi☆Oh!: Sevens"
+            "Yu☆Gi☆Oh!: Sevens",
+            ((response.data as ArrayList<*>).last() as AnimeModel).name
         )
         assertEquals(
-            ((response.data as ArrayList<*>).last() as AnimeModel).imageUrl,
-            "https://gogocdn.net/cover/yugioh-sevens.png"
+            "https://gogocdn.net/cover/yugioh-sevens.png",
+            ((response.data as ArrayList<*>).last() as AnimeModel).imageUrl
         )
         assertNull(((response.data as ArrayList<*>).last() as AnimeModel).releaseDate)
         assertNull(((response.data as ArrayList<*>).last() as AnimeModel).animeUrl)
         assertEquals(
-            ((response.data as ArrayList<*>).last() as AnimeModel).episodeUrl,
-            "/yugioh-sevens-episode-69"
+            "/yugioh-sevens-episode-69",
+            ((response.data as ArrayList<*>).last() as AnimeModel).episodeUrl
         )
         assertEquals(
-            ((response.data as ArrayList<*>).last() as AnimeModel).episodeNumber,
-            "Episode 69"
+            "Episode 69",
+            ((response.data as ArrayList<*>).last() as AnimeModel).episodeNumber
         )
         assertNull(((response.data as ArrayList<*>).last() as AnimeModel).genre)
     }
@@ -152,28 +152,31 @@ class ParserTest {
 
     @Test
     fun parseRecentReleaseJsonExceptionTest(): Unit = runBlocking {
-        val html = FileUtil.readFileFromResources("popularAnimeErro.html")
+        val html = FileUtil.readFileFromResources("animesErro.html")
         val response = html.let { parseRecentReleaseJson(it) }
 
         assertNull(response.data)
-        assertEquals(response.message, "Index 0 out of bounds for length 0")
+        assertEquals("Index 0 out of bounds for length 0", response.message)
     }
 
     @Test
 
-    fun parseGenresAnimeJsonTest(): Unit = runBlocking  {
-        val html = FileUtil.readFileFromResources("popularAnime.html")
+    fun parseGenresAnimeJsonTest(): Unit = runBlocking {
+        val html = FileUtil.readFileFromResources("animes.html")
         val response = html.let { parseGenresAnimeJson(it) }
 
-        assertEquals((response.data as ArrayList<*>).size, 48)
-        assertEquals(((response.data as ArrayList<*>).first() as GenreModel).genreTitle, "Action")
+        assertEquals(48, (response.data as ArrayList<*>).size)
+        assertEquals("Action", ((response.data as ArrayList<*>).first() as GenreModel).genreTitle)
         assertEquals(
-            ((response.data as ArrayList<*>).first() as GenreModel).genreUrl,
-            "/genre/action"
+            "/genre/action",
+            ((response.data as ArrayList<*>).first() as GenreModel).genreUrl
         )
-        assertEquals(((response.data as ArrayList<*>).first() as GenreModel).genreUrl, "/genre/action")
-        assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreTitle, "Yuri")
-        assertEquals(((response.data as ArrayList<*>).last() as GenreModel).genreUrl, "/genre/yuri")
+        assertEquals(
+            "/genre/action",
+            ((response.data as ArrayList<*>).first() as GenreModel).genreUrl
+        )
+        assertEquals("Yuri", ((response.data as ArrayList<*>).last() as GenreModel).genreTitle)
+        assertEquals("/genre/yuri", ((response.data as ArrayList<*>).last() as GenreModel).genreUrl)
     }
 
     @Test
@@ -186,32 +189,32 @@ class ParserTest {
 
     @Test
     fun parseGenresAnimeJsonExceptionTest(): Unit = runBlocking {
-        val html = FileUtil.readFileFromResources("popularAnimeErro.html")
+        val html = FileUtil.readFileFromResources("animesErro.html")
         val response = html.let { parseRecentReleaseJson(it) }
 
         assertNull(response.data)
-        assertEquals(response.message, "Index 0 out of bounds for length 0")
+        assertEquals("Index 0 out of bounds for length 0", response.message)
     }
 
     @Test
     fun parseEpisodeDetailsTest(): Unit = runBlocking {
-        val html = FileUtil.readFileFromResources("episodeDetails.html")
+        val html = FileUtil.readFileFromResources("animes.html")
         val response = html.let { parseEpisodeDetails(it) }
 
         assertEquals(
-            (response.data as PlayerScreenModel).animeName,
-            "Boruto: Naruto Next Generations Episode 1 English Subbed"
+            "Boruto: Naruto Next Generations Episode 1 English Subbed",
+            (response.data as PlayerScreenModel).animeName
         )
         assertEquals(
-            (response.data as PlayerScreenModel).streamingUrl,
-            "https://gogoplay1.com/embedplus?id=OTc2MzI=&token=ZRzkyD8ewZngaN3RModR3g&expires=1635031246"
+            "https://gogoplay1.com/embedplus?id=OTc2MzI=&token=ZRzkyD8ewZngaN3RModR3g&expires=1635031246",
+            (response.data as PlayerScreenModel).streamingUrl
         )
         assertNull((response.data as PlayerScreenModel).mirrorLinks)
         assertEquals(
-            (response.data as PlayerScreenModel).nextEpisodeUrl,
-            "/boruto-naruto-next-generations-episode-2"
+            "/boruto-naruto-next-generations-episode-2",
+            (response.data as PlayerScreenModel).nextEpisodeUrl
         )
-        assertEquals((response.data as PlayerScreenModel).previousEpisodeUrl, "null")
+        assertEquals("null", (response.data as PlayerScreenModel).previousEpisodeUrl)
 
     }
 
@@ -220,11 +223,11 @@ class ParserTest {
         val html = ""
         val response = html.let { parseEpisodeDetails(it) }
 
-        assertEquals((response.data as PlayerScreenModel).animeName, "null")
-        assertEquals((response.data as PlayerScreenModel).streamingUrl, "https:null")
+        assertEquals("null", (response.data as PlayerScreenModel).animeName)
+        assertEquals("https:null", (response.data as PlayerScreenModel).streamingUrl)
         assertNull((response.data as PlayerScreenModel).mirrorLinks)
-        assertEquals((response.data as PlayerScreenModel).nextEpisodeUrl, "null")
-        assertEquals((response.data as PlayerScreenModel).previousEpisodeUrl, "null")
+        assertEquals("null", (response.data as PlayerScreenModel).nextEpisodeUrl)
+        assertEquals("null", (response.data as PlayerScreenModel).previousEpisodeUrl)
     }
 
     object FileUtil {
