@@ -6,7 +6,7 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.databinding.BR
 import divyansh.tech.animeclassroom.R
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
+import divyansh.tech.animeclassroom.common.data.Cartoons
 import divyansh.tech.animeclassroom.cartoons.screens.callback.EpisodeClickCallback
 
 @EpoxyModelClass(layout = R.layout.recycler_cartoon_episode_view)

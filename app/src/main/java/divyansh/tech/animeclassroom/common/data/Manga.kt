@@ -1,4 +1,4 @@
-package divyansh.tech.animeclassroom.common.data.mangaModels
+package divyansh.tech.animeclassroom.common.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

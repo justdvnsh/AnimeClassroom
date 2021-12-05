@@ -9,8 +9,8 @@ import divyansh.tech.animeclassroom.animeDetail.source.AnimeDetailRepo
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
 import divyansh.tech.animeclassroom.favorites.source.FavoriteAnimeDefaultRepo
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.EpisodeModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

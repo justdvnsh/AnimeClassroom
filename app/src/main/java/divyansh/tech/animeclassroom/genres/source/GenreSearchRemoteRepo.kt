@@ -2,16 +2,22 @@ package divyansh.tech.animeclassroom.genres.source
 
 import divyansh.tech.animeclassroom.common.utils.C
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.api.GenreSearchApi
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.Manga
+import divyansh.tech.animeclassroom.common.data.AnimeModel
 import divyansh.tech.animeclassroom.common.utils.MangaParser
 import divyansh.tech.animeclassroom.common.utils.Parser
+import okhttp3.ResponseBody
+import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Url
 import javax.inject.Inject
 
 class GenreSearchRemoteRepo @Inject constructor(
-    private val genreSearchApi: GenreSearchApi
+    retrofit: Retrofit
 ) {
+
+    private val genreSearchApi = retrofit.create(GenreSearchApi::class.java)
 
     suspend fun getGenreAnime(genre: String): ResultWrapper<ArrayList<AnimeModel>> {
         return try {
@@ -29,5 +35,19 @@ class GenreSearchRemoteRepo @Inject constructor(
         } catch (e: Exception) {
             ResultWrapper.Error("Could Not Parse", null)
         }
+    }
+
+
+    interface GenreSearchApi {
+
+        @GET("/genre/{genre}")
+        suspend fun getGenreAnime(
+            @Path("genre") genre: String
+        ): ResponseBody
+
+        @GET
+        suspend fun getGenreManga(
+            @Url url: String
+        ): ResponseBody
     }
 }

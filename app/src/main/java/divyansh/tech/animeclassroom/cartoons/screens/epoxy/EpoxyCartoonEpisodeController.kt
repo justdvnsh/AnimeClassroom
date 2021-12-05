@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.cartoons.screens.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
+import divyansh.tech.animeclassroom.common.data.Cartoons
 import divyansh.tech.animeclassroom.cartoons.screens.callback.EpisodeClickCallback
 
 class EpoxyCartoonEpisodeController(

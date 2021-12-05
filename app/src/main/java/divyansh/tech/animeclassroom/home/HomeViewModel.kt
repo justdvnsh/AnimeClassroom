@@ -11,8 +11,8 @@ import divyansh.tech.animeclassroom.di.DispatcherModule
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.home.source.HomeDefaultRepo
 import divyansh.tech.animeclassroom.common.utils.HomeTypes
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.AnimeModel
+import divyansh.tech.animeclassroom.common.data.GenreModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

@@ -1,8 +1,8 @@
 package divyansh.tech.animeclassroom.genres.source
 
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.Manga
+import divyansh.tech.animeclassroom.common.data.AnimeModel
 import javax.inject.Inject
 
 class GenreSearchDefaultRepo @Inject constructor(

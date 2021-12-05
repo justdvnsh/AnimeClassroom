@@ -6,7 +6,7 @@ import com.airbnb.epoxy.TypedEpoxyController
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailGenreModel_
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks
-import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
+import divyansh.tech.animeclassroom.common.data.MangaDetail
 
 class EpoxyMangaDetailController(
     private val callback: MangaDetailCallbacks

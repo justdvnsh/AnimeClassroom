@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.cartoons.source.CartoonDefaultRepo
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
+import divyansh.tech.animeclassroom.common.data.Cartoons
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
 import kotlinx.coroutines.CoroutineDispatcher

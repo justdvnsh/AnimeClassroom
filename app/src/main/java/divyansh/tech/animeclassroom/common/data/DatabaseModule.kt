@@ -30,29 +30,6 @@ class DatabaseModule {
 //        return Realm.getDefaultInstance()
 //    }
 
-    @Provides
-    @Singleton
-    fun provideAnimeDatabase(@ApplicationContext context: Context)=
-        Room
-            .databaseBuilder(context, AnimeDatabase::class.java, "anime-db")
-            .fallbackToDestructiveMigration()
-            .build()
 
-
-    @Provides
-    @Singleton
-    fun providesAnimeDao(db: AnimeDatabase) = db.animeDao()
-
-    @Provides
-    @Singleton
-    fun provideCacheDatabase(@ApplicationContext context: Context)=
-        Room
-            .databaseBuilder(context, CacheDatabase::class.java,"cache-db")
-            .fallbackToDestructiveMigration()
-            .build()
-
-    @Provides
-    @Singleton
-    fun providesCacheDao(db: CacheDatabase) = db.cacheDao()
 
 }

@@ -1,8 +1,8 @@
 package divyansh.tech.animeclassroom.common.utils
 
 import android.util.Log
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
-import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.Cartoons
+import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
 import org.jsoup.Jsoup
 import java.util.regex.Pattern
 

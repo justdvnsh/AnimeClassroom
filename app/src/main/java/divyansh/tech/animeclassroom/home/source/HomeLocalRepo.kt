@@ -1,14 +1,12 @@
 package divyansh.tech.animeclassroom.home.source
 
-import divyansh.tech.animeclassroom.common.data.api.HomeScreenApi
 import divyansh.tech.animeclassroom.common.data.database.CacheDao
 import divyansh.tech.animeclassroom.common.utils.HomeTypes
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
-import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.AnimeModel
+import divyansh.tech.animeclassroom.common.data.OfflineAnimeModel
 import javax.inject.Inject
 
 class HomeLocalRepo @Inject constructor(
-    private val homeScreenApi: HomeScreenApi,
     private val dao: CacheDao
 ) {
 

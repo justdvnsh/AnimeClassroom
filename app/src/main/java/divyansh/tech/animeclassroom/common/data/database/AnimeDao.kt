@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.common.data.database
 
 import androidx.room.*
-import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.OfflineAnimeModel
 
 @Dao
 interface AnimeDao {

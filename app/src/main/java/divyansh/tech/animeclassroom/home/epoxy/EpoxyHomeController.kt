@@ -8,8 +8,8 @@ import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.home.dataModels.*
 import divyansh.tech.animeclassroom.common.utils.HomeTypes
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.AnimeModel
+import divyansh.tech.animeclassroom.common.data.GenreModel
 
 class EpoxyHomeController(
         private val callback: AnimeClickCallback

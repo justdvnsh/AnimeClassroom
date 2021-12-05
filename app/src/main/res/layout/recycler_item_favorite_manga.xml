@@ -6,7 +6,7 @@
     <data>
         <variable
             name="manga"
-            type="divyansh.tech.animeclassroom.common.data.mangaModels.Manga"/>
+            type="divyansh.tech.animeclassroom.common.data.Manga"/>
         <variable
             name="mangaCallback"
             type="divyansh.tech.animeclassroom.common.AnimeClickCallback" />

@@ -9,9 +9,9 @@ import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.EpisodeModel
+import divyansh.tech.animeclassroom.common.data.GenreModel
 
 @EpoxyModelClass(layout = R.layout.fragment_anime_details_header)
 abstract class EpoxyAnimeDetailHeaderModel: DataBindingEpoxyModel() {

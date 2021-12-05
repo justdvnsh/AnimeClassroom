@@ -6,8 +6,8 @@ import com.airbnb.epoxy.Typed2EpoxyController
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.home.epoxy.epoxyTitle
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.EpisodeModel
 
 class EpoxyAnimeDetailController(
     private val clickCallback: EpisodeClickCallback,

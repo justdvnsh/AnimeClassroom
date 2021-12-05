@@ -8,7 +8,7 @@ import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.source.MangaDetailDefaultRepo
-import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
+import divyansh.tech.animeclassroom.common.data.MangaDetail
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

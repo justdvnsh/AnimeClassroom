@@ -1,10 +1,10 @@
 package divyansh.tech.animeclassroom.common.utils
 
 import android.util.Log
-import divyansh.tech.animeclassroom.common.data.mangaModels.Chapters
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
-import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
+import divyansh.tech.animeclassroom.common.data.Chapters
+import divyansh.tech.animeclassroom.common.data.Manga
+import divyansh.tech.animeclassroom.common.data.MangaDetail
+import divyansh.tech.animeclassroom.common.data.GenreModel
 import org.jsoup.Jsoup
 
 /*

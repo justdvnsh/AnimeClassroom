@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.manga.screens.mangaDetail.source
 
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
+import divyansh.tech.animeclassroom.common.data.MangaDetail
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

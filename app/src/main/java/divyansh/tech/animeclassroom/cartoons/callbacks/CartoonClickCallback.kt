@@ -1,6 +1,6 @@
 package divyansh.tech.animeclassroom.cartoons.callbacks
 
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
+import divyansh.tech.animeclassroom.common.data.Cartoons
 import divyansh.tech.animeclassroom.cartoons.CartoonFragmentDirections
 import divyansh.tech.animeclassroom.cartoons.CartoonViewModel
 

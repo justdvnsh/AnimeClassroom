@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.cartoons.source
 
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons
+import divyansh.tech.animeclassroom.common.data.Cartoons
 import javax.inject.Inject
 
 class CartoonDefaultRepo @Inject constructor(

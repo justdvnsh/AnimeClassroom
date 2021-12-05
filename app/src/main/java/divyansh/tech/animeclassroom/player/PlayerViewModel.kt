@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.common.utils.C.BASE_URL
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
-import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
 import divyansh.tech.animeclassroom.player.source.PlayerRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect

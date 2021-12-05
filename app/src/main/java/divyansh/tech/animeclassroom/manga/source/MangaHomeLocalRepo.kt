@@ -1,13 +1,11 @@
 package divyansh.tech.animeclassroom.manga.source
 
 import divyansh.tech.animeclassroom.common.data.database.CacheDao
-import divyansh.tech.animeclassroom.common.data.mangaApi.MangaHomeApi
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
-import divyansh.tech.animeclassroom.common.data.mangaModels.OfflineMangaModel
+import divyansh.tech.animeclassroom.common.data.Manga
+import divyansh.tech.animeclassroom.common.data.OfflineMangaModel
 import javax.inject.Inject
 
 class MangaHomeLocalRepo @Inject constructor(
-    private val mangaHomeApi: MangaHomeApi,
     private val dao: CacheDao
 ) {
 

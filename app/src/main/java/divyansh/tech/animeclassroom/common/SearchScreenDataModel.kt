@@ -1,7 +1,7 @@
 package divyansh.tech.animeclassroom.common
 
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
+import divyansh.tech.animeclassroom.common.data.Manga
+import divyansh.tech.animeclassroom.common.data.AnimeModel
 
 data class SearchScreenDataModel(
     val mangas: ArrayList<Manga>,

@@ -2,16 +2,21 @@ package divyansh.tech.animeclassroom.animeDetail.source
 
 import android.util.Log
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.api.AnimeDetailScreenApi
 import divyansh.tech.animeclassroom.favorites.source.FavoriteAnimeLocalRepo
-import divyansh.tech.animeclassroom.common.data.home.EpisodeModel
+import divyansh.tech.animeclassroom.common.data.EpisodeModel
 import divyansh.tech.animeclassroom.common.utils.Parser
+import okhttp3.ResponseBody
+import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Url
 import javax.inject.Inject
 
 class AnimeDetailRepo @Inject constructor(
-    private val animeDetailScreenApi: AnimeDetailScreenApi,
+    retrofit: Retrofit,
     private val favoriteAnimeLocalRepo: FavoriteAnimeLocalRepo
 ) {
+
+    private val animeDetailScreenApi = retrofit.create(AnimeDetailScreenApi::class.java)
 
     /*
     * Fetch Anime Details
@@ -40,5 +45,19 @@ class AnimeDetailRepo @Inject constructor(
         }
         Log.i("Episodes", animeUrl.split("/").last())
         return ResultWrapper.Success(_list)
+    }
+
+    /*
+* Interface for the Anime Detail Screen
+* */
+    interface AnimeDetailScreenApi {
+
+        /*
+        * Get the Details for a particular anime
+        * */
+        @GET
+        suspend fun getAnimeDetails(
+            @Url url: String
+        ): ResponseBody
     }
 }

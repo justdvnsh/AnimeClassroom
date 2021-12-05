@@ -8,7 +8,7 @@ import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
 import divyansh.tech.animeclassroom.favorites.source.FavoriteAnimeLocalRepo
-import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.OfflineAnimeModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject

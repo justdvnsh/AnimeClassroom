@@ -1,8 +1,8 @@
 package divyansh.tech.animeclassroom.home.source
 
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
-import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.AnimeModel
+import divyansh.tech.animeclassroom.common.data.OfflineAnimeModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

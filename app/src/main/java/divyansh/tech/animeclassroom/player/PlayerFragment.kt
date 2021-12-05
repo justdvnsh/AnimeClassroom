@@ -32,7 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
-import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*

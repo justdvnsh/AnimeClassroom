@@ -8,7 +8,7 @@ import divyansh.tech.animeclassroom.manga.source.MangaHomeLocalRepo
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.di.DispatcherModule
-import divyansh.tech.animeclassroom.common.data.mangaModels.Manga
+import divyansh.tech.animeclassroom.common.data.Manga
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject

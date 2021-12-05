@@ -1,4 +1,4 @@
-package divyansh.tech.animeclassroom.common.data.home
+package divyansh.tech.animeclassroom.common.data
 
 data class PlayerScreenModel(
     val animeName: String,

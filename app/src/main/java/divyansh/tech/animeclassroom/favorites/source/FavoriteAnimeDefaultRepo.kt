@@ -1,6 +1,6 @@
 package divyansh.tech.animeclassroom.favorites.source
 
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
 import javax.inject.Inject
 
 class FavoriteAnimeDefaultRepo @Inject constructor(

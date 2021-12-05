@@ -2,7 +2,7 @@
     <data>
         <variable
             name="cartoon"
-            type="divyansh.tech.animeclassroom.common.data.cartoonModels.Cartoons"
+            type="divyansh.tech.animeclassroom.common.data.Cartoons"
             />
         <variable
             name="callback"

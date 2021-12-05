@@ -7,8 +7,8 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.manga.screens.mangaDetail.callbacks.MangaDetailCallbacks
-import divyansh.tech.animeclassroom.common.data.mangaModels.Chapters
-import divyansh.tech.animeclassroom.common.data.mangaModels.MangaDetail
+import divyansh.tech.animeclassroom.common.data.Chapters
+import divyansh.tech.animeclassroom.common.data.MangaDetail
 
 @EpoxyModelClass(layout = R.layout.fragment_manga_details_header)
 abstract class EpoxyMangaDetailHeaderModel: DataBindingEpoxyModel() {

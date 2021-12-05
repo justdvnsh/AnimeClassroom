@@ -1,4 +1,4 @@
-package divyansh.tech.animeclassroom.common.data.cartoonModels
+package divyansh.tech.animeclassroom.common.data
 
 data class Cartoons(
     val name: String,

@@ -2,8 +2,8 @@ package divyansh.tech.animeclassroom.favorites.source
 
 import android.util.Log
 import divyansh.tech.animeclassroom.common.data.database.AnimeDao
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.home.OfflineAnimeModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.OfflineAnimeModel
 import javax.inject.Inject
 
 class FavoriteAnimeLocalRepo @Inject constructor(

@@ -1,6 +1,4 @@
-package divyansh.tech.animeclassroom.common.data.mangaModels
-
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
+package divyansh.tech.animeclassroom.common.data
 
 data class MangaDetail(
     val name: String,

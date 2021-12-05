@@ -1,10 +1,10 @@
 package divyansh.tech.animeclassroom.common.utils
 
 import android.util.Log
-import divyansh.tech.animeclassroom.common.data.home.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.home.AnimeModel
-import divyansh.tech.animeclassroom.common.data.home.GenreModel
-import divyansh.tech.animeclassroom.common.data.home.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
+import divyansh.tech.animeclassroom.common.data.AnimeModel
+import divyansh.tech.animeclassroom.common.data.GenreModel
+import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.lang.Exception
