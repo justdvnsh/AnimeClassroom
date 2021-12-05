@@ -14,6 +14,6 @@ class FavoriteMangaCallbacks(private val viewModel: CommonViewModel): AnimeClick
     }
 
     override fun onAnimeClicked(animeUrl: String) {}
-    override fun onEpisodeClicked(episodeUrl: String) {}
+    override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {}
     override fun onGenreClicked(genreUrl: String) {}
 }

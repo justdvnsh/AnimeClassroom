@@ -24,7 +24,8 @@ class PlayerRepo @Inject constructor(
     suspend fun getEpisodeDetails(episodeUrl: String): Flow<ResultWrapper<*>> {
         return flow {
             val response =  parseEpisodeDetails(
-                    episodeStreamingApi.getEpisodeDetails(episodeUrl).string()
+                    episodeStreamingApi.getEpisodeDetails(episodeUrl).string(),
+                    episodeUrl
             )
             if (response is ResultWrapper.Success) {
                 Log.i("Player-Repo", "Inside success call ${(response.data as PlayerScreenModel).streamingUrl}")

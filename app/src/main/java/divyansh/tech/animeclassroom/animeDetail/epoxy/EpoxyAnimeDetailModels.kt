@@ -61,10 +61,14 @@ abstract class EpoxyAnimeDetailEpisodeModel: DataBindingEpoxyModel() {
     lateinit var episode: EpisodeModel
 
     @EpoxyAttribute
-    lateinit var clickCallback: EpisodeClickCallback
+    lateinit var clickCallback: AnimeClickCallback
+
+    @EpoxyAttribute
+    lateinit var imageUrl: String
 
     override fun setDataBindingVariables(binding: ViewDataBinding) {
         binding.setVariable(BR.episode, episode)
         binding.setVariable(BR.clickListener, clickCallback)
+        binding.setVariable(BR.imageUrl, imageUrl)
     }
 }

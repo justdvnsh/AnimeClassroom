@@ -13,7 +13,7 @@ class GenreClickCallbacks(
         )
     }
 
-    override fun onEpisodeClicked(episodeUrl: String) {
+    override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
         TODO("Not yet implemented")
     }
 

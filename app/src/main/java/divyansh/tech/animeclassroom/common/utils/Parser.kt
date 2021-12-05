@@ -1,10 +1,7 @@
 package divyansh.tech.animeclassroom.common.utils
 
 import android.util.Log
-import divyansh.tech.animeclassroom.common.data.AnimeDetailModel
-import divyansh.tech.animeclassroom.common.data.AnimeModel
-import divyansh.tech.animeclassroom.common.data.GenreModel
-import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.data.*
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 import java.lang.Exception
@@ -162,7 +159,7 @@ object Parser {
     * @param response: Response from the anime page
     * @returns ResultWrapper<*>
     * */
-    suspend fun parseEpisodeDetails(response: String): ResultWrapper<*> {
+    suspend fun parseEpisodeDetails(response: String, url: String): ResultWrapper<*> {
 //        Log.i("Player", response)
         return try {
             val jsoup = Jsoup.parse(response)
@@ -170,15 +167,28 @@ object Parser {
             val streamingUrl = jsoup?.getElementsByClass("vidcdn")?.first()?.select("a")?.attr("data-video")
             val prevEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_l")?.select("a")?.first()?.attr("href")
             val nextEpisode = jsoup?.getElementsByClass("anime_video_body_episodes_r")?.select("a")?.first()?.attr("href")
-            Log.i("Player-Name", animeName.toString())
-            Log.i("Player-Streaming", streamingUrl.toString())
-            Log.i("Player-prev", prevEpisode.toString())
-            Log.i("Player-next", nextEpisode.toString())
+            val activeEpisode = jsoup.getElementById("default_ep").attr("value").toInt()
+            val endEpisode = jsoup.getElementById("episode_page").select("li").last().select("a").attr("ep_end")
+            Log.i("Player -> ", endEpisode.toString())
+            Log.i("Player -> ", url.split("/").last().split("-").toString())
+            val list = ArrayList<EpisodeModel>()
+            for (i in 1 until endEpisode.toInt() + 1) {
+                val limit = url.split("/").last().split("-").toMutableList()
+                limit[limit.indexOf(limit.last())] = i.toString()
+                val url = limit.joinToString("-")
+                list.add(EpisodeModel(
+                    episodeNumber = i.toString(),
+                    episodeUrl = url
+                ))
+            }
+            Log.i("Player -> ", list.toString())
             val model = PlayerScreenModel(
                 animeName = animeName.toString(),
                 streamingUrl = "https:$streamingUrl",
                 previousEpisodeUrl = prevEpisode.toString(),
-                nextEpisodeUrl = nextEpisode.toString()
+                nextEpisodeUrl = nextEpisode.toString(),
+                activeEpisode = activeEpisode,
+                episodeList = list
             )
             ResultWrapper.Success(model)
         } catch (e: Exception) {

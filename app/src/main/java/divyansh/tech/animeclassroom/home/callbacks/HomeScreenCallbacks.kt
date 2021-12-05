@@ -19,8 +19,8 @@ class HomeScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickCal
         viewModel.changeNavigation(action)
     }
 
-    override fun onEpisodeClicked(episodeUrl: String) {
-        val action = HomeFragmentDirections.actionGlobalPlayerActivity(episodeUrl, 0)
+    override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment2(episodeUrl, 0, imageUrl)
         viewModel.changeNavigation(action)
     }
 

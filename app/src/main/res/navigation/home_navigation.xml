@@ -26,7 +26,18 @@
             app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_homeFragment_to_genreFragment"
-            app:destination="@id/genreFragment" />
+            app:destination="@id/genreFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
+        <action
+            android:id="@+id/action_homeFragment_to_playerFragment2"
+            app:destination="@id/playerFragment2"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <activity
         android:id="@+id/playerActivity"
@@ -45,10 +56,18 @@
         android:label="MangaFragment" >
         <action
             android:id="@+id/action_mangaFragment_to_mangaDetailFragment"
-            app:destination="@id/mangaDetailFragment" />
+            app:destination="@id/mangaDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_mangaFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -63,7 +82,11 @@
             app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_searchFragment_to_mangaDetailFragment"
-            app:destination="@id/mangaDetailFragment" />
+            app:destination="@id/mangaDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/shopFragment"
@@ -79,10 +102,18 @@
         android:label="FavoritesFragment" >
         <action
             android:id="@+id/action_favoritesFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
+            app:destination="@id/animeDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_favoritesFragment_to_mangaDetailFragment"
-            app:destination="@id/mangaDetailFragment" />
+            app:destination="@id/mangaDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
 
     <action
@@ -101,7 +132,18 @@
             app:argType="string" />
         <action
             android:id="@+id/action_animeDetailFragment_to_genreFragment"
-            app:destination="@id/genreFragment" />
+            app:destination="@id/genreFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
+        <action
+            android:id="@+id/action_animeDetailFragment_to_playerFragment2"
+            app:destination="@id/playerFragment2"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/mangaDetailFragment"
@@ -112,10 +154,18 @@
             app:argType="string" />
         <action
             android:id="@+id/action_mangaDetailFragment_to_mangaPlayerFragment"
-            app:destination="@id/mangaPlayerFragment" />
+            app:destination="@id/mangaPlayerFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_mangaDetailFragment_to_genreFragment"
-            app:destination="@id/genreFragment" />
+            app:destination="@id/genreFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/mangaPlayerFragment"
@@ -137,10 +187,18 @@
         android:label="GenreFragment" >
         <action
             android:id="@+id/action_genreFragment_to_animeDetailFragment"
-            app:destination="@id/animeDetailFragment" />
+            app:destination="@id/animeDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/action_genreFragment_to_mangaDetailFragment"
-            app:destination="@id/mangaDetailFragment" />
+            app:destination="@id/mangaDetailFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <argument
             android:name="genre"
             app:argType="string" />
@@ -151,7 +209,11 @@
         android:label="CartoonFragment" >
         <action
             android:id="@+id/action_cartoonFragment_to_cartoonEpisodeFragment"
-            app:destination="@id/cartoonEpisodeFragment" />
+            app:destination="@id/cartoonEpisodeFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
     </fragment>
     <fragment
         android:id="@+id/cartoonEpisodeFragment"
@@ -163,5 +225,22 @@
         <argument
             android:name="cartoonUrl"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment2"
+        android:name="divyansh.tech.animeclassroom.player.PlayerFragment"
+        android:label="PlayerFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_playerFragment2_self"
+            app:destination="@id/playerFragment2" />
     </fragment>
 </navigation>

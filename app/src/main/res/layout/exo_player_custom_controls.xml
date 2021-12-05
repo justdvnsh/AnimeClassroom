@@ -16,7 +16,8 @@
         android:focusable="true"
         android:src="@drawable/ic_arrow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/exo_speed_selection_view"
+        app:layout_constraintBottom_toBottomOf="@id/exo_speed_selection_view"
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         />

@@ -15,7 +15,7 @@
     <color name="home_icon">@color/header</color>
 
     //Recycler Items
-    <color name="transparent_background">@color/media_player_controls_background</color>
+    <color name="transparent_background">@color/text_default</color>
     <color name="recycler_anime_title">@color/header</color>
     <color name="recycler_anime_type">@color/text_default</color>
     <color name="recycler_releases_date">@color/recycler_anime_type</color>
@@ -37,7 +37,7 @@
 
     //AnimeInfo Episodes
     <color name="episode_background">#000000</color>
-    <color name="episode_text">#8f8f8f</color>
+    <color name="episode_text">@color/anime_title</color>
 
 
     //Media Player Controls

@@ -24,7 +24,6 @@
             app:cardPreventCornerOverlap="false"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:backgroundTint="@color/transparent_background"
             >
             <TextView
                 android:id="@+id/ivGenre"

@@ -1,13 +1,17 @@
 package divyansh.tech.animeclassroom.player
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 
 import androidx.core.content.ContextCompat
@@ -16,6 +20,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.Player.*
 import com.google.android.exoplayer2.audio.AudioAttributes
@@ -30,10 +37,15 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.R
+import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
+import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
 import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.utils.Event
+import divyansh.tech.animeclassroom.common.utils.EventObserver
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
+import divyansh.tech.animeclassroom.player.epoxy.EpoxyPlayerController
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 import kotlinx.android.synthetic.main.fragment_player.*
@@ -45,7 +57,35 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     private lateinit var exoPlayer: SimpleExoPlayer
     private val viewModel by activityViewModels<PlayerViewModel>()
 
+    private val args by navArgs<PlayerFragmentArgs>()
+
     private var isFullScreen = false
+
+    val callback = object: AnimeClickCallback {
+        override fun onAnimeClicked(animeUrl: String) {
+
+        }
+
+        override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
+            viewModel.updateEpisode(episodeUrl, args.type)
+        }
+
+        override fun onGenreClicked(genreUrl: String) {
+
+        }
+
+        override fun onMangaClicked(mangaUrl: String) {
+
+        }
+
+    }
+
+    private val controller by lazy {
+        EpoxyPlayerController(
+            callback = callback,
+            imageUrl = args.imageUrl
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,8 +102,20 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
         setupObservers()
         setupListeners()
+    }
+
+    private fun setupRecyclerView() {
+        val orientation = requireActivity().resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        Log.i("PlayerOrientation -> ", orientation.toString())
+        if (orientation) {
+            binding.episodeRv!!.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = controller.adapter
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -223,33 +275,16 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             Log.i("Player-Frag", it.data.toString())
                             it.data?.let { it1 ->
                                 initializePlayer(it1)
-                                val nextEpisodeButtonVisibility = if (it1.nextEpisodeUrl == null || it1.nextEpisodeUrl.equals("null")) {
-                                    View.GONE
-                                } else {
-                                    View.VISIBLE
-                                }
-                                binding.exoPlayerView.nextEpisode.visibility = nextEpisodeButtonVisibility
-                                val previousEpisodeButtonVisibility = if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null")) {
-                                    View.GONE
-                                } else {
-                                    View.VISIBLE
-                                }
-                                binding.exoPlayerView.previousEpisode.visibility = previousEpisodeButtonVisibility
-                                episodeName.text = it1.animeName
-                                nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->
-                                    onEpisodeClicked(
-                                        it2
-                                    )
-                                } }
-                                previousEpisode.setOnClickListener { it1.previousEpisodeUrl?.let { it2 ->
-                                    onEpisodeClicked(
-                                        it2
-                                    )
-                                } }
+                                binding.progressBar?.visibility = View.GONE
+                                binding.videoPlayerContainer.visibility = View.VISIBLE
+                                setupViews(it1)
+                                controller.setData(it1)
                             }
                         }
                         is ResultWrapper.Loading -> {
                             setEnabledStatusOfPreviousAndNextEpisodesButtons(false)
+                            binding.progressBar?.visibility = View.VISIBLE
+                            binding.videoPlayerContainer.visibility = View.GONE
                         }
                         else -> {
                             Log.i("Player-Frag", it.toString())
@@ -260,10 +295,9 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
         viewModel.clickControlLiveData.observe(
                 viewLifecycleOwner,
-                Observer {
+                EventObserver {
                     when(it) {
-                        PlayerViewModel.PlayerClick.BACK ->
-                            requireActivity().finish()
+                        PlayerViewModel.PlayerClick.BACK -> onBackPressed()
                         PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
                         PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
                         PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
@@ -291,10 +325,11 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     * Method Selections
     * */
     private fun toggleFullScreen() {
-        if (isFullScreen) {
+        if (requireActivity().requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
             exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
             isFullScreen = false
+            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             exo_full_Screen
                     .setImageDrawable(
                             ContextCompat.getDrawable(
@@ -303,9 +338,10 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             )
                     )
         } else {
-            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_HEIGHT
-            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
+            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
             isFullScreen = true
+            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             exo_full_Screen
                     .setImageDrawable(
                             ContextCompat.getDrawable(
@@ -357,5 +393,49 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     override fun onEpisodeClicked(episodeUrl: String) {
         exoPlayer.playWhenReady = false
         (requireActivity() as PlayerActivity).updateEpisode(episodeUrl, 0)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.updateEpisode(args.url, args.type)
+    }
+
+    private fun setupViews(it1: PlayerScreenModel) {
+        val nextEpisodeButtonVisibility = if (it1.nextEpisodeUrl == null || it1.nextEpisodeUrl.equals("null")) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+        binding.exoPlayerView.nextEpisode.visibility = nextEpisodeButtonVisibility
+        val previousEpisodeButtonVisibility = if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null")) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+        binding.exoPlayerView.previousEpisode.visibility = previousEpisodeButtonVisibility
+        if (requireActivity().resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            episodeName.text = it1.animeName
+        nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->
+            onEpisodeClicked(
+                it2
+            )
+        } }
+        previousEpisode.setOnClickListener { it1.previousEpisodeUrl?.let { it2 ->
+            onEpisodeClicked(
+                it2
+            )
+        } }
+
+        requireView().setOnKeyListener { _, code, keyEvent ->
+            if (code == KeyEvent.KEYCODE_BACK)
+                onBackPressed()
+            true
+        }
+    }
+
+    private fun onBackPressed() {
+        if (requireActivity().requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
+            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        else findNavController().popBackStack()
     }
 }

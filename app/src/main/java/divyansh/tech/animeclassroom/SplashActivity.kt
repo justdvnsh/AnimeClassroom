@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.common.setUIMode
 import divyansh.tech.animeclassroom.common.utils.C

@@ -17,7 +17,7 @@
         android:layout_marginBottom="20dp"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl)}"
+        android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl, anime.imageUrl)}"
         >
 
         <androidx.cardview.widget.CardView
@@ -42,11 +42,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/backgroundImage"
-                android:src="@color/transparent_background"
-                android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl)}"
+                android:src="@color/media_player_controls_background"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:onClick="@{() -> callback.onEpisodeClicked(anime.episodeUrl, anime.imageUrl)}"
+                />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="30dp"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="android.view.View" />
         <variable
             name="clickListener"
             type="divyansh.tech.animeclassroom.common.AnimeClickCallback"
@@ -11,6 +12,10 @@
             />
         <variable
             name="imageUrl"
+            type="String"
+            />
+        <variable
+            name="activeEpisode"
             type="String"
             />
     </data>
@@ -37,6 +42,17 @@
             android:background="@android:color/transparent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/backgroundImage"
+                android:src="@color/transparent_background"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="@{episode.episodeNumber == activeEpisode ? View.VISIBLE : View.GONE}"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
                 android:layout_height="0dp"
                 android:layout_width="80dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -52,17 +68,42 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="@{`EP ` + String.valueOf(episode.episodeNumber)}"
+                android:text="@{`EP ` + episode.episodeNumber}"
                 tools:text="EP 127"
-                android:paddingTop="12dp"
                 android:textColor="@color/episode_text"
                 android:gravity="center"
                 android:layout_marginStart="@dimen/spacing_very_small"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image"
+                app:layout_constraintEnd_toStartOf="@id/play"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_height="24dp"
+                android:layout_width="24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_play"
+                app:layout_constraintEnd_toStartOf="@id/download"
+                app:layout_constraintStart_toEndOf="@id/episodeNumber"
+                android:id="@+id/play"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_height="24dp"
+                android:layout_width="24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_baseline_download_24"
+                app:layout_constraintStart_toEndOf="@id/play"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/download"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_small"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -9,6 +9,7 @@ import divyansh.tech.animeclassroom.common.utils.C.BASE_URL
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.common.CommonViewModel
 import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
+import divyansh.tech.animeclassroom.common.utils.Event
 import divyansh.tech.animeclassroom.player.source.PlayerRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -27,8 +28,8 @@ class PlayerViewModel @Inject constructor(
     private val _animeName: MutableLiveData<String> = MutableLiveData()
     val animeName: LiveData<String> get() = _animeName
 
-    private val _clickControlLiveData: MutableLiveData<PlayerClick> = MutableLiveData()
-    val clickControlLiveData: LiveData<PlayerClick> get() = _clickControlLiveData
+    private val _clickControlLiveData: MutableLiveData<Event<PlayerClick>> = MutableLiveData()
+    val clickControlLiveData: LiveData<Event<PlayerClick>> get() = _clickControlLiveData
 
     fun getStreamingUrl(episodeUrl: String) = viewModelScope.launch(Dispatchers.IO) {
         _streamingUrlLiveData.postValue(ResultWrapper.Loading())
@@ -64,8 +65,13 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
+    fun updateEpisode(url: String, type: Int) {
+        if (type == 0) getStreamingUrl(url)
+        else getCartoonStreamingUrl(url)
+    }
+
     fun updateButtonClick(clickType: PlayerClick) {
-        _clickControlLiveData.value = clickType
+        _clickControlLiveData.value = Event(clickType)
     }
 
     enum class PlayerClick {

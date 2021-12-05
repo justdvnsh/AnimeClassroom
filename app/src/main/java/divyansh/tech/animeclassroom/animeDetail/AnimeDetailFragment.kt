@@ -50,8 +50,8 @@ class AnimeDetailFragment: Fragment() {
 
     private fun setupRecyclerView() {
         binding.animeDetailRv.apply {
-            layoutManager = GridLayoutManager(requireActivity(), 3)
-            animeDetailController.spanCount = 3
+            layoutManager = GridLayoutManager(requireActivity(), 2)
+            animeDetailController.spanCount = 2
             (layoutManager as GridLayoutManager).spanSizeLookup = animeDetailController.spanSizeLookup
             adapter = animeDetailController.adapter
         }

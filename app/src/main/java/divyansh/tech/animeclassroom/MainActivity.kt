@@ -1,8 +1,11 @@
 package divyansh.tech.animeclassroom
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -14,13 +17,15 @@ import divyansh.tech.animeclassroom.manga.MangaFragment
 import divyansh.tech.animeclassroom.settings.SettingsFragment
 import divyansh.tech.animeclassroom.shop.ShopFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class   MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        updateStatusBar()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupNavigation()
@@ -48,5 +53,9 @@ class   MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    private fun updateStatusBar() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.app_background)
     }
 }

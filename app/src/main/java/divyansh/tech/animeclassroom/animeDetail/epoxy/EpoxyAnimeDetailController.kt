@@ -15,29 +15,29 @@ class EpoxyAnimeDetailController(
     private val animeUrl: String
 ): Typed2EpoxyController<AnimeDetailModel, List<EpisodeModel>>() {
     override fun buildModels(data1: AnimeDetailModel?, data2: List<EpisodeModel>?) {
-        data1?.let {
+        data1?.let {anime->
             epoxyAnimeDetailHeader {
-                id(it.imageUrl)
-                anime(it)
+                id(anime.imageUrl)
+                anime(anime)
                 favoriteClickCallback(favoriteClickCallback)
                 animeUrl(animeUrl)
                 spanSizeOverride { totalSpanCount, position, itemCount -> totalSpanCount }
             }
 
             epoxyAnimeDetailPlotSummary {
-                id(it.name)
-                anime(it)
+                id(anime.name)
+                anime(anime)
                 spanSizeOverride { totalSpanCount, position, itemCount ->  totalSpanCount}
             }
 
             epoxyTitle {
-                id(it.name)
+                id(anime.name)
                 headerTitle("Genres")
             }
 
             val list: ArrayList<EpoxyAnimeDetailGenreModel_> = ArrayList()
 
-            it.genre.forEach {
+            anime.genre.forEach {
                 list.add(
                     EpoxyAnimeDetailGenreModel_()
                         .id(it.genreUrl)
@@ -47,13 +47,13 @@ class EpoxyAnimeDetailController(
             }
 
             CarouselModel_()
-                .id(it.hashCode())
+                .id(anime.hashCode())
                 .models(list)
                 .padding(Carousel.Padding.dp(20,0,20,0,20))
                 .addTo(this)
 
             epoxyTitle {
-                id(it.name)
+                id(anime.name)
                 headerTitle("Episodes")
                 spanSizeOverride { totalSpanCount, _, _ -> totalSpanCount }
             }
@@ -70,6 +70,7 @@ class EpoxyAnimeDetailController(
                         id(it.episodeUrl)
                         episode(it)
                         clickCallback(clickCallback)
+                        imageUrl(anime.imageUrl)
                     }
                 }
 

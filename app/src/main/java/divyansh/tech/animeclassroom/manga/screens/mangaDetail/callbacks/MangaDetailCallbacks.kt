@@ -20,7 +20,7 @@ class MangaDetailCallbacks(
 
     override fun onAnimeClicked(animeUrl: String) {}
 
-    override fun onEpisodeClicked(episodeUrl: String) {}
+    override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {}
 
     override fun onGenreClicked(genreUrl: String) {
         val action = MangaDetailFragmentDirections.actionMangaDetailFragmentToGenreFragment(genreUrl)

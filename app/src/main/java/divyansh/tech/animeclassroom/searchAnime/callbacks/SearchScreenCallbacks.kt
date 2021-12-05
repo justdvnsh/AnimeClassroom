@@ -18,7 +18,7 @@ class SearchScreenCallbacks(private val viewModel: CommonViewModel): AnimeClickC
         viewModel.changeNavigation(action)
     }
 
-    override fun onEpisodeClicked(episodeUrl: String) {
+    override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
 
     }
 
