@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.animeclassroom.favorites.FavoritesFragment
 import divyansh.tech.animeclassroom.home.HomeFragment
 import divyansh.tech.animeclassroom.manga.MangaFragment
+import divyansh.tech.animeclassroom.player.PlayerFragment
 import divyansh.tech.animeclassroom.settings.SettingsFragment
 import divyansh.tech.animeclassroom.shop.ShopFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -57,5 +59,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateStatusBar() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.app_background)
+    }
+
+    fun startVideoPlayerFragment(args: Bundle) {
+        val playerFragment = PlayerFragment()
+        playerFragment.arguments = args
+        supportFragmentManager.beginTransaction()
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .replace(R.id.videoPlayerFrame, playerFragment, "player Fragment").commit()
     }
 }

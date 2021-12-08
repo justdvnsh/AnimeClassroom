@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+        android:id="@+id/exoPlayerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fixed_height">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exoPlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:controller_layout_id="@layout/exo_player_custom_controls"
+            app:fastforward_increment="10000"
+            app:resize_mode="fill"
+            app:rewind_increment="10000"
+            app:scrubber_dragged_size="25dp"
+            app:show_buffering="when_playing"
+            app:show_timeout="3000" />
+    </com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

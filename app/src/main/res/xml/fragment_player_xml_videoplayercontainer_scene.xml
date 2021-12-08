@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/episodeTitle"
+               motion:framePosition="100"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/episodeRv"
+               motion:framePosition="100"
+               android:alpha="0.5" />
+       </KeyFrameSet>
+        <OnSwipe
+            motion:touchAnchorId="@+id/videoPlayerFragment"
+            motion:dragDirection="dragDown"
+            motion:touchAnchorSide="top" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/dimBackground">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/app_background"/>
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/center"
+            motion:layout_constraintGuide_percent="0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/center"
+            motion:layout_constraintGuide_percent="0.3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/episodeTitle"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@id/videoPlayerFragment"
+            android:alpha="0"
+            android:layout_marginTop="@dimen/spacing_small"
+            motion:layout_constraintStart_toStartOf="@id/videoPlayerFragment" />
+        <Constraint
+            android:layout_height="0dp"
+            motion:layout_editor_absoluteX="16dp"
+            android:layout_width="0dp"
+            android:id="@+id/episodeRv"
+            motion:layout_editor_absoluteY="537dp"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@id/episodeTitle"
+            android:alpha="0"
+            motion:layout_constraintStart_toStartOf="@id/episodeTitle" />
+        <Constraint
+            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:id="@+id/exoPlayerFrameLayout"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small" />
+        <Constraint
+            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:id="@+id/videoPlayerFragment"
+            motion:layout_editor_absoluteY="195dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small" />
+        <Constraint
+            android:id="@+id/dimBackground">
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@android:color/transparent"/>
+        </Constraint>
+    </ConstraintSet>
+    <ConstraintSet
+        android:id="@+id/exit"
+        motion:deriveConstraintsFrom="@+id/end" >
+        <Constraint
+            android:layout_marginEnd="@dimen/spacing_small"
+            motion:layout_editor_absoluteY="195dp"
+            android:layout_height="150dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="250dp"
+            android:id="@+id/videoPlayerFragment" />
+        <Constraint
+            android:id="@+id/videoPlayerFragment"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="150dp"
+            android:layout_width="250dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            motion:layout_editor_absoluteY="195dp" />
+    </ConstraintSet>
+</MotionScene>

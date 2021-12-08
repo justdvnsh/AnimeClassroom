@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.animeDetail.callbacks
 
+import android.os.Bundle
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailFragmentDirections
 import divyansh.tech.animeclassroom.animeDetail.AnimeDetailViewModel
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
@@ -13,8 +14,12 @@ class EpisodeClickCallback(
     }
 
     override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
-        val action = AnimeDetailFragmentDirections.actionAnimeDetailFragmentToPlayerFragment2(episodeUrl, 0, imageUrl)
-        viewModel.changeNavigation(action)
+        val bundle = Bundle().apply {
+            putString("url", episodeUrl)
+            putInt("type", 0)
+            putString("imageUrl", imageUrl)
+        }
+        viewModel.navigateToPlayerFragment(bundle)
     }
 
     override fun onGenreClicked(genreUrl: String) {

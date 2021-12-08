@@ -13,11 +13,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.animeclassroom.MainActivity
 import divyansh.tech.animeclassroom.common.utils.EventObserver
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.animeDetail.callbacks.FavoriteClickCallback
 import divyansh.tech.animeclassroom.animeDetail.epoxy.EpoxyAnimeDetailController
+import divyansh.tech.animeclassroom.common.utils.Event
 import divyansh.tech.animeclassroom.databinding.FragmentAnimeDetailsBinding
 
 @AndroidEntryPoint
@@ -105,6 +107,13 @@ class AnimeDetailFragment: Fragment() {
             viewLifecycleOwner,
             EventObserver {
                 findNavController().navigate(it)
+            }
+        )
+
+        viewModel.navigationPlayer.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                (requireActivity() as MainActivity).startVideoPlayerFragment(it)
             }
         )
     }

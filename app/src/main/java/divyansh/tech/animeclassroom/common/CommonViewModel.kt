@@ -1,5 +1,6 @@
 package divyansh.tech.animeclassroom.common
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,6 +22,9 @@ open class CommonViewModel: ViewModel() {
     // Clicked events
     private val _navigationLiveData: MutableLiveData<Event<NavDirections>> = MutableLiveData()
     val navigation: LiveData<Event<NavDirections>> get() = _navigationLiveData
+
+    private val _navigationPlayerLiveData: MutableLiveData<Event<Bundle>> = MutableLiveData()
+    val navigationPlayer: LiveData<Event<Bundle>> get() = _navigationPlayerLiveData
 
 
     private fun updateErrorModel(e: Throwable?) {
@@ -64,6 +68,10 @@ open class CommonViewModel: ViewModel() {
    * */
     fun changeNavigation(navDirections: NavDirections) {
         _navigationLiveData.value = Event(navDirections)
+    }
+
+    fun navigateToPlayerFragment(args: Bundle) {
+        _navigationPlayerLiveData.value = Event(args)
     }
 
     enum class Error {

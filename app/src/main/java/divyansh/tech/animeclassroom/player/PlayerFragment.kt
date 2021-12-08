@@ -32,6 +32,7 @@ import com.google.android.exoplayer2.source.hls.HlsDataSourceFactory
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
+import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.google.android.exoplayer2.upstream.HttpDataSource
@@ -49,6 +50,7 @@ import divyansh.tech.animeclassroom.player.epoxy.EpoxyPlayerController
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
 import kotlinx.android.synthetic.main.fragment_player.*
+import kotlinx.android.synthetic.main.video_player_fragment.view.*
 
 @AndroidEntryPoint
 class PlayerFragment: Fragment(), PlayerControlListener {
@@ -56,6 +58,8 @@ class PlayerFragment: Fragment(), PlayerControlListener {
     private lateinit var binding: FragmentPlayerBinding
     private lateinit var exoPlayer: SimpleExoPlayer
     private val viewModel by activityViewModels<PlayerViewModel>()
+    private lateinit var exoPlayerView: PlayerView
+    private lateinit var exoPlayerFrameLayout: AspectRatioFrameLayout
 
     private val args by navArgs<PlayerFragmentArgs>()
 
@@ -97,6 +101,8 @@ class PlayerFragment: Fragment(), PlayerControlListener {
             container,
             false
         )
+        exoPlayerView = binding.videoPlayerFragment.exoPlayerView
+        exoPlayerFrameLayout = binding.videoPlayerFragment.exoPlayerFrameLayout
         return binding.root
     }
 
@@ -193,15 +199,15 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                     }
                     STATE_BUFFERING -> {
                         exoplayerErrorLayoutChange(visible = false)
-                        binding.exoPlayerView.exo_play.setImageResource(0)
-                        binding.exoPlayerView.exo_pause.setImageResource(0)
+                        exoPlayerView.exo_play.setImageResource(0)
+                        exoPlayerView.exo_pause.setImageResource(0)
                     }
                     STATE_READY -> {
                         setEnabledStatusOfPreviousAndNextEpisodesButtons(true)
                         exoPlayerView.videoSurfaceView.visibility = View.VISIBLE
                         exoplayerErrorLayoutChange(visible = false)
-                        binding.exoPlayerView.exo_play.setImageResource(R.drawable.ic_media_play)
-                        binding.exoPlayerView.exo_pause.setImageResource(R.drawable.ic_media_pause)
+                        exoPlayerView.exo_play.setImageResource(R.drawable.ic_media_play)
+                        exoPlayerView.exo_pause.setImageResource(R.drawable.ic_media_pause)
                     }
                     STATE_ENDED -> {
                         exoplayerErrorLayoutChange(visible = false)
@@ -211,7 +217,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
             }
 
         })
-        binding.exoPlayerView.player = exoPlayer
+        exoPlayerView.player = exoPlayer
         play(data)
     }
 
@@ -275,16 +281,16 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                             Log.i("Player-Frag", it.data.toString())
                             it.data?.let { it1 ->
                                 initializePlayer(it1)
-                                binding.progressBar?.visibility = View.GONE
-                                binding.videoPlayerContainer.visibility = View.VISIBLE
+//                                binding.progressBar?.visibility = View.GONE
+//                                binding.videoPlayerContainer.visibility = View.VISIBLE
                                 setupViews(it1)
                                 controller.setData(it1)
                             }
                         }
                         is ResultWrapper.Loading -> {
                             setEnabledStatusOfPreviousAndNextEpisodesButtons(false)
-                            binding.progressBar?.visibility = View.VISIBLE
-                            binding.videoPlayerContainer.visibility = View.GONE
+//                            binding.progressBar?.visibility = View.VISIBLE
+//                            binding.videoPlayerContainer.visibility = View.GONE
                         }
                         else -> {
                             Log.i("Player-Frag", it.toString())
@@ -406,13 +412,13 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         } else {
             View.VISIBLE
         }
-        binding.exoPlayerView.nextEpisode.visibility = nextEpisodeButtonVisibility
+        exoPlayerView.nextEpisode.visibility = nextEpisodeButtonVisibility
         val previousEpisodeButtonVisibility = if (it1.previousEpisodeUrl == null || it1.previousEpisodeUrl.equals("null")) {
             View.GONE
         } else {
             View.VISIBLE
         }
-        binding.exoPlayerView.previousEpisode.visibility = previousEpisodeButtonVisibility
+        exoPlayerView.previousEpisode.visibility = previousEpisodeButtonVisibility
         if (requireActivity().resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
             episodeName.text = it1.animeName
         nextEpisode.setOnClickListener { it1.nextEpisodeUrl?.let { it2 ->

@@ -60,7 +60,7 @@
             app:resize_mode="fixed_height">
 
             <com.google.android.exoplayer2.ui.PlayerView
-                android:id="@+id/exoPlayerView"
+                android:id="@+id/videoPlayerFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:controller_layout_id="@layout/exo_player_custom_controls"
