@@ -9,7 +9,7 @@
             />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <divyansh.tech.animeclassroom.common.utils.SingleViewTouchableMotionLayout
         android:id="@+id/videoPlayerContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -103,6 +103,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/episodeTitle" />
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </divyansh.tech.animeclassroom.common.utils.SingleViewTouchableMotionLayout>
 
 </layout>
