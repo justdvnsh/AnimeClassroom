@@ -36,55 +36,13 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.3" />
 
-        <LinearLayout
-            android:id="@+id/error_layout"
-            android:layout_width="match_parent"
+        <androidx.fragment.app.FragmentContainerView
             android:layout_height="0dp"
-            android:elevation="20dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/center"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/error_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_no_internet"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/error_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/no_internet"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/retry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/retry"
-                android:textColor="@color/white">
-
-            </TextView>
-        </LinearLayout>
-
-        <FrameLayout
+            android:layout_width="match_parent"
             android:id="@+id/videoPlayerFragment"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/center"
-            app:layout_constraintStart_toStartOf="parent"
-            >
-            <include
-                layout="@layout/video_player_fragment"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                />
-        </FrameLayout>
+            />
 
         <TextView
             android:id="@+id/episodeTitle"

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.android.exoplayer2.PlaybackParameters
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.animeclassroom.common.utils.C.BASE_URL
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
@@ -30,6 +31,9 @@ class PlayerViewModel @Inject constructor(
 
     private val _clickControlLiveData: MutableLiveData<Event<PlayerClick>> = MutableLiveData()
     val clickControlLiveData: LiveData<Event<PlayerClick>> get() = _clickControlLiveData
+
+    private val _speedControlLiveData: MutableLiveData<Event<PlaybackParameters>> = MutableLiveData()
+    val speedControlLiveData get() = _speedControlLiveData
 
     fun getStreamingUrl(episodeUrl: String) = viewModelScope.launch(Dispatchers.IO) {
         _streamingUrlLiveData.postValue(ResultWrapper.Loading())
@@ -72,6 +76,10 @@ class PlayerViewModel @Inject constructor(
 
     fun updateButtonClick(clickType: PlayerClick) {
         _clickControlLiveData.value = Event(clickType)
+    }
+
+    fun updateSpeedControl(speed: PlaybackParameters) {
+        _speedControlLiveData.value = Event(speed)
     }
 
     enum class PlayerClick {

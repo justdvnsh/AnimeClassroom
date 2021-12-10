@@ -228,7 +228,7 @@
     </fragment>
     <fragment
         android:id="@+id/playerFragment2"
-        android:name="divyansh.tech.animeclassroom.player.PlayerFragment"
+        android:name="divyansh.tech.animeclassroom.player.VideoDetailFragment"
         android:label="PlayerFragment" >
         <argument
             android:name="url"

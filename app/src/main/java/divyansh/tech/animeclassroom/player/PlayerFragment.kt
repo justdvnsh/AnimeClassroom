@@ -2,6 +2,7 @@ package divyansh.tech.animeclassroom.player
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.pm.ActivityInfo
 import android.net.Uri
@@ -19,6 +20,7 @@ import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -41,54 +43,40 @@ import divyansh.tech.animeclassroom.R
 import divyansh.tech.animeclassroom.animeDetail.callbacks.EpisodeClickCallback
 import divyansh.tech.animeclassroom.common.AnimeClickCallback
 import divyansh.tech.animeclassroom.common.utils.ResultWrapper
-import divyansh.tech.animeclassroom.databinding.FragmentPlayerBinding
 import divyansh.tech.animeclassroom.common.data.PlayerScreenModel
 import divyansh.tech.animeclassroom.common.utils.Event
 import divyansh.tech.animeclassroom.common.utils.EventObserver
+import divyansh.tech.animeclassroom.databinding.VideoPlayerFragmentBinding
 import divyansh.tech.animeclassroom.player.callbacks.PlayerControlListener
 import divyansh.tech.animeclassroom.player.epoxy.EpoxyPlayerController
 import kotlinx.android.synthetic.main.exo_player_custom_controls.*
 import kotlinx.android.synthetic.main.exo_player_custom_controls.view.*
-import kotlinx.android.synthetic.main.fragment_player.*
 import kotlinx.android.synthetic.main.video_player_fragment.view.*
 
 @AndroidEntryPoint
 class PlayerFragment: Fragment(), PlayerControlListener {
 
-    private lateinit var binding: FragmentPlayerBinding
+    companion object {
+        const val URL = "url"
+        fun newInstance(arguments: Bundle): PlayerFragment {
+            val fragment = PlayerFragment()
+            fragment.arguments = arguments
+            return fragment
+        }
+    }
+
+    private lateinit var binding: VideoPlayerFragmentBinding
     private lateinit var exoPlayer: SimpleExoPlayer
     private val viewModel by activityViewModels<PlayerViewModel>()
     private lateinit var exoPlayerView: PlayerView
     private lateinit var exoPlayerFrameLayout: AspectRatioFrameLayout
-
-    private val args by navArgs<PlayerFragmentArgs>()
+    private lateinit var parentFragment: VideoDetailFragment
 
     private var isFullScreen = false
 
-    val callback = object: AnimeClickCallback {
-        override fun onAnimeClicked(animeUrl: String) {
-
-        }
-
-        override fun onEpisodeClicked(episodeUrl: String, imageUrl: String) {
-            viewModel.updateEpisode(episodeUrl, args.type)
-        }
-
-        override fun onGenreClicked(genreUrl: String) {
-
-        }
-
-        override fun onMangaClicked(mangaUrl: String) {
-
-        }
-
-    }
-
-    private val controller by lazy {
-        EpoxyPlayerController(
-            callback = callback,
-            imageUrl = args.imageUrl
-        )
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        parentFragment = requireParentFragment() as VideoDetailFragment
     }
 
     override fun onCreateView(
@@ -96,32 +84,20 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPlayerBinding.inflate(
+        binding = VideoPlayerFragmentBinding.inflate(
             inflater,
             container,
             false
         )
-        exoPlayerView = binding.videoPlayerFragment.exoPlayerView
-        exoPlayerFrameLayout = binding.videoPlayerFragment.exoPlayerFrameLayout
+        exoPlayerView = binding.exoPlayerView
+        exoPlayerFrameLayout = binding.exoPlayerFrameLayout
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
-        setupObservers()
         setupListeners()
-    }
-
-    private fun setupRecyclerView() {
-        val orientation = requireActivity().resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        Log.i("PlayerOrientation -> ", orientation.toString())
-        if (orientation) {
-            binding.episodeRv!!.apply {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = controller.adapter
-            }
-        }
+        setupObservers()
     }
 
     private fun setupListeners() {
@@ -136,7 +112,7 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         }
     }
 
-    private fun initializePlayer(data: PlayerScreenModel) {
+    private fun initializePlayer(data: String?) {
         val trackSelector = DefaultTrackSelector()
         val loadControl = DefaultLoadControl()
         val renderersFactory = DefaultRenderersFactory(requireContext())
@@ -218,7 +194,9 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
         })
         exoPlayerView.player = exoPlayer
-        play(data)
+        data?.let {
+            play(it)
+        }
     }
 
     private fun exoplayerErrorLayoutChange(
@@ -231,13 +209,13 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         binding.errorText.text = getString(errorText)
     }
 
-    private fun play(data: PlayerScreenModel) {
-        if (data.streamingUrl.contains("m3u8")) exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
+    private fun play(data: String) {
+        if (data.contains("m3u8")) exoPlayer.prepare(buildMediaSource(data.toUri()))
         else {
-            if (data.streamingUrl.contains("https"))
-                exoPlayer.prepare(buildMediaSource(data.streamingUrl.toUri()))
+            if (data.contains("https"))
+                exoPlayer.prepare(buildMediaSource(data.toUri()))
             else
-                exoPlayer.prepare(buildMediaSource(data.streamingUrl.replace("http", "https").toUri()))
+                exoPlayer.prepare(buildMediaSource(data.replace("http", "https").toUri()))
 
         }
         exoPlayer.playWhenReady = true
@@ -274,41 +252,28 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
     private fun setupObservers() {
         viewModel.streamingLiveData.observe(
-                viewLifecycleOwner,
-                Observer {
-                    when (it) {
-                        is ResultWrapper.Success -> {
-                            Log.i("Player-Frag", it.data.toString())
-                            it.data?.let { it1 ->
-                                initializePlayer(it1)
-//                                binding.progressBar?.visibility = View.GONE
-//                                binding.videoPlayerContainer.visibility = View.VISIBLE
-                                setupViews(it1)
-                                controller.setData(it1)
-                            }
-                        }
-                        is ResultWrapper.Loading -> {
-                            setEnabledStatusOfPreviousAndNextEpisodesButtons(false)
-//                            binding.progressBar?.visibility = View.VISIBLE
-//                            binding.videoPlayerContainer.visibility = View.GONE
-                        }
-                        else -> {
-                            Log.i("Player-Frag", it.toString())
+            viewLifecycleOwner,
+            Observer { result ->
+                when(result) {
+                    is ResultWrapper.Error -> {}
+                    is ResultWrapper.Loading -> setEnabledStatusOfPreviousAndNextEpisodesButtons(false)
+                    is ResultWrapper.Success -> {
+                        result.data?.let {
+                            initializePlayer(it.streamingUrl)
+                            setupViews(it)
+                            setEnabledStatusOfPreviousAndNextEpisodesButtons(true)
                         }
                     }
                 }
+            }
         )
 
-        viewModel.clickControlLiveData.observe(
-                viewLifecycleOwner,
-                EventObserver {
-                    when(it) {
-                        PlayerViewModel.PlayerClick.BACK -> onBackPressed()
-                        PlayerViewModel.PlayerClick.QUALITY_CONTROL -> Toast.makeText(requireContext(), "QUALITY", Toast.LENGTH_SHORT).show()
-                        PlayerViewModel.PlayerClick.SPEED_CONTROL -> speedControl()
-                        PlayerViewModel.PlayerClick.FULLSCREEN_TOGGLE -> toggleFullScreen()
-                    }
-                }
+        viewModel.speedControlLiveData.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                exoPlayer.playbackParameters = it
+                exo_speed_selection_view.text = it.speed.toString()
+            }
         )
     }
 
@@ -327,37 +292,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         exoPlayer.release()
     }
 
-    /*
-    * Method Selections
-    * */
-    private fun toggleFullScreen() {
-        if (requireActivity().requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
-            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-            isFullScreen = false
-            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            exo_full_Screen
-                    .setImageDrawable(
-                            ContextCompat.getDrawable(
-                                    requireContext(),
-                                    R.drawable.exo_controls_fullscreen_exit
-                            )
-                    )
-        } else {
-            exoPlayerFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-            exoPlayerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-            isFullScreen = true
-            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            exo_full_Screen
-                    .setImageDrawable(
-                            ContextCompat.getDrawable(
-                                    requireContext(),
-                                    R.drawable.exo_controls_fullscreen_enter
-                            )
-                    )
-        }
-    }
-
     private fun audioFocus(){
         val audioAttributes: AudioAttributes = AudioAttributes.Builder()
             .setUsage(C.USAGE_MEDIA)
@@ -371,27 +305,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
         previousEpisode.isEnabled = isEnabled
     }
 
-    private fun speedControl(){
-        var playbackPosition = 2
-        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Set your playback speed")
-        val items = arrayOf("0.5","0.75","1x", "1.25x", "1.5x", "2x")
-        alertDialog.setItems(items, DialogInterface.OnClickListener { _, pos ->
-            when (pos) {
-                0 -> exoPlayer.playbackParameters = PlaybackParameters(0.5f).also { exo_speed_selection_view.text = "0.5x" }
-                1 -> exoPlayer.playbackParameters = PlaybackParameters(0.75f).also { exo_speed_selection_view.text = "0.75x" }
-                2 -> exoPlayer.playbackParameters = PlaybackParameters(1f).also { exo_speed_selection_view.text = "1x" }
-                3 -> exoPlayer.playbackParameters = PlaybackParameters(1.25f).also { exo_speed_selection_view.text = "1.25x" }
-                4 -> exoPlayer.playbackParameters = PlaybackParameters(1.5f).also { exo_speed_selection_view.text = "1.5x" }
-                5 -> exoPlayer.playbackParameters = PlaybackParameters(2f).also { exo_speed_selection_view.text = "2x" }
-            }
-            playbackPosition = pos
-        })
-        val alert: AlertDialog = alertDialog.create()
-        alert.setCanceledOnTouchOutside(true)
-        alert.show()
-    }
-
     override fun onButtonClicked(item: PlayerViewModel.PlayerClick) {
         viewModel.updateButtonClick(item)
     }
@@ -403,7 +316,6 @@ class PlayerFragment: Fragment(), PlayerControlListener {
 
     override fun onResume() {
         super.onResume()
-        viewModel.updateEpisode(args.url, args.type)
     }
 
     private fun setupViews(it1: PlayerScreenModel) {
@@ -431,17 +343,5 @@ class PlayerFragment: Fragment(), PlayerControlListener {
                 it2
             )
         } }
-
-        requireView().setOnKeyListener { _, code, keyEvent ->
-            if (code == KeyEvent.KEYCODE_BACK)
-                onBackPressed()
-            true
-        }
-    }
-
-    private fun onBackPressed() {
-        if (requireActivity().requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)
-            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        else findNavController().popBackStack()
     }
 }
