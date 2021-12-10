@@ -36,7 +36,8 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.3" />
 
-        <androidx.fragment.app.FragmentContainerView
+        <fragment
+            android:name="divyansh.tech.animeclassroom.player.PlayerFragment"
             android:layout_height="0dp"
             android:layout_width="match_parent"
             android:id="@+id/videoPlayerFragment"
@@ -51,7 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_small"
             android:text="@string/episodes"
-            app:layout_constraintTop_toBottomOf="@id/videoPlayerFragment" />
+            app:layout_constraintTop_toBottomOf="@id/videoPlayerFragment"
+            app:layout_constraintBottom_toTopOf="@id/episodeRv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/episodeRv"
