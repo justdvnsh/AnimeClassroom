@@ -6,9 +6,14 @@
 
     //Total Colors
     <color name="app_background">#0c0c0c</color>
-    <color name="header">#bababa</color>
+    <color name="header">#175950</color>
     <color name="text_default">#808080</color>
+
+    <color name="progress">#161616</color>
+    <color name="secondary_background">#690D73</color>
+
     <color name="secondary_background">#212121</color>
+
 
     //Home Fragment
     <color name="home_header">@color/header</color>
@@ -36,7 +41,12 @@
     <color name="info_anime_title">@color/recycler_anime_title</color>
 
     //AnimeInfo Episodes
+
+    <color name="episode_background">#175950</color>
+    <color name="episode_watched_progress">@color/progress</color>
+
     <color name="episode_background">#000000</color>
+
     <color name="episode_text">#8f8f8f</color>
 
 
