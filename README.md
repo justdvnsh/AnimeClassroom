@@ -1,3 +1,9 @@
+# Shop now - AnimeClassroom | Your one stop shop for all things anime.
+
+https:://animeclassroom.club/
+
+## The development for this repository has been stopped and moved to it's own organization. The streaming website and apps are going to be launched soon. Please show your support by buying our official anime apparels, tapestries, posters, tech and travel accessories from your favorite anime
+
 <div id="top"></div>
 
 [![MIT License][license-shield]][license-url]
