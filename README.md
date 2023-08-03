@@ -2,7 +2,12 @@
 
 [https://animeclassroom.club](https://animeclassroom.club)
 
-## The development for this repository has been stopped and moved to it's own organization. The streaming website and apps are going to be launched soon. Please show your support by buying our official anime apparels, tapestries, posters, tech and travel accessories from your favorite anime
+# Visit our new streaming site at - https://ac-tv.vercel.app/
+![Screenshot 2023-08-03 180124](https://github.com/justdvnsh/AnimeClassroom/assets/29144058/4542aba9-4a24-4b78-b71e-766fbefc2e32)
+
+
+
+## The development for this repository has been stopped and moved to it's own organization. Please show your support by buying our official anime apparels, tapestries, posters, tech and travel accessories from your favorite anime
 
 <div id="top"></div>
 
