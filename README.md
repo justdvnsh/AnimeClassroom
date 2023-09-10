@@ -1,6 +1,6 @@
 # Shop now - AnimeClassroom | Your one stop shop for all things anime.
 
-[https://animeclassroom.club](https://animeclassroom.club)
+[https://animeclassroom.shop](https://animeclassroom.shop)
 
 # Visit our new streaming site at - https://ac-tv.vercel.app/
 ![Screenshot 2023-08-03 180124](https://github.com/justdvnsh/AnimeClassroom/assets/29144058/4542aba9-4a24-4b78-b71e-766fbefc2e32)
